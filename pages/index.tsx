@@ -9,7 +9,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Rohin Chopra" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Hello, from Rohin Chopra
+      <h1 className="text-3xl font-bold">Hello, from Rohin Chopra</h1>
     </div>
   );
 };
