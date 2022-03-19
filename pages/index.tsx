@@ -171,8 +171,8 @@ const Home: MyNextPage = () => {
             />
             <FeaturedProjectCard
               className="mt-28"
-              name="CricMe"
-              description="CricMe is for cricket enthusiasts to satisfy their cricketing needs with cricket scores, news and player stats."
+              name="Margembie Labradors"
+              description="A MERN full stack website for a client who is a dog breeder. This website involved CRUD operations in the admin panel and also displaying those resources in the frontend."
               imgUrl="/margembie-labradors.png"
               tech={[
                 <SiJavascript
