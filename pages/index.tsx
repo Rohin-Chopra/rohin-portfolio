@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import NavLink from "../components/Navbar/NavLink";
 import { MyNextPage } from "../shared/types";
 import Image from "next/image";
@@ -29,53 +29,83 @@ import {
   SiFigma,
   SiVercel,
 } from "react-icons/si";
+import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { Fade } from "react-awesome-reveal";
 import Typewriter from "typewriter-effect";
+import classNames from "classnames";
 
 const Home: MyNextPage = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActive = () => {
+    setIsActive((val) => !val);
+  };
+
   return (
     <Fragment>
       <section id="hero" className="h-screen">
-        <div className="grid grid-cols-3 bg-black" id="hero">
-          <div className="bg-black text-white text-xl font-bold px-4 py-8">
+        <div
+          className="flex justify-between w-full md:grid md:grid-cols-3 bg-black"
+          id="hero"
+        >
+          <div className="bg-black text-white text-xl font-bold pl-8 py-8">
             <span className="font-display">ROHIN CHOPRA</span>
           </div>
-          <div className="bg-darkGray text-white col-span-2 flex justify-end items-center border-l-2 border-l-primary pr-16">
-            <div className="mx-4">
-              <NavLink
-                href="#"
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              >
-                Experience
-              </NavLink>
-            </div>
-            <div className="mx-4">
-              <NavLink
-                href="#"
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              >
-                Work
-              </NavLink>
-            </div>
-            <div className="mx-4">
-              <NavLink
-                href="#"
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              >
-                Skills
-              </NavLink>
-            </div>
-            <div className="mx-4 bg-primary h-full flex items-center px-4 font-semibold ">
-              <NavLink href="#" className="hover:opacity-70 transition-opacity">
-                Contact
-              </NavLink>
+          <div className="bg-black lg:bg-darkGray text-white md:col-span-2  md:border-l-2 md:border-l-primary md:pr-16">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-end md:h-full">
+              <div className="mx-4">
+                <NavLink
+                  href="#"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  Experience
+                </NavLink>
+              </div>
+              <div className="mx-4">
+                <NavLink
+                  href="#"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  Work
+                </NavLink>
+              </div>
+              <div className="mx-4">
+                <NavLink
+                  href="#"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  Skills
+                </NavLink>
+              </div>
+              <div className="mx-4 bg-primary h-full flex items-center px-4 font-semibold ">
+                <NavLink
+                  href="#"
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  Contact
+                </NavLink>
+              </div>
+              <MdMenu
+                className={classNames({
+                  "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
+                  hidden: isActive,
+                })}
+                onClick={toggleActive}
+              />
+              <MdOutlineClose
+                className={classNames({
+                  "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
+                  hidden: !isActive,
+                })}
+                onClick={toggleActive}
+              />
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 bg-black h-full ">
+        <div className="md:grid md:grid-cols-3 bg-black h-full ">
           <div className="bg-black relative">
             <div className="flex justify-end">
-              <div className="absolute -right-6 z-50 mt-12">
+              <div className="md:absolute -right-6 z-50 mt-12">
                 <Fade delay={50}>
                   <Image
                     className="rounded-full bg-primary"
@@ -226,7 +256,7 @@ const Home: MyNextPage = () => {
             <h3 className="opacity-80 font-semibold text-xl mb-4">
               Languages And Frameworks
             </h3>
-            <div className="grid grid-cols-8 text-6xl">
+            <div className="md:grid md:grid-cols-8 text-6xl">
               <SiJavascript title="Javascript" />
               <SiTypescript title="TypeScript" />
               <FaReact title="React" />
@@ -241,7 +271,7 @@ const Home: MyNextPage = () => {
             <h3 className="opacity-80 font-semibold text-xl mb-4">
               Technologies
             </h3>
-            <div className="grid grid-cols-8 text-6xl">
+            <div className="md:grid md:grid-cols-8 text-6xl">
               <SiPostgresql title="PostgreSQL" />
               <SiMysql title="MySQL" />
               <SiMongodb title="MongoDB" />
@@ -251,7 +281,7 @@ const Home: MyNextPage = () => {
           </div>
           <div>
             <h3 className="opacity-80 font-semibold text-xl mb-4">Services</h3>
-            <div className="grid grid-cols-8 text-6xl">
+            <div className="md:grid md:grid-cols-8 text-6xl">
               <FaAws title="AWS" />
               <FaGithub title="Github" />
               <FaBitbucket title="BitBucket" />

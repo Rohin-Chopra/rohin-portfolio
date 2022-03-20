@@ -48,7 +48,7 @@ const FeaturedProjectCard = ({
         </div>
         <div className="mt-4 ml-2">
           <h5 className="opacity-80 font-semibold mb-2 text-lg">Tech Used:</h5>
-          <div className="flex">
+          <div className="flex flex-wrap">
             {tech.map((t, i) => (
               <div className="mx-2" key={i}>
                 {t}
