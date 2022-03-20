@@ -23,13 +23,14 @@ import {
   SiBootstrap,
   SiNetlify,
   SiNodedotjs,
-  SiPython,
   SiGatsby,
   SiPostgresql,
   SiDocker,
   SiFigma,
   SiVercel,
 } from "react-icons/si";
+import { Fade } from "react-awesome-reveal";
+import Typewriter from "typewriter-effect";
 
 const Home: MyNextPage = () => {
   return (
@@ -75,13 +76,15 @@ const Home: MyNextPage = () => {
           <div className="bg-black relative">
             <div className="flex justify-end">
               <div className="absolute -right-6 z-50 mt-12">
-                <Image
-                  className="rounded-full bg-primary"
-                  alt="Rohin Chopra"
-                  src="/hero.png"
-                  width={300}
-                  height={300}
-                />
+                <Fade delay={50}>
+                  <Image
+                    className="rounded-full bg-primary"
+                    alt="Rohin Chopra"
+                    src="/hero.png"
+                    width={300}
+                    height={300}
+                  />
+                </Fade>
               </div>
             </div>
           </div>
@@ -91,7 +94,11 @@ const Home: MyNextPage = () => {
                 I&apos;m Rohin Chopra.
               </h1>
               <h1 className="text-6xl font-bold text-white mb-4">
-                A Software Engineer
+                <Typewriter
+                  onInit={(t) => {
+                    t.typeString("A Software Engineer").start();
+                  }}
+                />
               </h1>
               <h1 className="text-6xl font-bold text-gray mb-8">
                 based in Australia
