@@ -35,9 +35,9 @@ const Home: MyNextPage = () => {
   return (
     <Fragment>
       <section id="hero" className="h-screen">
-        <div className="md:grid md:grid-cols-3 bg-black h-full ">
+        <div className="flex flex-col-reverse justify-end pt-8 md:pt-0 md:grid md:grid-cols-3 bg-black h-full">
           <div className="bg-black relative">
-            <div className="flex justify-end">
+            <div className="flex justify-center md:justify-end">
               <div className="md:absolute -right-6 z-10 mt-12">
                 <Fade delay={50}>
                   <Image
@@ -51,22 +51,18 @@ const Home: MyNextPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 bg-darkGray border-l-2 border-primary pl-8 rounded-bl-3xl ">
-            <div className="mt-24">
-              <h1 className="text-6xl font-bold text-white mb-4">
-                I&apos;m Rohin Chopra.
-              </h1>
-              <h1 className="text-6xl font-bold text-white mb-4">
+          <div className="col-span-2 md:bg-darkGray md:border-l-2 md:border-primary pl-8 rounded-bl-3xl ">
+            <div className="md:mt-24 text-4xl lg:text-6xl font-bold text-white">
+              <h1 className="mb-4">I&apos;m Rohin Chopra.</h1>
+              <h1 className="mb-4">
                 <Typewriter
                   onInit={(t) => {
                     t.typeString("A Software Engineer").start();
                   }}
                 />
               </h1>
-              <h1 className="text-6xl font-bold text-gray mb-8">
-                based in Australia
-              </h1>
-              <p className="text-white max-w-2xl text-lg">
+              <h1 className="text-gray mb-8">based in Australia</h1>
+              <p className="font-normal text-white max-w-2xl text-lg">
                 I&apos;m probably the most passionate engineer you will ever get
                 to work with. If you have a great project that needs some
                 amazing skills, I&apos;m your guy.
