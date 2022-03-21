@@ -34,7 +34,7 @@ import Typewriter from "typewriter-effect";
 const Home: MyNextPage = () => {
   return (
     <Fragment>
-      <section id="hero" className="h-screen">
+      <section id="hero" className="md:h-screen">
         <div className="flex flex-col-reverse justify-end pt-8 md:pt-0 md:grid md:grid-cols-3 bg-black h-full">
           <div className="bg-black relative">
             <div className="flex justify-center md:justify-end">
@@ -71,12 +71,12 @@ const Home: MyNextPage = () => {
           </div>
         </div>
       </section>
-      <section id="projects" className="bg-black text-white py-8 px-6 mt-16">
+      <section id="projects" className="bg-black text-white py-8 px-6 md:mt-16">
         <div className="container mx-auto">
-          <h2 className="font-bold text-4xl mb-10 mt-4">
+          <h2 className="font-bold text-2xl md:text-4xl md:mb-10 mt-4">
             Projects I&apos;ve built
           </h2>
-          <div className="mt-4">
+          <div className="mt-2 md:mt-4">
             <FeaturedProjectCard
               name="Make My Career"
               description="Makemycareer is a platform for year 10-12 VCE students to find the perfect university course according to their needs and interest"
@@ -175,8 +175,8 @@ const Home: MyNextPage = () => {
       </section>
       <section id="skills" className="bg-black text-white py-8 px-6">
         <div className="container mx-auto">
-          <h2 className="font-bold text-4xl mb-2 mt-4">Skillset</h2>
-          <p className="opacity-80 text-lg max-w-xl mb-4">
+          <h2 className="font-bold text-2xl md:text-4xl mb-2 mt-4">Skillset</h2>
+          <p className="opacity-80 md:text-lg max-w-xl mb-4">
             With my skills and experience in frontend, backend and cloud I am
             your go to guy to deploy a modern, robust and scalable web
             application.
@@ -185,7 +185,7 @@ const Home: MyNextPage = () => {
             <h3 className="opacity-80 font-semibold text-xl mb-4">
               Languages And Frameworks
             </h3>
-            <div className="md:grid md:grid-cols-8 text-6xl">
+            <div className="grid grid-cols-2 gap-y-4 justify-items-center text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
               <SiJavascript title="Javascript" />
               <SiTypescript title="TypeScript" />
               <FaReact title="React" />
@@ -200,7 +200,7 @@ const Home: MyNextPage = () => {
             <h3 className="opacity-80 font-semibold text-xl mb-4">
               Technologies
             </h3>
-            <div className="md:grid md:grid-cols-8 text-6xl">
+            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-5xl md:text-6xl">
               <SiPostgresql title="PostgreSQL" />
               <SiMysql title="MySQL" />
               <SiMongodb title="MongoDB" />
@@ -210,7 +210,7 @@ const Home: MyNextPage = () => {
           </div>
           <div>
             <h3 className="opacity-80 font-semibold text-xl mb-4">Services</h3>
-            <div className="md:grid md:grid-cols-8 text-6xl">
+            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-6xl">
               <FaAws title="AWS" />
               <FaGithub title="Github" />
               <FaBitbucket title="BitBucket" />
