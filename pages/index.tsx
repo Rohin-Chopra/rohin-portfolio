@@ -71,7 +71,7 @@ const Home: MyNextPage = () => {
           </div>
         </div>
       </section>
-      <section id="projects" className="bg-black text-white py-8 px-6 md:mt-16">
+      <section id="projects" className="bg-black text-white py-8 px-6">
         <div className="container mx-auto">
           <h2 className="font-bold text-2xl md:text-4xl md:mb-10 mt-4">
             Projects I&apos;ve built
