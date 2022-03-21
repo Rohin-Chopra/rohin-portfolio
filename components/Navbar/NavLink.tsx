@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 
-type Props = {
+type Props = PropsWithChildren<any> & {
   href: string;
   className?: string;
   activeClassName?: string;
@@ -14,6 +14,7 @@ const NavLink = ({
   children,
   className = "",
   activeClassName = "",
+  ...rest
 }: PropsWithChildren<Props>) => {
   const { pathname } = useRouter();
   const isActive = pathname === href;
@@ -24,6 +25,7 @@ const NavLink = ({
           [className]: true,
           [activeClassName]: isActive,
         })}
+        {...rest}
       >
         {children}
       </a>

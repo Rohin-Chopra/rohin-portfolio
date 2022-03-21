@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import NavLink from "../components/Navbar/NavLink";
 import { MyNextPage } from "../shared/types";
 import Image from "next/image";
 import FeaturedProjectCard from "../components/ProjectCard";
@@ -29,83 +28,17 @@ import {
   SiFigma,
   SiVercel,
 } from "react-icons/si";
-import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { Fade } from "react-awesome-reveal";
 import Typewriter from "typewriter-effect";
-import classNames from "classnames";
 
 const Home: MyNextPage = () => {
-  const [isActive, setIsActive] = useState(false);
-
-  const toggleActive = () => {
-    setIsActive((val) => !val);
-  };
-
   return (
     <Fragment>
       <section id="hero" className="h-screen">
-        <div
-          className="flex justify-between w-full md:grid md:grid-cols-3 bg-black"
-          id="hero"
-        >
-          <div className="bg-black text-white text-xl font-bold pl-8 py-8">
-            <span className="font-display">ROHIN CHOPRA</span>
-          </div>
-          <div className="bg-black lg:bg-darkGray text-white md:col-span-2  md:border-l-2 md:border-l-primary md:pr-16">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-end md:h-full">
-              <div className="mx-4">
-                <NavLink
-                  href="#"
-                  className="opacity-70 hover:opacity-100 transition-opacity"
-                >
-                  Experience
-                </NavLink>
-              </div>
-              <div className="mx-4">
-                <NavLink
-                  href="#"
-                  className="opacity-70 hover:opacity-100 transition-opacity"
-                >
-                  Work
-                </NavLink>
-              </div>
-              <div className="mx-4">
-                <NavLink
-                  href="#"
-                  className="opacity-70 hover:opacity-100 transition-opacity"
-                >
-                  Skills
-                </NavLink>
-              </div>
-              <div className="mx-4 bg-primary h-full flex items-center px-4 font-semibold ">
-                <NavLink
-                  href="#"
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  Contact
-                </NavLink>
-              </div>
-              <MdMenu
-                className={classNames({
-                  "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
-                  hidden: isActive,
-                })}
-                onClick={toggleActive}
-              />
-              <MdOutlineClose
-                className={classNames({
-                  "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
-                  hidden: !isActive,
-                })}
-                onClick={toggleActive}
-              />
-            </div>
-          </div>
-        </div>
         <div className="md:grid md:grid-cols-3 bg-black h-full ">
           <div className="bg-black relative">
             <div className="flex justify-end">
-              <div className="md:absolute -right-6 z-50 mt-12">
+              <div className="md:absolute -right-6 z-10 mt-12">
                 <Fade delay={50}>
                   <Image
                     className="rounded-full bg-primary"
@@ -295,7 +228,5 @@ const Home: MyNextPage = () => {
     </Fragment>
   );
 };
-
-Home.requiresLayout = false;
 
 export default Home;
