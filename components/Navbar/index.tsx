@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="flex justify-between items-center w-full md:items-stretch md:grid md:grid-cols-3 bg-black py-8 px-8 md:p-0">
+      <div className="flex justify-between items-center w-full md:items-stretch md:grid md:grid-cols-3 bg-black py-2 px-8 md:p-0">
         <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
           <span className="font-display">ROHIN CHOPRA</span>
         </div>
