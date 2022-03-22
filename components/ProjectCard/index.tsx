@@ -38,7 +38,7 @@ const FeaturedProjectCard = ({
           <p className="font-semibold opacity-80 md:mt-8  md:text-lg">
             Featured Project
           </p>
-          <h3 className="font-bold text-xl md:text-2xl mb-4">{name}</h3>
+          <h3 className="font-bold text-xl md:text-2xl mb-2 md:mb-4">{name}</h3>
         </div>
         <div
           className={classNames({
