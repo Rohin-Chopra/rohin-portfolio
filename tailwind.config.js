@@ -8,6 +8,11 @@ module.exports = {
     "./lib/**/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      height: {
+        "screen-90": "90vh",
+      },
+    },
     colors: {
       white: "#FFFFFF",
       black: "#000",

@@ -63,7 +63,7 @@ const Home: MyNextPage = () => {
 
   return (
     <Fragment>
-      <section id="hero" className="md:h-screen">
+      <section id="hero" className="md:h-screen-90">
         <div className="flex flex-col-reverse justify-end pt-8 md:pt-0 md:grid md:grid-cols-3 bg-black h-full">
           <div className="bg-black relative">
             <div className="flex justify-center md:justify-end">
