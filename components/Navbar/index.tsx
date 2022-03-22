@@ -28,34 +28,25 @@ const Navbar = () => {
             <div className="my-4 md:my-0 mx-4">
               <NavLink
                 onClick={toggleActive}
-                href="#"
+                href="#projects"
                 className="opacity-70 hover:opacity-100 transition-opacity"
               >
-                Experience
+                Projects
               </NavLink>
             </div>
             <div className="my-4 md:my-0 mx-4">
               <NavLink
                 onClick={toggleActive}
-                href="#"
+                href="#skills"
                 className="opacity-70 hover:opacity-100 transition-opacity"
               >
-                Work
-              </NavLink>
-            </div>
-            <div className="my-4 md:my-0 mx-4">
-              <NavLink
-                onClick={toggleActive}
-                href="#"
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              >
-                Skills
+                Skillset
               </NavLink>
             </div>
             <div className="bg-primary flex items-center font-semibold my-4 md:my-0 mx-4 py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
               <NavLink
                 onClick={toggleActive}
-                href="#"
+                href="#contact"
                 className="hover:opacity-70 transition-opacity"
               >
                 Contact
