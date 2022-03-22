@@ -3,21 +3,23 @@ import { ButtonHTMLAttributes } from "react";
 enum Variant {
   PRIMARY,
   SECONDARY,
+  BASE,
 }
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant: Variant;
+  variant?: Variant;
 };
 
 const Variants = {
   [Variant.PRIMARY]: "bg-primary text-white",
   [Variant.SECONDARY]: "bg-secondary text-white",
+  [Variant.BASE]: "",
 };
 
 const Button = ({
   children,
   className,
-  variant = Variant.PRIMARY,
+  variant = Variant.BASE,
   ...rest
 }: Props) => {
   return (
