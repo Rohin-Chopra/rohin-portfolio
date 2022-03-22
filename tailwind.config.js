@@ -16,6 +16,7 @@ module.exports = {
       gray: "#8B8B91",
       primary: "#5221E6",
       danger: "#dc3545",
+      transparent: "transparent",
     },
     fontFamily: {
       display: ["Josefin Sans", "sans-serif"],

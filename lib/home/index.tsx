@@ -139,7 +139,7 @@ const Home: MyNextPage = () => {
             />
             <FeaturedProjectCard
               isReverse
-              className="mt-28"
+              className="mt-8 md:mt-28"
               name="Digishelf"
               description="With Digishelf you can create digital shelves that store your favorite movies and tv shows which then you can share with friends and family"
               imgUrl="/digishelf.png"
@@ -165,7 +165,7 @@ const Home: MyNextPage = () => {
               ]}
             />
             <FeaturedProjectCard
-              className="mt-28"
+              className="mt-8 md:mt-28"
               name="Margembie Labradors"
               description="A MERN full stack website for a client who is a dog breeder. This website involved CRUD operations in the admin panel and also displaying those resources in the frontend."
               imgUrl="/margembie-labradors.png"
