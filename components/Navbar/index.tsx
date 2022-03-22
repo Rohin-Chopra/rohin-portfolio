@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
+import { Link } from "react-scroll";
 import NavLink from "./NavLink";
 
 const Navbar = () => {
@@ -26,31 +27,44 @@ const Navbar = () => {
             })}
           >
             <div className="my-4 md:my-0 mx-4">
-              <NavLink
+              <Link
                 onClick={toggleActive}
-                href="#projects"
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                to="projects"
+                className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                activeClass="opacity-100"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
               >
                 Projects
-              </NavLink>
+              </Link>
             </div>
             <div className="my-4 md:my-0 mx-4">
-              <NavLink
+              <Link
                 onClick={toggleActive}
-                href="#skills"
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                to="skills"
+                className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
               >
                 Skillset
-              </NavLink>
+              </Link>
             </div>
             <div className="bg-primary flex items-center font-semibold my-4 md:my-0 mx-4 py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
-              <NavLink
+              <Link
                 onClick={toggleActive}
-                href="#contact"
-                className="hover:opacity-70 transition-opacity"
+                to="contact"
+                className="cursor-pointer hover:opacity-70 transition-opacity"
+                spy={true}
+                smooth={true}
+                offset={200}
+                duration={500}
               >
                 Contact
-              </NavLink>
+              </Link>
             </div>
           </div>
           <MdMenu
