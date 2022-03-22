@@ -274,8 +274,11 @@ const Home: MyNextPage = () => {
                 <label className="block mb-2">Message</label>
                 <Input {...register("message")} />
               </div>
-              <Button variant={Button.Variants.PRIMARY} className="mt-4 w-full">
-                Submit
+              <Button
+                variant={Button.Variants.PRIMARY}
+                className="mt-4 w-full py-4 font-semibold text-lg"
+              >
+                Let&apos; Talk
               </Button>
             </form>
           </div>
