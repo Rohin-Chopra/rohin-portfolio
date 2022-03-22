@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
           <span className="font-display">ROHIN CHOPRA</span>
         </div>
-        <div className="bg-black md:bg-darkGray text-white md:col-span-2 md:border-l-2 md:border-l-primary md:pr-16 flex items-center">
+        <div className="bg-black md:bg-darkGray text-white md:col-span-2 md:border-l-2 md:border-l-primary md:pr-16 flex md:justify-end items-center">
           <div
             className={classNames({
               "fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base":

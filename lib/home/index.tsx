@@ -1,4 +1,4 @@
-import { Fragment, SyntheticEvent, useState } from "react";
+import { Fragment } from "react";
 import { MyNextPage } from "../../shared/types";
 import Image from "next/image";
 import FeaturedProjectCard from "../../components/ProjectCard";
@@ -40,25 +40,25 @@ import {
 } from "react-hook-form";
 import schema from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
 
 const Home: MyNextPage = () => {
-  const { register, handleSubmit: handleSubmitHookForm } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: CONTACT_FORM_DEFAULT_VALUES,
   });
 
-  const handleValidSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    alert(1);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    toast("Success", { type: "success" });
   };
 
-  const handleInvalidSubmit: SubmitErrorHandler<FieldValues> = (err) => {
-    console.log(err);
-    alert(2);
-  };
-
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleSubmitHookForm(handleValidSubmit, handleInvalidSubmit);
+  const onError: SubmitErrorHandler<FieldValues> = (err) => {
+    toast("Error in validating form", { type: "error" });
   };
 
   return (
@@ -250,37 +250,62 @@ const Home: MyNextPage = () => {
           </div>
         </div>
       </section>
-      <section id="contact" className="bg-black text-white py-8 px-6">
-        <div className="md:grid md:grid-cols-2">
-          <div className="mb-4 md:mb-0">
-            <h2 className="font-bold text-2xl md:text-4xl md:mb-2">
-              Let&apos;s talk
-            </h2>
-            <p className="opacity-80">
-              Got any questions or want to reach out to me?
-            </p>
-          </div>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block mb-2">Name</label>
-                <Input {...register("name")} />
-              </div>
-              <div className="mb-4">
-                <label className="block mb-2">Email</label>
-                <Input {...register("email")} />
-              </div>
-              <div>
-                <label className="block mb-2">Message</label>
-                <Input {...register("message")} />
-              </div>
-              <Button
-                variant={Button.Variants.PRIMARY}
-                className="mt-4 w-full py-4 font-semibold text-lg"
-              >
-                Let&apos; Talk
-              </Button>
-            </form>
+      <section id="contact" className="bg-black text-white pt-12 pb-8 px-6">
+        <div className="container mx-auto">
+          {" "}
+          <div className="md:grid md:grid-cols-2">
+            <div className="mb-4 md:mb-0">
+              <h2 className="font-bold text-2xl md:text-4xl md:mb-2">
+                Let&apos;s talk
+              </h2>
+              <p className="opacity-80">
+                Got any questions or want to reach out to me?
+              </p>
+            </div>
+            <div>
+              <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <div className="mb-4">
+                  <label className="block mb-2">Name</label>
+                  <Input
+                    name="name"
+                    register={register}
+                    isError={!!errors.name?.message}
+                  />
+                  <span className="text-danger mt-1">
+                    {errors.name?.message}
+                  </span>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-2">Email</label>
+                  <Input
+                    name="email"
+                    register={register}
+                    isError={!!errors.email?.message}
+                  />
+                  <span className="text-danger mt-1">
+                    {errors.email?.message}
+                  </span>
+                </div>
+                <div>
+                  <label className="block mb-2">Message</label>
+                  <Input
+                    name="message"
+                    register={register}
+                    isError={!!errors.message?.message}
+                  />
+                  <span className="text-danger mt-1">
+                    {errors.message?.message}
+                  </span>
+                </div>
+                <Button
+                  type="submit"
+                  variant={Button.Variants.PRIMARY}
+                  className="mt-4 w-full py-4 font-semibold text-lg"
+                >
+                  Let&apos;s Talk
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
