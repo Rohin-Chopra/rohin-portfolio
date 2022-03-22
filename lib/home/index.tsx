@@ -108,6 +108,7 @@ const Home: MyNextPage = () => {
           <div className="mt-2 md:mt-4">
             <FeaturedProjectCard
               name="Make My Career"
+              url="https://www.makemycareer.com.au/"
               description="Makemycareer is a platform for year 10-12 VCE students to find the perfect university course according to their needs and interest"
               imgUrl="/makemycareer.png"
               tech={[
@@ -141,6 +142,7 @@ const Home: MyNextPage = () => {
               isReverse
               className="mt-8 md:mt-28"
               name="Digishelf"
+              url="https://digishelf.rohindev.com"
               description="With Digishelf you can create digital shelves that store your favorite movies and tv shows which then you can share with friends and family"
               imgUrl="/digishelf.png"
               tech={[
@@ -167,6 +169,7 @@ const Home: MyNextPage = () => {
             <FeaturedProjectCard
               className="mt-8 md:mt-28"
               name="Margembie Labradors"
+              url="https://www.margembielabradors.com.au/contact"
               description="A MERN full stack website for a client who is a dog breeder. This website involved CRUD operations in the admin panel and also displaying those resources in the frontend."
               imgUrl="/margembie-labradors.png"
               tech={[
