@@ -251,6 +251,25 @@ const Home: MyNextPage = () => {
               <SiNetlify title="Netlify" />
             </div>
           </div>
+          <div>
+            <h3 className="opacity-80 font-semibold text-xl mb-4">
+              Certifications
+            </h3>
+            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-6xl">
+              <Image
+                src="/aws-certified-cloud-practitioner.png"
+                height={125}
+                width={125}
+                alt="AWS Cloud Practitioner Certificate"
+              />
+              <Image
+                src="/aws-certified-solutions-architect-associate.png"
+                height={125}
+                width={125}
+                alt="AWS Solutions Architect Certificate"
+              />
+            </div>
+          </div>
         </div>
       </section>
       <section id="contact" className="bg-black text-white pt-12 pb-8 px-6">
