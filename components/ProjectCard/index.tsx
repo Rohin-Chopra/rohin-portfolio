@@ -61,7 +61,7 @@ const FeaturedProjectCard = ({
         </div>
         <div
           className={classNames({
-            "md:relative md:shadow-lg md:shadow-primary md:bg-darkGray md:rounded md:py-4 md:px-6 md:hover:opacity-80 md:transition-opacity":
+            "md:relative md:shadow-lg md:shadow-primary md:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
               true,
             "md:-ml-16": !isReverse,
             "md:-mr-16": isReverse,
