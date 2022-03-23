@@ -303,7 +303,7 @@ const Home: MyNextPage = () => {
                 <Button
                   type="submit"
                   variant={Button.Variants.PRIMARY}
-                  className="mt-4 w-full py-4 font-semibold text-lg"
+                  className="mt-4 w-full py-2 md:py-4 font-semibold md:text-lg"
                 >
                   Let&apos;s Talk
                 </Button>
