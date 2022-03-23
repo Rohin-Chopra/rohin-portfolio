@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Fragment, PropsWithChildren } from "react";
+import Footer from "../Footer";
 import Navbar from "../Navbar";
 
 type Props = PropsWithChildren<any>;
@@ -13,6 +14,7 @@ const Layout = ({ children }: Props) => (
     </Head>
     <Navbar />
     {children}
+    <Footer />
   </Fragment>
 );
 
