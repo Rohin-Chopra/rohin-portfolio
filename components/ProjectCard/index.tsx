@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
 import { ReactNode } from "react";
-import Button from "../Button";
 import { FiExternalLink } from "react-icons/fi";
 
 type Props = {
@@ -72,7 +71,13 @@ const FeaturedProjectCard = ({
             <ViewLive href={url} />
           </div>
         </div>
-        <div className="mt-4 md:ml-2">
+        <div
+          className={classNames({
+            "mt-4": true,
+            "md:ml-4": !isReverse,
+            "md:ml-2": isReverse,
+          })}
+        >
           <h5 className="opacity-80 font-semibold mb-2 text-lg">Tech Used:</h5>
           <div className="grid grid-cols-3 gap-4 md:flex">
             {tech.map((t, i) => (
