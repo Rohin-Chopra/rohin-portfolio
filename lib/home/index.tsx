@@ -240,7 +240,7 @@ const Home: MyNextPage = () => {
               <SiFigma title="Figma" />
             </div>
           </div>
-          <div>
+          <div className="mb-12">
             <h3 className="opacity-80 font-semibold text-xl mb-4">Services</h3>
             <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-6xl">
               <FaAws title="AWS" />
