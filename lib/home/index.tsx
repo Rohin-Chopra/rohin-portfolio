@@ -268,6 +268,12 @@ const Home: MyNextPage = () => {
                 width={125}
                 alt="AWS Solutions Architect Certificate"
               />
+              <Image
+                src="/aws-certified-developer-associate.png"
+                height={125}
+                width={125}
+                alt="AWS Solutions Architect Certificate"
+              />
             </div>
           </div>
         </div>
