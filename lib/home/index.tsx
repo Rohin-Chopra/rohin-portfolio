@@ -293,8 +293,11 @@ const Home: MyNextPage = () => {
             <div>
               <form onSubmit={handleSubmit(onSubmit, onError)}>
                 <div className="mb-4">
-                  <label className="block mb-2">Name</label>
+                  <label className="block mb-2" htmlFor="name">
+                    Name
+                  </label>
                   <Input
+                    id="name"
                     name="name"
                     register={register}
                     isError={!!errors.name?.message}
@@ -304,8 +307,11 @@ const Home: MyNextPage = () => {
                   </span>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2">Email</label>
+                  <label className="block mb-2" htmlFor="email">
+                    Email
+                  </label>
                   <Input
+                    id="email"
                     name="email"
                     register={register}
                     isError={!!errors.email?.message}
@@ -315,8 +321,11 @@ const Home: MyNextPage = () => {
                   </span>
                 </div>
                 <div>
-                  <label className="block mb-2">Message</label>
+                  <label className="block mb-2" htmlFor="message">
+                    Message
+                  </label>
                   <Input
+                    id="message"
                     name="message"
                     register={register}
                     isError={!!errors.message?.message}
