@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { Link } from "react-scroll";
-import NavLink from "./NavLink";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -36,6 +35,7 @@ const Navbar = () => {
                 smooth={true}
                 offset={0}
                 duration={500}
+                href="#projects"
               >
                 Projects
               </Link>
@@ -49,6 +49,7 @@ const Navbar = () => {
                 smooth={true}
                 offset={50}
                 duration={500}
+                href="#skills"
               >
                 Skillset
               </Link>
@@ -62,6 +63,7 @@ const Navbar = () => {
                 smooth={true}
                 offset={200}
                 duration={500}
+                href="#contact"
               >
                 Contact
               </Link>
