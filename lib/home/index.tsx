@@ -42,6 +42,7 @@ import schema from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
+import { Link } from "react-scroll";
 
 const Home: MyNextPage = () => {
   const {
@@ -80,7 +81,7 @@ const Home: MyNextPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 md:bg-darkGray md:border-l-2 md:border-primary pl-8 rounded-bl-3xl ">
+          <div className="col-span-2 md:bg-darkGray md:border-l-2 md:border-primary px-8 rounded-bl-3xl ">
             <div className="md:mt-24 text-4xl lg:text-6xl font-bold text-white">
               <h1 className="mb-4">I&apos;m Rohin Chopra.</h1>
               <h1 className="mb-4">
@@ -95,6 +96,17 @@ const Home: MyNextPage = () => {
                 I&apos;m probably the most passionate engineer you will ever get
                 to work with. I excel in designing and developing scalable and robust solutions.
               </p>
+              <Link
+                to="contact"
+                className="text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 inline-block w-full md:w-auto text-center"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                href="#contact"
+              >
+                Say Hello
+              </Link>
             </div>
           </div>
         </div>
