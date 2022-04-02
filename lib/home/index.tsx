@@ -93,7 +93,7 @@ const Home: MyNextPage = () => {
               <h1 className="text-gray mb-8">based in Australia</h1>
               <p className="font-normal text-white max-w-2xl text-lg">
                 I&apos;m probably the most passionate engineer you will ever get
-                to work with. 
+                to work with. I excel in designing and developing scalable and robust solutions.
               </p>
             </div>
           </div>
