@@ -27,6 +27,23 @@ const Layout = ({ children }: Props) => (
         content="https://www.rohinchopra.com/_next/image?url=%2Fhero.png&w=640&q=75"
       />
       <meta name="twitter:card" content="summary_large_image" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
     </Head>
     <Navbar />
     {children}
