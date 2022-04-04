@@ -94,8 +94,8 @@ const Home: MyNextPage = () => {
               <h1 className="text-gray mb-8">based in Australia</h1>
               <p className="font-normal text-white max-w-2xl text-lg">
                 I&apos;m extremely passionate about solving problems and tech is
-                my weapon of choice. I excel in designing and developing
-                scalable and robust solutions.
+                my weapon of choice. I excel in architecting ,designing and
+                developing robust and scalable solutions.
               </p>
               <Link
                 to="contact"

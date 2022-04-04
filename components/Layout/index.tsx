@@ -11,6 +11,10 @@ const Layout = ({ children }: Props) => (
       <title>Rohin Chopra</title>
       <meta name="description" content="Rohin Chopra" />
       <link rel="icon" href="/favicon.ico" />
+      <meta
+        name="og:description"
+        content="Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions"
+      />
     </Head>
     <Navbar />
     {children}
