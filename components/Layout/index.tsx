@@ -15,6 +15,18 @@ const Layout = ({ children }: Props) => (
         name="og:description"
         content="Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions"
       />
+      <meta property="og:title" content="Rohin Chopra" />
+      <meta property="og:url" content="https://rohinchopra.com/" />
+      <meta name="twitter:title" content="Frontend Dev Blog" />
+      <meta
+        name="twitter:description"
+        content="Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions"
+      />
+      <meta
+        name="twitter:image"
+        content="https://www.rohinchopra.com/_next/image?url=%2Fhero.png&w=640&q=75"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
     </Head>
     <Navbar />
     {children}
