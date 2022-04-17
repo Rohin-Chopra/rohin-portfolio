@@ -1,7 +1,7 @@
-import { Fragment } from "react";
-import { MyNextPage } from "../../shared/types";
-import Image from "next/image";
-import FeaturedProjectCard from "../../components/ProjectCard";
+import { Fragment } from 'react';
+import { MyNextPage } from '../../shared/types';
+import Image from 'next/image';
+import FeaturedProjectCard from '../../components/ProjectCard';
 import {
   FaAws,
   FaBitbucket,
@@ -9,7 +9,7 @@ import {
   FaJira,
   FaNodeJs,
   FaReact,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 import {
   SiNextdotjs,
   SiGraphql,
@@ -27,22 +27,22 @@ import {
   SiDocker,
   SiFigma,
   SiVercel,
-} from "react-icons/si";
-import { Fade } from "react-awesome-reveal";
-import Typewriter from "typewriter-effect";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
+} from 'react-icons/si';
+import { Fade } from 'react-awesome-reveal';
+import Typewriter from 'typewriter-effect';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 import {
   FieldValues,
   SubmitErrorHandler,
   SubmitHandler,
   useForm,
-} from "react-hook-form";
-import schema from "./schema";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
-import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
-import { Link } from "react-scroll";
+} from 'react-hook-form';
+import schema from './schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
+import { CONTACT_FORM_DEFAULT_VALUES } from './constants';
+import { Link } from 'react-scroll';
 
 const Home: MyNextPage = () => {
   const {
@@ -55,11 +55,11 @@ const Home: MyNextPage = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    toast("Success", { type: "success" });
+    toast('Success', { type: 'success' });
   };
 
   const onError: SubmitErrorHandler<FieldValues> = (err) => {
-    toast("Error in validating form", { type: "error" });
+    toast('Error in validating form', { type: 'error' });
   };
 
   return (
@@ -87,7 +87,7 @@ const Home: MyNextPage = () => {
               <h1 className="mb-4">
                 <Typewriter
                   onInit={(t) => {
-                    t.typeString("A Software Engineer").start();
+                    t.typeString('A Software Engineer').start();
                   }}
                 />
               </h1>
@@ -284,7 +284,7 @@ const Home: MyNextPage = () => {
                 src="/aws-certified-developer-associate.png"
                 height={125}
                 width={125}
-                alt="AWS Solutions Architect Certificate"
+                alt="AWS Developer Associate Certificate"
               />
             </div>
           </div>
@@ -292,7 +292,7 @@ const Home: MyNextPage = () => {
       </section>
       <section id="contact" className="bg-black text-white pt-12 pb-8 px-6">
         <div className="container mx-auto">
-          {" "}
+          {' '}
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">
               <h2 className="font-bold text-2xl md:text-4xl md:mb-2">
