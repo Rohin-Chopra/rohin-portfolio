@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { MyNextPage } from '../../shared/types';
 import Image from 'next/image';
 import FeaturedProjectCard from '../../components/ProjectCard';
@@ -9,6 +9,7 @@ import {
   FaJira,
   FaNodeJs,
   FaReact,
+  FaSpinner,
 } from 'react-icons/fa';
 import {
   SiNextdotjs,
@@ -45,6 +46,7 @@ import { CONTACT_FORM_DEFAULT_VALUES } from './constants';
 import { Link } from 'react-scroll';
 
 const Home: MyNextPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -54,11 +56,29 @@ const Home: MyNextPage = () => {
     defaultValues: CONTACT_FORM_DEFAULT_VALUES,
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    toast('Success', { type: 'success' });
+  const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      setIsLoading(true);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        }),
+      });
+      if (res.status !== 200) {
+        throw new Error('Received an error from the API');
+      }
+      toast('Success', { type: 'success' });
+    } catch (error) {
+      toast('Error while contacting user', { type: 'error' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const onError: SubmitErrorHandler<FieldValues> = (err) => {
+  const onSubmitError: SubmitErrorHandler<FieldValues> = (err) => {
     toast('Error in validating form', { type: 'error' });
   };
 
@@ -303,7 +323,7 @@ const Home: MyNextPage = () => {
               </p>
             </div>
             <div>
-              <form onSubmit={handleSubmit(onSubmit, onError)}>
+              <form onSubmit={handleSubmit(onSubmitSuccess, onSubmitError)}>
                 <div className="mb-4">
                   <label className="block mb-2" htmlFor="name">
                     Name
@@ -349,9 +369,14 @@ const Home: MyNextPage = () => {
                 <Button
                   type="submit"
                   variant={Button.Variants.PRIMARY}
-                  className="mt-4 w-full py-2 md:py-4 font-semibold md:text-lg"
+                  disabled={isLoading}
+                  className="mt-4 w-full py-2 md:py-4 font-semibold md:text-lg disabled:opacity-60"
                 >
-                  Let&apos;s Talk
+                  {isLoading ? (
+                    <FaSpinner className="animate-spin text-white inline" />
+                  ) : (
+                    <span>Let&apos;s Talk</span>
+                  )}
                 </Button>
               </form>
             </div>
