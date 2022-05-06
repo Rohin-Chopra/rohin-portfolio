@@ -1,11 +1,11 @@
-import "../styles/globals.css";
-import Layout from "../components/Layout";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import '../styles/globals.css';
+import Layout from '../components/Layout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }: any) {
   return (
-    <Layout>
+    <Layout showDesign={Component.requiresNavDesign}>
       <ToastContainer />
       <Component {...pageProps} />
     </Layout>

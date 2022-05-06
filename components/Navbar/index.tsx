@@ -1,9 +1,13 @@
-import classNames from "classnames";
-import { useState } from "react";
-import { MdMenu, MdOutlineClose } from "react-icons/md";
-import { Link } from "react-scroll";
+import classNames from 'classnames';
+import { useState } from 'react';
+import { MdMenu, MdOutlineClose } from 'react-icons/md';
+import { Link } from 'react-scroll';
 
-const Navbar = () => {
+type Props = {
+  showDesign: boolean;
+};
+
+const Navbar = ({ showDesign }: Props) => {
   const [isActive, setIsActive] = useState(false);
 
   const toggleActive = () => {
@@ -16,13 +20,19 @@ const Navbar = () => {
         <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
           <span className="font-display">ROHIN CHOPRA</span>
         </div>
-        <div className="bg-black md:bg-darkGray text-white md:col-span-2 md:border-l-2 md:border-l-primary md:pr-16 flex md:justify-end items-center">
+        <div
+          className={classNames({
+            'bg-black text-white md:col-span-2 md:pr-16 flex md:justify-end items-center':
+              true,
+            'md:border-l-2 md:border-l-primary md:bg-darkGray': showDesign,
+          })}
+        >
           <div
             className={classNames({
-              "fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base":
+              'fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base':
                 true,
-              "bg-darkGray -top-4 left-0 h-screen pt-52 w-screen": isActive,
-              "top-20 -left-full": !isActive,
+              'bg-darkGray -top-4 left-0 h-screen pt-52 w-screen': isActive,
+              'top-20 -left-full': !isActive,
             })}
           >
             <div className="my-4 md:my-0 mx-4">
@@ -71,14 +81,14 @@ const Navbar = () => {
           </div>
           <MdMenu
             className={classNames({
-              "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
+              'text-4xl text-secondary z-50 cursor-pointer md:hidden': true,
               hidden: isActive,
             })}
             onClick={toggleActive}
           />
           <MdOutlineClose
             className={classNames({
-              "text-4xl text-secondary z-50 cursor-pointer md:hidden": true,
+              'text-4xl text-secondary z-50 cursor-pointer md:hidden': true,
               hidden: !isActive,
             })}
             onClick={toggleActive}

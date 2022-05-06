@@ -1,11 +1,13 @@
-import Head from "next/head";
-import { Fragment, PropsWithChildren } from "react";
-import Footer from "../Footer";
-import Navbar from "../Navbar";
+import Head from 'next/head';
+import { Fragment, PropsWithChildren } from 'react';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
 
-type Props = PropsWithChildren<any>;
+type Props = PropsWithChildren<any> & {
+  showDesign: boolean;
+};
 
-const Layout = ({ children }: Props) => (
+const Layout = ({ children, showDesign }: Props) => (
   <Fragment>
     <Head>
       <title>Rohin Chopra</title>
@@ -17,7 +19,7 @@ const Layout = ({ children }: Props) => (
       />
       <meta property="og:title" content="Rohin Chopra" />
       <meta property="og:url" content="https://rohinchopra.com/" />
-      <meta name="twitter:title" content="Frontend Dev Blog" />
+      <meta name="twitter:title" content="Rohin Chopra" />
       <meta
         name="twitter:description"
         content="Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions"
@@ -45,7 +47,7 @@ const Layout = ({ children }: Props) => (
         href="/favicon-16x16.png"
       />
     </Head>
-    <Navbar />
+    <Navbar showDesign={showDesign} />
     {children}
     <Footer />
   </Fragment>

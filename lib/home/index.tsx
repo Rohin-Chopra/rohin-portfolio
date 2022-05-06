@@ -45,7 +45,7 @@ import { toast } from 'react-toastify';
 import { CONTACT_FORM_DEFAULT_VALUES } from './constants';
 import { Link } from 'react-scroll';
 
-const Home: MyNextPage = () => {
+const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -234,6 +234,27 @@ const Home: MyNextPage = () => {
                 />,
               ]}
             />
+            <FeaturedProjectCard
+              isReverse
+              className="mt-8 md:mt-28"
+              name="Challenges"
+              url="/challenges"
+              description="A collection of all the frontend and backend challenges I've completed to keep myself entertained!"
+              imgUrl="/snap-landing-page.png"
+              tech={[
+                <SiJavascript
+                  className="text-4xl"
+                  title="JavaScript"
+                  key="JavaScript"
+                />,
+                <FaReact className="text-4xl" title="React" key="React" />,
+                <SiTailwindcss
+                  className="text-4xl"
+                  title="Tailwindcss"
+                  key="Tailwindcss"
+                />,
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -386,5 +407,7 @@ const Home: MyNextPage = () => {
     </Fragment>
   );
 };
+
+Home.requiresNavDesign = true;
 
 export default Home;
