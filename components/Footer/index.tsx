@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <FaLinkedin />
+          <FaLinkedin className="hover:text-linkedin transition-colors duration-300" />
         </a>
         <a
           className="mr-4 cursor-pointer"
@@ -21,7 +21,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <FaGithub />
+          <FaGithub className="hover:text-github transition-colors duration-300" />
         </a>
       </div>
     </footer>
