@@ -25,7 +25,7 @@ const Challenges = () => {
       </a>
       <a
         className="hover:opacity-50 transition-opacity duration-300"
-        href="https://snap-landing-page-wine.vercel.app/"
+        href="https://frontend-challenges-amber.vercel.app/"
         rel="noopener noreferrer"
         target="_blank"
       >
