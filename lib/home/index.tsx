@@ -271,14 +271,32 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
               Languages And Frameworks
             </h3>
             <div className="grid grid-cols-2 gap-y-4 justify-items-center text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
-              <SiJavascript title="Javascript" />
-              <SiTypescript title="TypeScript" />
-              <FaReact title="React" />
+              <SiJavascript
+                title="Javascript"
+                className="hover:text-javascript transition-colors duration-300"
+              />
+              <SiTypescript
+                title="TypeScript"
+                className="hover:text-typescript transition-colors duration-300"
+              />
+              <FaReact
+                title="React"
+                className="hover:text-react transition-colors duration-300"
+              />
               <SiNextdotjs title="Next.js" />
-              <SiGatsby title="Gatsby" />
-              <SiNodedotjs title="Node.js" />
+              <SiGatsby
+                title="Gatsby"
+                className="hover:text-gatsby transition-colors duration-300"
+              />
+              <SiNodedotjs
+                title="Node.js"
+                className="hover:text-nodejs transition-colors duration-300"
+              />
               <SiTailwindcss title="Tailwindcss" />
-              <SiBootstrap title="Bootstrap" />
+              <SiBootstrap
+                title="Bootstrap"
+                className="hover:text-bootstrap transition-colors duration-300"
+              />
             </div>
           </div>
           <div className="mb-12">
