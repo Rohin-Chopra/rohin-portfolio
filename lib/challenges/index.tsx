@@ -23,6 +23,19 @@ const Challenges = () => {
           height={300}
         />
       </a>
+      <a
+        className="hover:opacity-50 transition-opacity duration-300"
+        href="https://snap-landing-page-wine.vercel.app/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Image
+          src="/advice-generator-app.png"
+          alt="Advice Generator App Project"
+          width={500}
+          height={300}
+        />
+      </a>
     </div>
   );
 };
