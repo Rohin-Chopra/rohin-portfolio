@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { MdMenu, MdOutlineClose } from 'react-icons/md';
 import { Link } from 'react-scroll';
+import NavLink from './NavLink';
 
 type Props = {
   showDesign: boolean;
@@ -49,6 +50,16 @@ const Navbar = ({ showDesign }: Props) => {
               >
                 Projects
               </Link>
+            </div>
+            <div className="my-4 md:my-0 mx-4">
+              <NavLink
+                onClick={toggleActive}
+                href="/challenges"
+                className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                activeClassName="opacity-100"
+              >
+                Challenges
+              </NavLink>
             </div>
             <div className="my-4 md:my-0 mx-4">
               <Link
