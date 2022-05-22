@@ -111,10 +111,10 @@ const Home: MyNextPage & { hasCustomNavbar: boolean } = () => {
                   onInit={(t) => {
                     t.typeString('A Software Engineer')
                       .pauseFor(150)
-                      .deleteAll()
+                      .deleteChars(17)
                       .typeString('Consultant')
                       .pauseFor(150)
-                      .deleteAll()
+                      .deleteChars(10)
                       .typeString('Solutions Architect')
                       .start();
                   }}
