@@ -109,7 +109,14 @@ const Home: MyNextPage & { hasCustomNavbar: boolean } = () => {
               <h1 className="mb-4">
                 <Typewriter
                   onInit={(t) => {
-                    t.typeString('A Software Engineer').start();
+                    t.typeString('A Software Engineer')
+                      .pauseFor(150)
+                      .deleteAll()
+                      .typeString('Consultant')
+                      .pauseFor(150)
+                      .deleteAll()
+                      .typeString('Solutions Architect')
+                      .start();
                   }}
                 />
               </h1>
