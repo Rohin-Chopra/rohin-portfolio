@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="navbar md:items-stretch md:grid md:grid-cols-3">
+      <div className="navbar md:grid md:grid-cols-3">
         <div className="navbar-logo-container">
           <Link href="/">
             <a>ROHIN CHOPRA</a>
@@ -28,8 +28,14 @@ const Navbar = () => {
               'is-not-active': !isActive,
             })}
           >
-            {NAVBAR_LINKS.map(({ link, text }) => (
-              <div className="navbar-link-item" key={text}>
+            {NAVBAR_LINKS.map(({ link, text, isPrimary }) => (
+              <div
+                className={classNames({
+                  'navbar-link-item': true,
+                  'navbar-link-primary-item': isPrimary,
+                })}
+                key={text}
+              >
                 <NavLink onClick={toggleActive} href={link}>
                   {text}
                 </NavLink>
