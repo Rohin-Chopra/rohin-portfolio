@@ -1,11 +1,9 @@
 const Blogs = () => {
   return (
-    <div>
-      <h1>Your Blog title goes here</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
-        tenetur quis blanditiis sunt
-      </p>
+    <div className="bg-black text-white h-screen flex flex-col justify-center">
+      <h1 className="text-2xl md:text-4xl font-bold text-center">
+        Something Big is Coming
+      </h1>
     </div>
   );
 };
