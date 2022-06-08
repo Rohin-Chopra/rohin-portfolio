@@ -36,11 +36,11 @@ const Navbar = ({ showDesign }: Props) => {
               'top-20 -left-full': !isActive,
             })}
           >
-            <div className="my-4 md:my-0 mx-4">
+            <div className="nav-item">
               <Link
                 onClick={toggleActive}
                 to="projects"
-                className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                className="nav-link"
                 activeClass="opacity-100"
                 spy={true}
                 smooth={true}
@@ -51,11 +51,11 @@ const Navbar = ({ showDesign }: Props) => {
                 Projects
               </Link>
             </div>
-            <div className="my-4 md:my-0 mx-4">
+            <div className="nav-item">
               <Link
                 onClick={toggleActive}
                 to="skills"
-                className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+                className="nav-link"
                 spy={true}
                 smooth={true}
                 offset={50}
@@ -65,7 +65,7 @@ const Navbar = ({ showDesign }: Props) => {
                 Skillset
               </Link>
             </div>
-            <div className="bg-primary flex items-center font-semibold my-4 md:my-0 mx-4 py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
+            <div className="bg-primary flex items-center font-semibold nav-item py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
               <Link
                 onClick={toggleActive}
                 to="contact"
@@ -82,14 +82,14 @@ const Navbar = ({ showDesign }: Props) => {
           </div>
           <MdMenu
             className={classNames({
-              'text-4xl text-secondary z-50 cursor-pointer md:hidden': true,
+              'nav-hamburger-icon-base': true,
               hidden: isActive,
             })}
             onClick={toggleActive}
           />
           <MdOutlineClose
             className={classNames({
-              'text-4xl text-secondary z-50 cursor-pointer md:hidden': true,
+              'nav-hamburger-icon-base': true,
               hidden: !isActive,
             })}
             onClick={toggleActive}
