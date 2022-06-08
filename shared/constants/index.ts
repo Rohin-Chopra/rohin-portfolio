@@ -7,9 +7,4 @@ export const NAVBAR_LINKS = [
     link: '/blogs',
     text: 'Blog',
   },
-  {
-    link: '/#contact',
-    text: 'Contact',
-    isPrimary: true,
-  },
 ];

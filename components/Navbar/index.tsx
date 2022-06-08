@@ -27,14 +27,8 @@ const Navbar = () => {
             'is-not-active': !isActive,
           })}
         >
-          {NAVBAR_LINKS.map(({ link, text, isPrimary }) => (
-            <div
-              className={classNames({
-                'navbar-link-item': true,
-                'navbar-link-primary-item': isPrimary,
-              })}
-              key={text}
-            >
+          {NAVBAR_LINKS.map(({ link, text }) => (
+            <div className="navbar-link-item" key={text}>
               <NavLink onClick={toggleActive} href={link}>
                 {text}
               </NavLink>
