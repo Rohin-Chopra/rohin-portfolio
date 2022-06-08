@@ -44,9 +44,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import { CONTACT_FORM_DEFAULT_VALUES } from './constants';
 import { Link } from 'react-scroll';
-import Navbar from './Navbar';
 
-const Home: MyNextPage & { hasCustomNavbar: boolean } = () => {
+const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -85,7 +84,6 @@ const Home: MyNextPage & { hasCustomNavbar: boolean } = () => {
 
   return (
     <Fragment>
-      <Navbar />
       <section id="hero" className="md:h-screen-90">
         <div className="flex flex-col-reverse justify-end pt-8 md:pt-0 md:grid md:grid-cols-3 bg-black h-full">
           <div className="bg-black relative">
@@ -435,6 +433,6 @@ const Home: MyNextPage & { hasCustomNavbar: boolean } = () => {
   );
 };
 
-Home.hasCustomNavbar = true;
+Home.requiresNavDesign = true;
 
 export default Home;

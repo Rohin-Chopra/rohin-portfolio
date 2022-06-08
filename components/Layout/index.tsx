@@ -4,10 +4,10 @@ import Footer from '../Footer';
 import Navbar from '../Navbar';
 
 type Props = PropsWithChildren<any> & {
-  hasCustomNavbar: boolean;
+  showDesign: boolean;
 };
 
-const Layout = ({ children, hasCustomNavbar = false }: Props) => (
+const Layout = ({ children, showDesign }: Props) => (
   <Fragment>
     <Head>
       <title>Rohin Chopra</title>
@@ -47,7 +47,7 @@ const Layout = ({ children, hasCustomNavbar = false }: Props) => (
         href="/favicon-16x16.png"
       />
     </Head>
-    {!hasCustomNavbar && <Navbar />}
+    <Navbar showDesign={showDesign} />
     {children}
     <Footer />
   </Fragment>

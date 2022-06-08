@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { PropsWithChildren } from 'react';
+import classNames from "classnames";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<any> & {
   href: string;
@@ -12,7 +12,8 @@ type Props = PropsWithChildren<any> & {
 const NavLink = ({
   href,
   children,
-  className = '',
+  className = "",
+  activeClassName = "",
   ...rest
 }: PropsWithChildren<Props>) => {
   const { pathname } = useRouter();
@@ -21,10 +22,8 @@ const NavLink = ({
     <Link href={href}>
       <a
         className={classNames({
-          'cursor-pointer opacity-70 hover:opacity-100 transition-opacity':
-            true,
           [className]: true,
-          'opacity-100': isActive,
+          [activeClassName]: isActive,
         })}
         {...rest}
       >
