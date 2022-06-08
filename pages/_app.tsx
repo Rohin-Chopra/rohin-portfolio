@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: any) {
         });
     `}
       </Script>
-      <Layout hasCustomNavbar={Component.hasCustomNavbar}>
+      <Layout showDesign={Component.requiresNavDesign}>
         <ToastContainer />
         <Component {...pageProps} />
       </Layout>

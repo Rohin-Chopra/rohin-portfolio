@@ -1,37 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap');
-
-@layer components {
-  .navbar {
-    @apply flex justify-between items-center w-full bg-black py-2 px-8 md:p-0 text-white md:items-stretch;
-  }
-  .navbar-logo-container {
-    @apply text-xl font-bold md:pl-8 py-8 font-display;
-  }
-  .navbar-menu-container {
-    @apply text-white md:col-span-2 md:pr-16 flex md:justify-end items-center;
-  }
-  .navbar-menu {
-    @apply fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base;
-  }
-  @media (max-width: 767.98px) {
-    .navbar-menu.is-active {
-      @apply bg-darkGray -top-4 left-0 h-screen pt-52 w-screen;
-    }
-    .navbar-menu.is-not-active {
-      @apply top-20 -left-full;
-    }
-  }
-  .navbar-link-item {
-    @apply my-4 md:my-0 mx-4;
-  }
-  .navbar-link-primary-item {
-    @apply bg-primary flex items-center font-semibold py-2 md:py-0 px-4 rounded md:rounded-none md:h-full;
-  }
-  .navbar-hamburger-icon {
-    @apply text-4xl text-primary z-50 cursor-pointer md:hidden;
-  }
-}
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap");
