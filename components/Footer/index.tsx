@@ -17,7 +17,7 @@ const Footer = () => {
         </a>
         <a
           className="mr-4 cursor-pointer"
-          href="https://github.com/Rohin1212"
+          href="https://github.com/Rohin-Chopra"
           target="_blank"
           rel="noreferrer noopener"
         >
