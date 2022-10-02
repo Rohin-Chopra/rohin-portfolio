@@ -147,7 +147,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
           <div className="mt-2 md:mt-4">
             <FeaturedProjectCard
               name="Make My Career"
-              url="https://www.makemycareer.com.au/"
+              url="https://makemycareer.rohinchopra.com/"
               description="Makemycareer is a platform for year 10-12 VCE students to find the perfect university course according to their needs and interest"
               imgUrl="/makemycareer.png"
               tech={[
