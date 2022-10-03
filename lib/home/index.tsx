@@ -181,7 +181,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
               isReverse
               className="mt-8 md:mt-28"
               name="Digishelf"
-              url="https://digishelf.rohindev.com"
+              url="https://digishelf.rohinchopra.com"
               description="With Digishelf you can create digital shelves that store your favorite movies and tv shows which then you can share with friends and family"
               imgUrl="/digishelf.png"
               tech={[
