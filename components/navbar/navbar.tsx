@@ -1,8 +1,7 @@
-import classNames from 'classnames';
-import { useState } from 'react';
-import { MdMenu, MdOutlineClose } from 'react-icons/md';
-import { Link } from 'react-scroll';
-import NavLink from './NavLink';
+import classNames from "classnames";
+import { useState } from "react";
+import { MdMenu, MdOutlineClose } from "react-icons/md";
+import { Link } from "react-scroll";
 
 type Props = {
   showDesign: boolean;
@@ -23,17 +22,17 @@ const Navbar = ({ showDesign }: Props) => {
         </div>
         <div
           className={classNames({
-            'bg-black text-white md:col-span-2 md:pr-16 flex md:justify-end items-center':
+            "bg-black text-white md:col-span-2 md:pr-16 flex md:justify-end items-center":
               true,
-            'md:border-l-2 md:border-l-primary md:bg-darkGray': showDesign,
+            "md:border-l-2 md:border-l-primary md:bg-darkGray": showDesign,
           })}
         >
           <div
             className={classNames({
-              'fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base':
+              "fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base":
                 true,
-              'bg-darkGray -top-4 left-0 h-screen pt-52 w-screen': isActive,
-              'top-20 -left-full': !isActive,
+              "bg-darkGray -top-4 left-0 h-screen pt-52 w-screen": isActive,
+              "top-20 -left-full": !isActive,
             })}
           >
             <div className="nav-item">
@@ -82,14 +81,14 @@ const Navbar = ({ showDesign }: Props) => {
           </div>
           <MdMenu
             className={classNames({
-              'nav-hamburger-icon-base': true,
+              "nav-hamburger-icon-base": true,
               hidden: isActive,
             })}
             onClick={toggleActive}
           />
           <MdOutlineClose
             className={classNames({
-              'nav-hamburger-icon-base': true,
+              "nav-hamburger-icon-base": true,
               hidden: !isActive,
             })}
             onClick={toggleActive}
@@ -100,4 +99,4 @@ const Navbar = ({ showDesign }: Props) => {
   );
 };
 
-export default Navbar;
+export { Navbar };

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 const Challenges = () => {
   return (
@@ -55,4 +55,4 @@ const Challenges = () => {
   );
 };
 
-export default Challenges;
+export { Challenges };

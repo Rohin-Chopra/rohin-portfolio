@@ -28,7 +28,7 @@ const ViewLive = ({ href }: ViewLiveProps) => (
   </a>
 );
 
-const FeaturedProjectCard = ({
+const ProjectCard = ({
   name,
   description,
   url,
@@ -95,4 +95,4 @@ const FeaturedProjectCard = ({
   );
 };
 
-export default FeaturedProjectCard;
+export { ProjectCard };

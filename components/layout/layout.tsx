@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import { Fragment, PropsWithChildren } from 'react';
-import Footer from '../Footer';
-import Navbar from '../Navbar';
+import Head from "next/head";
+import { Fragment, PropsWithChildren } from "react";
+import { Footer } from "../footer";
+import { Navbar } from "../navbar";
 
 type Props = PropsWithChildren<any> & {
   showDesign: boolean;
@@ -53,4 +53,4 @@ const Layout = ({ children, showDesign }: Props) => (
   </Fragment>
 );
 
-export default Layout;
+export { Layout };
