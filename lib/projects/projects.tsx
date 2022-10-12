@@ -108,6 +108,22 @@ const ProjectsPage = () => {
             />,
           ]}
         />
+        <ProjectCard
+          className="mt-8 md:mt-28"
+          name="Github Timeline Generator"
+          url="https://github-timeline-generator.netlify.app"
+          description="A website that generates a timeline of the repositories of a user, which later can be shared with friends or colleagues."
+          imgUrl="/github-timeline-generator.png"
+          tech={[
+            <SiJavascript
+              className="text-4xl"
+              title="TypeScript"
+              key="TypeScript"
+            />,
+            <FaReact className="text-4xl" title="React" key="React" />,
+            <SiNetlify className="text-4xl" title="Netlify" key="Netlify" />,
+          ]}
+        />
       </div>
     </div>
   );
