@@ -21,17 +21,15 @@ const Button = ({
   className,
   variant = Variant.BASE,
   ...rest
-}: Props) => {
-  return (
-    <button
-      {...rest}
-      className={`px-4 py-2 cursor-pointer rounded border-solid shadow ${Variants[variant]} ${className}`}
-    >
-      {children}
-    </button>
-  );
-};
+}: Props) => (
+  <button
+    {...rest}
+    className={`px-4 py-2 cursor-pointer rounded border-solid shadow ${Variants[variant]} ${className}`}
+  >
+    {children}
+  </button>
+);
 
 Button.Variants = Variant;
 
-export default Button;
+export { Button };

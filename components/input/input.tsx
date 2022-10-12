@@ -29,4 +29,4 @@ const Input: FC<Props> = ({
   );
 };
 
-export default Input;
+export { Input };
