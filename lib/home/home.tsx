@@ -4,6 +4,7 @@ import { ProjectCard } from "@components/project-card";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MyNextPage } from "@shared/types";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import {
@@ -39,7 +40,7 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { Link } from "react-scroll";
+import { Link as ReactScrollLink } from "react-scroll";
 import { toast } from "react-toastify";
 import Typewriter from "typewriter-effect";
 import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
@@ -124,7 +125,7 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 my weapon of choice. I excel in architecting ,designing and
                 developing robust and scalable solutions.
               </p>
-              <Link
+              <ReactScrollLink
                 to="contact"
                 className="text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 inline-block w-full md:w-auto text-center"
                 spy={true}
@@ -134,7 +135,7 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 href="#contact"
               >
                 Say Hello
-              </Link>
+              </ReactScrollLink>
             </div>
           </div>
         </div>
@@ -262,6 +263,11 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 />,
               ]}
             />
+            <Link href="projects">
+              <a className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit">
+                View More Projects
+              </a>
+            </Link>
           </div>
         </div>
       </section>
