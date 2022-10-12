@@ -1,1 +1,1 @@
-export { Home } from "../lib/home/home";
+export { default } from "../lib/home";

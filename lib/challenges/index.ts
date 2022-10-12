@@ -1,1 +1,3 @@
-export * from "./challenges";
+import { ChallengesPage } from "./challenges";
+
+export default ChallengesPage;

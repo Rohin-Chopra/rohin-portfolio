@@ -1,9 +1,9 @@
+import { Layout } from "@components/layout";
+import "@styles/globals.css";
 import Script from "next/script";
 import { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Layout } from "../components/layout";
-import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: any) {
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Challenges = () => {
+const ChallengesPage = () => {
   return (
     <div className="h-screen bg-black text-white">
       <div className="container mx-auto px-4 lg:px-8 pt-4">
@@ -55,4 +55,4 @@ const Challenges = () => {
   );
 };
 
-export { Challenges };
+export { ChallengesPage };

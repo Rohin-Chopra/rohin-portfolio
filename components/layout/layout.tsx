@@ -1,7 +1,7 @@
+import { Footer } from "@components/footer";
+import { Navbar } from "@components/navbar";
 import Head from "next/head";
 import { Fragment, PropsWithChildren } from "react";
-import { Footer } from "../footer";
-import { Navbar } from "../navbar";
 
 type Props = PropsWithChildren<any> & {
   showDesign: boolean;

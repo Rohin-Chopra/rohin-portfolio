@@ -1,4 +1,8 @@
+import { Button } from "@components/button";
+import { Input } from "@components/input";
+import { ProjectCard } from "@components/project-card";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { MyNextPage } from "@shared/types";
 import Image from "next/image";
 import { Fragment, useState } from "react";
 import { Fade } from "react-awesome-reveal";
@@ -38,14 +42,10 @@ import {
 import { Link } from "react-scroll";
 import { toast } from "react-toastify";
 import Typewriter from "typewriter-effect";
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
-import { ProjectCard } from "../../components/project-card";
-import { MyNextPage } from "../../shared/types";
 import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
 import schema from "./schema";
 
-const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
+const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -439,6 +439,6 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
   );
 };
 
-Home.requiresNavDesign = true;
+HomePage.requiresNavDesign = true;
 
-export { Home };
+export { HomePage };
