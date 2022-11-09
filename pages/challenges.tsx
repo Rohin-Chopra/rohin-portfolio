@@ -1,1 +1,1 @@
-export { default } from '../lib/challenges';
+export { default } from "lib/challenges";

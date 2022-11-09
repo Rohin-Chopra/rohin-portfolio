@@ -1,7 +1,18 @@
-import { Fragment, useState } from 'react';
-import { MyNextPage } from '../../shared/types';
-import Image from 'next/image';
-import FeaturedProjectCard from '../../components/ProjectCard';
+import { Button } from "@components/button";
+import { Input } from "@components/input";
+import { ProjectCard } from "@components/project-card";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { MyNextPage } from "@shared/types";
+import Image from "next/image";
+import Link from "next/link";
+import { Fragment, useState } from "react";
+import { Fade } from "react-awesome-reveal";
+import {
+  FieldValues,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import {
   FaAws,
   FaBitbucket,
@@ -10,42 +21,32 @@ import {
   FaNodeJs,
   FaReact,
   FaSpinner,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 import {
-  SiNextdotjs,
-  SiGraphql,
-  SiTailwindcss,
-  SiJavascript,
-  SiTypescript,
-  SiMysql,
-  SiExpress,
-  SiMongodb,
   SiBootstrap,
-  SiNetlify,
-  SiNodedotjs,
-  SiGatsby,
-  SiPostgresql,
   SiDocker,
+  SiExpress,
   SiFigma,
+  SiGatsby,
+  SiGraphql,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNetlify,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiTailwindcss,
+  SiTypescript,
   SiVercel,
-} from 'react-icons/si';
-import { Fade } from 'react-awesome-reveal';
-import Typewriter from 'typewriter-effect';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import {
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
-import schema from './schema';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
-import { CONTACT_FORM_DEFAULT_VALUES } from './constants';
-import { Link } from 'react-scroll';
+} from "react-icons/si";
+import { Link as ReactScrollLink } from "react-scroll";
+import { toast } from "react-toastify";
+import Typewriter from "typewriter-effect";
+import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
+import schema from "./schema";
 
-const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
+const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -59,8 +60,8 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
   const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
     try {
       setIsLoading(true);
-      const res = await fetch('/api/contact', {
-        method: 'POST',
+      const res = await fetch("/api/contact", {
+        method: "POST",
         body: JSON.stringify({
           name: data.name,
           email: data.email,
@@ -68,18 +69,18 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
         }),
       });
       if (res.status !== 200) {
-        throw new Error('Received an error from the API');
+        throw new Error("Received an error from the API");
       }
-      toast('Success', { type: 'success' });
+      toast("Success", { type: "success" });
     } catch (error) {
-      toast('Error while contacting user', { type: 'error' });
+      toast("Error while contacting user", { type: "error" });
     } finally {
       setIsLoading(false);
     }
   };
 
   const onSubmitError: SubmitErrorHandler<FieldValues> = (err) => {
-    toast('Error in validating form', { type: 'error' });
+    toast("Error in validating form", { type: "error" });
   };
 
   return (
@@ -107,13 +108,13 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
               <h1 className="mb-4">
                 <Typewriter
                   onInit={(t) => {
-                    t.typeString('A Software Engineer')
+                    t.typeString("A Software Engineer")
                       .pauseFor(150)
                       .deleteAll()
-                      .typeString('Consultant')
+                      .typeString("Consultant")
                       .pauseFor(150)
                       .deleteAll()
-                      .typeString('Solutions Architect')
+                      .typeString("Solutions Architect")
                       .start();
                   }}
                 />
@@ -124,7 +125,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 my weapon of choice. I excel in architecting ,designing and
                 developing robust and scalable solutions.
               </p>
-              <Link
+              <ReactScrollLink
                 to="contact"
                 className="text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 inline-block w-full md:w-auto text-center"
                 spy={true}
@@ -134,7 +135,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 href="#contact"
               >
                 Say Hello
-              </Link>
+              </ReactScrollLink>
             </div>
           </div>
         </div>
@@ -145,7 +146,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
             Projects I&apos;ve built
           </h2>
           <div className="mt-2 md:mt-4">
-            <FeaturedProjectCard
+            <ProjectCard
               name="Make My Career"
               url="https://makemycareer.rohinchopra.com/"
               description="Makemycareer is a platform for year 10-12 VCE students to find the perfect university course according to their needs and interest"
@@ -177,7 +178,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 <FaAws className="text-4xl" title="AWS" key="AWS" />,
               ]}
             />
-            <FeaturedProjectCard
+            <ProjectCard
               isReverse
               className="mt-8 md:mt-28"
               name="Digishelf"
@@ -205,7 +206,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 <FaAws className="text-4xl" title="AWS" key="AWS" />,
               ]}
             />
-            <FeaturedProjectCard
+            <ProjectCard
               className="mt-8 md:mt-28"
               name="Margembie Labradors"
               url="https://www.margembielabradors.com.au/contact"
@@ -241,7 +242,7 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 />,
               ]}
             />
-            <FeaturedProjectCard
+            <ProjectCard
               isReverse
               className="mt-8 md:mt-28"
               name="Challenges"
@@ -262,6 +263,11 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 />,
               ]}
             />
+            <Link href="projects">
+              <a className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit">
+                View More Projects
+              </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -358,13 +364,19 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
                 width={125}
                 alt="AWS SysOps Administrator Certificate"
               />
+              <Image
+                src="/aws-certified-security-specialty.png"
+                height={125}
+                width={125}
+                alt="AWS Security Specialty Certificate"
+              />
             </div>
           </div>
         </div>
       </section>
       <section id="contact" className="bg-black text-white pt-12 pb-8 px-6">
         <div className="container mx-auto">
-          {' '}
+          {" "}
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">
               <h2 className="font-bold text-2xl md:text-4xl md:mb-2">
@@ -439,6 +451,6 @@ const Home: MyNextPage & { requiresNavDesign: boolean } = () => {
   );
 };
 
-Home.requiresNavDesign = true;
+HomePage.requiresNavDesign = true;
 
-export default Home;
+export { HomePage };
