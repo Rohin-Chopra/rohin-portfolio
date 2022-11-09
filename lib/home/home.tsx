@@ -364,6 +364,12 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 width={125}
                 alt="AWS SysOps Administrator Certificate"
               />
+              <Image
+                src="/aws-certified-security-specialty.png"
+                height={125}
+                width={125}
+                alt="AWS Security Specialty Certificate"
+              />
             </div>
           </div>
         </div>
