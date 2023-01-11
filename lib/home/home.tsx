@@ -43,7 +43,7 @@ import {
 import { Link as ReactScrollLink } from "react-scroll";
 import { toast } from "react-toastify";
 import Typewriter from "typewriter-effect";
-import { CONTACT_FORM_DEFAULT_VALUES } from "./constants";
+import { API_KEY, API_URI, CONTACT_FORM_DEFAULT_VALUES } from "./constants";
 import schema from "./schema";
 
 const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
@@ -60,8 +60,11 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
   const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
     try {
       setIsLoading(true);
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_URI}/contact`, {
         method: "POST",
+        headers: {
+          "x-api-key": API_KEY!,
+        },
         body: JSON.stringify({
           name: data.name,
           email: data.email,
