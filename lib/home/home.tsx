@@ -124,8 +124,8 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
               </h1>
               <h1 className="text-gray mb-8">based in Australia</h1>
               <p className="font-normal text-white max-w-2xl text-lg">
-                I&apos;m extremely passionate about solving problems and tech is
-                my weapon of choice. I excel in architecting ,designing and
+                I&apos;m incredibly passionate about solving problems, and tech
+                is my weapon of choice. I excel in architecting, designing and
                 developing robust and scalable solutions.
               </p>
               <ReactScrollLink
@@ -276,12 +276,7 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
       </section>
       <section id="skills" className="bg-black text-white py-8 px-6">
         <div className="container mx-auto">
-          <h2 className="font-bold text-2xl md:text-4xl mb-2 mt-4">Skillset</h2>
-          <p className="opacity-80 md:text-lg max-w-xl mb-4">
-            With my skills and experience in frontend, backend and cloud I am
-            your go to guy to deploy a modern, robust and scalable web
-            application.
-          </p>
+          <h2 className="font-bold text-2xl md:text-4xl mb-2 mt-4">Skills</h2>
           <div className="mb-12">
             <h3 className="opacity-80 font-semibold text-xl mb-4">
               Languages And Frameworks
