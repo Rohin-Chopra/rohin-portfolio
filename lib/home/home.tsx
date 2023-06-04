@@ -282,13 +282,17 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
               Languages And Frameworks
             </h3>
             <div className="grid grid-cols-2 gap-y-4 justify-items-center text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
+              <SiTypescript
+                title="TypeScript"
+                className="hover:text-typescript transition-colors duration-300"
+              />
               <SiJavascript
                 title="Javascript"
                 className="hover:text-javascript transition-colors duration-300"
               />
-              <SiTypescript
-                title="TypeScript"
-                className="hover:text-typescript transition-colors duration-300"
+              <SiNodedotjs
+                title="Node.js"
+                className="hover:text-nodejs transition-colors duration-300"
               />
               <FaReact
                 title="React"
@@ -298,10 +302,6 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
               <SiGatsby
                 title="Gatsby"
                 className="hover:text-gatsby transition-colors duration-300"
-              />
-              <SiNodedotjs
-                title="Node.js"
-                className="hover:text-nodejs transition-colors duration-300"
               />
               <SiTailwindcss title="Tailwindcss" />
               <SiBootstrap
@@ -373,6 +373,12 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 height={125}
                 width={125}
                 alt="AWS Database Specialty Certificate"
+              />
+              <Image
+                src="/hashicorp-certified-terraform-associate-003.png"
+                height={125}
+                width={125}
+                alt="Hashicorp Terraform Associate Certificate"
               />
             </div>
           </div>
