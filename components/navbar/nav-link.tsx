@@ -17,18 +17,17 @@ const NavLink = ({
   ...rest
 }: PropsWithChildren<Props>) => {
   const { pathname } = useRouter();
-  const isActive = pathname === href;
+
   return (
-    <Link href={href}>
-      <a
-        className={classNames({
-          [className]: true,
-          [activeClassName]: isActive,
-        })}
-        {...rest}
-      >
-        {children}
-      </a>
+    <Link
+      href={href}
+      className={classNames({
+        [className]: true,
+        [activeClassName]: pathname === href,
+      })}
+      {...rest}
+    >
+      {children}
     </Link>
   );
 };
