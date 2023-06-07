@@ -12,17 +12,17 @@ import {
 } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { toast } from "react-toastify";
-import * as Yup from "yup";
+import { z } from "zod";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-const schema = Yup.object({
-  name: Yup.string().required("Name is required"),
-  email: Yup.string()
-    .required("Email is required")
+const schema = z.object({
+  name: z.string({ required_error: "Name is required" }),
+  email: z
+    .string({ required_error: "Email is required" })
     .email("Please enter a valid email"),
-  message: Yup.string().required("Message is required"),
+  message: z.string({ required_error: "Message is required" }),
 });
 
 export const ContactForm = () => {
@@ -32,7 +32,7 @@ export const ContactForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
     defaultValues: {
       name: "",
       email: "",
