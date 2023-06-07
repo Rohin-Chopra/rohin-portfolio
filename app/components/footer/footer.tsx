@@ -8,6 +8,7 @@ const Footer = () => (
     <div className="flex justify-center text-4xl">
       <a
         className="mr-4 cursor-pointer"
+        aria-label="Rohin Chopra's linkedin page"
         href="https://www.linkedin.com/in/rohin-chopra-2b38791a0/"
         target="_blank"
         rel="noreferrer noopener"
@@ -16,6 +17,7 @@ const Footer = () => (
       </a>
       <a
         className="mr-4 cursor-pointer"
+        aria-label="Rohin Chopra's Github page"
         href="https://github.com/Rohin-Chopra"
         target="_blank"
         rel="noreferrer noopener"
