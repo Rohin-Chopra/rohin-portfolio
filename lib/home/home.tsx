@@ -266,10 +266,11 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
                 />,
               ]}
             />
-            <Link href="projects">
-              <a className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit">
-                View More Projects
-              </a>
+            <Link
+              href="projects"
+              className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit"
+            >
+              View More Projects
             </Link>
           </div>
         </div>
