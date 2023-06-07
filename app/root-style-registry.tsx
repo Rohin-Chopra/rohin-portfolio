@@ -1,4 +1,3 @@
-// app/emotion.tsx
 "use client";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
