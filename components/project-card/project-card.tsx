@@ -45,7 +45,7 @@ const ProjectCard = ({
           "order-2": isReverse,
         })}
       >
-        <Image src={imgUrl} alt={name} layout="fill" objectFit="contain" />
+        <Image src={imgUrl} alt={name} fill style={{ objectFit: "contain" }} />
       </div>
       <div className="shadow-lg md:shadow-none shadow-primary bg-darkGray md:bg-transparent rounded md:rounded-none py-4 md:py-8 px-6 md:p-0 transition-shadow">
         <div
