@@ -5,11 +5,11 @@ import { CacheProvider } from "@emotion/react";
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
 
-export default function RootStyleRegistry({
-  children,
-}: {
+type Props = {
   children: JSX.Element;
-}) {
+};
+
+export default function RootStyleRegistry({ children }: Props) {
   const [cache] = useState(() => {
     const cache = createCache({ key: "css" });
     cache.compat = true;
