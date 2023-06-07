@@ -35,7 +35,7 @@ import {
 } from "react-icons/si";
 import { Link as ReactScrollLink } from "react-scroll";
 import Typewriter from "typewriter-effect";
-import { ContactForm } from "./components/contact-form";
+import { ContactForm } from "../components/contact-form/contact-form";
 
 const HomePage: NextPage = () => {
   return (
