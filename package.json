@@ -1,5 +1,9 @@
 {
   "name": "personal-website",
+  "author": {
+    "name": "Rohin Chopra",
+    "url": "https://rohinchopra.com"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
