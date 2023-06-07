@@ -57,9 +57,9 @@ export const ContactForm = () => {
       if (res.status !== 200) {
         throw new Error("Received an error from the API");
       }
-      toast("Success", { type: "success" });
+      toast.success("Success");
     } catch (error) {
-      toast("Error while contacting user", { type: "error" });
+      toast.error("Error while contacting user");
     } finally {
       setIsLoading(false);
     }
