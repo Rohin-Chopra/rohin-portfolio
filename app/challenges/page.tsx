@@ -56,4 +56,4 @@ const ChallengesPage: NextPage = () => {
   );
 };
 
-export { ChallengesPage };
+export default ChallengesPage;
