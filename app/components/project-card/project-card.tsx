@@ -78,7 +78,7 @@ const ProjectCard = ({
             "md:ml-2": isReverse,
           })}
         >
-          <h5 className="opacity-80 font-semibold mb-2 text-lg">Tech Used:</h5>
+          <h4 className="opacity-80 font-semibold mb-2 text-lg">Tech Used:</h4>
           <div className="grid grid-cols-3 gap-4 md:flex">
             {tech.map((t, i) => (
               <div className="mx-2" key={i}>
