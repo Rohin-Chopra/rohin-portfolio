@@ -1,6 +1,7 @@
+import { NextPage } from "next";
 import Image from "next/image";
 
-const ChallengesPage = () => {
+const ChallengesPage: NextPage = () => {
   return (
     <div className="h-screen bg-black text-white">
       <div className="container mx-auto px-4 lg:px-8 pt-4">
@@ -55,4 +56,4 @@ const ChallengesPage = () => {
   );
 };
 
-export { ChallengesPage };
+export default ChallengesPage;

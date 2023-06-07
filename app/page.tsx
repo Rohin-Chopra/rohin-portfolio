@@ -1,18 +1,12 @@
-import { Button } from "@components/button";
-import { Input } from "@components/input";
-import { ProjectCard } from "@components/project-card";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { MyNextPage } from "@shared/types";
+/** @jsxImportSource @emotion/react */
+"use client";
+
+import { ProjectCard } from "@components/project-card/project-card";
+import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Fade } from "react-awesome-reveal";
-import {
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
 import {
   FaAws,
   FaBitbucket,
@@ -20,7 +14,6 @@ import {
   FaJira,
   FaNodeJs,
   FaReact,
-  FaSpinner,
 } from "react-icons/fa";
 import {
   SiBootstrap,
@@ -41,51 +34,10 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { Link as ReactScrollLink } from "react-scroll";
-import { toast } from "react-toastify";
 import Typewriter from "typewriter-effect";
-import { API_KEY, API_URI, CONTACT_FORM_DEFAULT_VALUES } from "./constants";
-import schema from "./schema";
+import { ContactForm } from "../components/contact-form/contact-form";
 
-const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: CONTACT_FORM_DEFAULT_VALUES,
-  });
-
-  const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      setIsLoading(true);
-      const res = await fetch(`${API_URI}/contact`, {
-        method: "POST",
-        headers: {
-          "x-api-key": API_KEY!,
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          message: data.message,
-        }),
-      });
-      if (res.status !== 200) {
-        throw new Error("Received an error from the API");
-      }
-      toast("Success", { type: "success" });
-    } catch (error) {
-      toast("Error while contacting user", { type: "error" });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const onSubmitError: SubmitErrorHandler<FieldValues> = (err) => {
-    toast("Error in validating form", { type: "error" });
-  };
-
+const HomePage: NextPage = () => {
   return (
     <Fragment>
       <section id="hero" className="md:h-screen-90">
@@ -398,62 +350,7 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
               </p>
             </div>
             <div>
-              <form onSubmit={handleSubmit(onSubmitSuccess, onSubmitError)}>
-                <div className="mb-4">
-                  <label className="block mb-2" htmlFor="name">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    register={register}
-                    isError={!!errors.name?.message}
-                  />
-                  <span className="text-danger mt-1">
-                    {errors.name?.message}
-                  </span>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2" htmlFor="email">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    register={register}
-                    isError={!!errors.email?.message}
-                  />
-                  <span className="text-danger mt-1">
-                    {errors.email?.message}
-                  </span>
-                </div>
-                <div>
-                  <label className="block mb-2" htmlFor="message">
-                    Message
-                  </label>
-                  <Input
-                    id="message"
-                    name="message"
-                    register={register}
-                    isError={!!errors.message?.message}
-                  />
-                  <span className="text-danger mt-1">
-                    {errors.message?.message}
-                  </span>
-                </div>
-                <Button
-                  type="submit"
-                  variant={Button.Variants.PRIMARY}
-                  disabled={isLoading}
-                  className="mt-4 w-full py-2 md:py-4 font-semibold md:text-lg disabled:opacity-60"
-                >
-                  {isLoading ? (
-                    <FaSpinner className="animate-spin text-white inline" />
-                  ) : (
-                    <span>Let&apos;s Talk</span>
-                  )}
-                </Button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
@@ -462,6 +359,4 @@ const HomePage: MyNextPage & { requiresNavDesign: boolean } = () => {
   );
 };
 
-HomePage.requiresNavDesign = true;
-
-export { HomePage };
+export default HomePage;

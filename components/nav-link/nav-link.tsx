@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<any> & {
@@ -16,7 +16,7 @@ const NavLink = ({
   activeClassName = "",
   ...rest
 }: PropsWithChildren<Props>) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   return (
     <Link

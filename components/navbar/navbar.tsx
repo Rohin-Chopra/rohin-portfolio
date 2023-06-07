@@ -1,30 +1,34 @@
+"use client";
+
 import classNames from "classnames";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
-import { Link } from "react-scroll";
+import { Link as ReactScrollLink } from "react-scroll";
 
-type Props = {
-  showDesign: boolean;
-};
-
-const Navbar = ({ showDesign }: Props) => {
+const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const pathname = usePathname();
 
-  const toggleActive = () => {
+  const toggleActive = (): void => {
     setIsActive((val) => !val);
   };
 
   return (
     <header>
       <div className="flex justify-between items-center w-full md:items-stretch md:grid md:grid-cols-3 bg-black py-2 px-8 md:p-0">
-        <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
-          <span className="font-display">ROHIN CHOPRA</span>
-        </div>
+        <Link href="/" passHref>
+          <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
+            <span className="font-display">ROHIN CHOPRA</span>
+          </div>
+        </Link>
         <div
           className={classNames({
             "bg-black text-white md:col-span-2 md:pr-16 flex md:justify-end items-center":
               true,
-            "md:border-l-2 md:border-l-primary md:bg-darkGray": showDesign,
+            "md:border-l-2 md:border-l-primary md:bg-darkGray":
+              pathname === "/",
           })}
         >
           <div
@@ -36,7 +40,7 @@ const Navbar = ({ showDesign }: Props) => {
             })}
           >
             <div className="nav-item">
-              <Link
+              <ReactScrollLink
                 onClick={toggleActive}
                 to="projects"
                 className="nav-link"
@@ -48,10 +52,10 @@ const Navbar = ({ showDesign }: Props) => {
                 href="#projects"
               >
                 Projects
-              </Link>
+              </ReactScrollLink>
             </div>
             <div className="nav-item">
-              <Link
+              <ReactScrollLink
                 onClick={toggleActive}
                 to="skills"
                 className="nav-link"
@@ -62,10 +66,10 @@ const Navbar = ({ showDesign }: Props) => {
                 href="#skills"
               >
                 Skillset
-              </Link>
+              </ReactScrollLink>
             </div>
             <div className="bg-primary flex items-center font-semibold nav-item py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
-              <Link
+              <ReactScrollLink
                 onClick={toggleActive}
                 to="contact"
                 className="cursor-pointer hover:opacity-70 transition-opacity"
@@ -76,7 +80,7 @@ const Navbar = ({ showDesign }: Props) => {
                 href="#contact"
               >
                 Contact
-              </Link>
+              </ReactScrollLink>
             </div>
           </div>
           <MdMenu
