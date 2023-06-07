@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
 
-import { ProjectCard } from "@components/project-card/project-card";
+import { ProjectCard } from "app/components/project-card/project-card";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,7 +35,7 @@ import {
 } from "react-icons/si";
 import { Link as ReactScrollLink } from "react-scroll";
 import Typewriter from "typewriter-effect";
-import { ContactForm } from "../components/contact-form/contact-form";
+import { ContactForm } from "./components/contact-form/contact-form";
 
 const HomePage: NextPage = () => {
   return (

@@ -1,4 +1,4 @@
-import { ProjectCard } from "@components/project-card/project-card";
+import { ProjectCard } from "app/components/project-card/project-card";
 import { NextPage } from "next";
 import { FaAws, FaNodeJs, FaReact } from "react-icons/fa";
 import {
