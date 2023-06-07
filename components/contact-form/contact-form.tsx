@@ -2,7 +2,7 @@
 
 import { Button } from "@components/button/button";
 import { Input } from "@components/input/input";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import {
   FieldValues,
