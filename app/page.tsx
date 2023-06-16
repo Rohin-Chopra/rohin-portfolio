@@ -4,6 +4,7 @@
 import { ProjectCard } from "app/components/project-card/project-card";
 import { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 import { Fade } from "react-awesome-reveal";
 import {
@@ -196,6 +197,12 @@ const HomePage: NextPage = () => {
                 />,
               ]}
             />
+            <Link
+              href="projects"
+              className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit"
+            >
+              View More Projects
+            </Link>
           </div>
         </div>
       </section>
