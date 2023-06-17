@@ -1,0 +1,32 @@
+[
+  {
+    "link": "https://makemycareer.rohinchopra.com",
+    "imgUrl": "/makemycareer.png",
+    "title": "Makemycareer"
+  },
+  {
+    "link": "https://digishelf.rohinchopra.com",
+    "imgUrl": "/digishelf.png",
+    "title": "Digishelf"
+  },
+  {
+    "link": "https://www.margembielabradors.com.au",
+    "imgUrl": "/margembie-labradors.png",
+    "title": "Margembie Labradors"
+  },
+  {
+    "link": "https://snap-landing-page-wine.vercel.app",
+    "imgUrl": "/snap-landing-page.png",
+    "title": "Snap Landing Page"
+  },
+  {
+    "link": "https://sunnyside-landing-page-rohin.netlify.app",
+    "imgUrl": "/sunny-side-landing-page.png",
+    "title": "Sunny Side Landing Page"
+  },
+  {
+    "link": "https://frontend-challenges-amber.vercel.app",
+    "imgUrl": "/advice-generator-app.png",
+    "title": "Advice Generator App"
+  }
+]

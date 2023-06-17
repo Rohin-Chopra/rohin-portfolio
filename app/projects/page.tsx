@@ -1,5 +1,6 @@
 import { ProjectGalleryCard } from "@components/project-gallery-card/projects-gallery-card";
 import { NextPage } from "next";
+import projects from "./projects.json";
 
 const ProjectsPage: NextPage = () => {
   return (
@@ -11,36 +12,14 @@ const ProjectsPage: NextPage = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3">
-        <ProjectGalleryCard
-          link="https://makemycareer.rohinchopra.com/"
-          imgUrl="/makemycareer.png"
-          imgAlt="Makemycareer"
-        />
-        <ProjectGalleryCard
-          link="https://digishelf.rohinchopra.com/"
-          imgUrl="/digishelf.png"
-          imgAlt="Digishelf"
-        />
-        <ProjectGalleryCard
-          link="https://www.margembielabradors.com.au"
-          imgUrl="/margembie-labradors.png"
-          imgAlt="Margembie Labradors"
-        />
-        <ProjectGalleryCard
-          link="https://snap-landing-page-wine.vercel.app/"
-          imgUrl="/snap-landing-page.png"
-          imgAlt="Snap Landing Page Project"
-        />
-        <ProjectGalleryCard
-          link="https://frontend-challenges-amber.vercel.app/"
-          imgUrl="/advice-generator-app.png"
-          imgAlt="Advice Generator App Project"
-        />
-        <ProjectGalleryCard
-          link="https://sunnyside-landing-page-rohin.netlify.app"
-          imgUrl="/sunny-side-landing-page.png"
-          imgAlt="Sunny Side Landing Page"
-        />
+        {projects.map((project) => (
+          <ProjectGalleryCard
+            key={project.title}
+            link={project.link}
+            imgUrl={project.imgUrl}
+            imgAlt={project.title}
+          />
+        ))}
       </div>
     </div>
   );
