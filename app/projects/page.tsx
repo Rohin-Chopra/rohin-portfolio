@@ -10,7 +10,22 @@ const ProjectsPage: NextPage = () => {
           Below are all the projects that I do in my spare time
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3">
+        <ProjectGalleryCard
+          link="https://makemycareer.rohinchopra.com/"
+          imgUrl="/makemycareer.png"
+          imgAlt="Makemycareer"
+        />
+        <ProjectGalleryCard
+          link="https://digishelf.rohinchopra.com/"
+          imgUrl="/digishelf.png"
+          imgAlt="Digishelf"
+        />
+        <ProjectGalleryCard
+          link="https://www.margembielabradors.com.au"
+          imgUrl="/margembie-labradors.png"
+          imgAlt="Margembie Labradors"
+        />
         <ProjectGalleryCard
           link="https://snap-landing-page-wine.vercel.app/"
           imgUrl="/snap-landing-page.png"
