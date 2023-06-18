@@ -17,12 +17,6 @@ module.exports = {
       transparent: "transparent",
       linkedin: "#0077b5",
       github: "#171515",
-      javascript: "#f0db4f",
-      typescript: "#007acc",
-      react: "#007acc",
-      gatsby: "#663399",
-      nodejs: "##68a063",
-      bootstrap: "##563d7c",
     },
     fontFamily: {
       display: ["Josefin Sans", "sans-serif"],

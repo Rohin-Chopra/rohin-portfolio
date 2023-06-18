@@ -7,14 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Fade } from "react-awesome-reveal";
-import {
-  FaAws,
-  FaBitbucket,
-  FaGithub,
-  FaJira,
-  FaNodeJs,
-  FaReact,
-} from "react-icons/fa";
+import { FaAws, FaGithub, FaNodeJs, FaReact } from "react-icons/fa";
 import {
   SiBootstrap,
   SiDocker,
@@ -30,6 +23,7 @@ import {
   SiNodedotjs,
   SiPostgresql,
   SiTailwindcss,
+  SiTerraform,
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
@@ -216,29 +210,32 @@ const HomePage: NextPage = () => {
             <div className="grid grid-cols-2 justify-items-center gap-y-4 text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
               <SiTypescript
                 title="TypeScript"
-                className="transition-colors duration-300 hover:text-typescript"
+                className="transition-colors duration-300 hover:text-[#007acc]"
               />
               <SiJavascript
                 title="Javascript"
-                className="transition-colors duration-300 hover:text-javascript"
+                className="transition-colors duration-300 hover:text-[#f0db4f]"
               />
               <SiNodedotjs
                 title="Node.js"
-                className="transition-colors duration-300 hover:text-nodejs"
+                className="transition-colors duration-300 hover:text-[#68a063]"
               />
               <FaReact
                 title="React"
-                className="transition-colors duration-300 hover:text-react"
+                className="transition-colors duration-300 hover:text-[#007acc]"
               />
               <SiNextdotjs title="Next.js" />
               <SiGatsby
                 title="Gatsby"
-                className="transition-colors duration-300 hover:text-gatsby"
+                className="transition-colors duration-300 hover:text-[#663399]"
               />
-              <SiTailwindcss title="Tailwindcss" />
+              <SiTailwindcss
+                title="Tailwindcss"
+                className="transition-colors duration-300 hover:text-[#37BCF8]"
+              />
               <SiBootstrap
                 title="Bootstrap"
-                className="transition-colors duration-300 hover:text-bootstrap"
+                className="transition-colors duration-300 hover:text-[#563d7c]"
               />
             </div>
           </div>
@@ -247,10 +244,16 @@ const HomePage: NextPage = () => {
               Technologies
             </h3>
             <div className="grid grid-cols-2 justify-items-center gap-y-4 text-5xl md:grid-cols-8 md:text-6xl">
-              <SiPostgresql title="PostgreSQL" />
+              <SiPostgresql
+                title="PostgreSQL"
+                className="transition-colors duration-300 hover:text-[#336790]"
+              />
               <SiMysql title="MySQL" />
               <SiMongodb title="MongoDB" />
-              <SiDocker title="Docker" />
+              <SiDocker
+                title="Docker"
+                className="transition-colors duration-300 hover:text-[#0db7ed]"
+              />
               <SiFigma title="Figma" />
             </div>
           </div>
@@ -258,11 +261,12 @@ const HomePage: NextPage = () => {
             <h3 className="mb-4 text-xl font-semibold opacity-80">Services</h3>
             <div className="grid grid-cols-2 justify-items-center gap-y-4 text-6xl md:grid-cols-8">
               <FaAws title="AWS" />
+              <SiTerraform
+                title="Terraform"
+                className="transition-colors duration-300 hover:text-[#7A42BC]"
+              />
               <FaGithub title="Github" />
-              <FaBitbucket title="BitBucket" />
-              <FaJira title="Jira" />
               <SiVercel title="Vercel" />
-              <SiNetlify title="Netlify" />
             </div>
           </div>
           <div>
