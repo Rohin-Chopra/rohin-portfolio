@@ -91,7 +91,7 @@ export const ContactForm = () => {
           className={classNames({
             "bg-darkGray w-full focus:outline-none focus:border focus:border-primary py-2 px-2 transition-colors resize-none":
               true,
-            "border border:danger": !!errors.message,
+            "border border-danger": !!errors.message?.message,
           })}
           id="message"
           cols={20}
