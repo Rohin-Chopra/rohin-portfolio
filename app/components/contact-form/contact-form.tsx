@@ -112,7 +112,7 @@ export const ContactForm = () => {
           <span>Let&apos;s Talk</span>
         )}
       </Button>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </form>
   );
 };
