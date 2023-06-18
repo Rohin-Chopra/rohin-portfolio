@@ -13,7 +13,7 @@ const Footer = () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FaLinkedin className="transition-colors duration-300 hover:text-linkedin" />
+        <FaLinkedin className="transition-colors duration-300 hover:text-[#0077b5]" />
       </a>
       <a
         className="mr-4 cursor-pointer"
@@ -22,7 +22,7 @@ const Footer = () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FaGithub className="transition-colors duration-300 hover:text-github" />
+        <FaGithub className="transition-colors duration-300 hover:text-[#171515]" />
       </a>
     </div>
   </footer>

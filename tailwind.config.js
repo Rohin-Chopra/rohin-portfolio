@@ -15,8 +15,6 @@ module.exports = {
       primary: "#5221E6",
       danger: "#dc3545",
       transparent: "transparent",
-      linkedin: "#0077b5",
-      github: "#171515",
     },
     fontFamily: {
       display: ["Josefin Sans", "sans-serif"],
