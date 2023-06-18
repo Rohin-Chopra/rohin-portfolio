@@ -65,7 +65,7 @@ const Navbar = () => {
                 duration={500}
                 href="#skills"
               >
-                Skillset
+                Skills
               </ReactScrollLink>
             </div>
             <div className="nav-item flex items-center rounded bg-primary px-4 py-2 font-semibold md:h-full md:rounded-none md:py-0">
