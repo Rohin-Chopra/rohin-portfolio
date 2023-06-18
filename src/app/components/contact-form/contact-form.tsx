@@ -1,8 +1,8 @@
 "use client";
 
+import { Button } from "@components/button/button";
+import { Input } from "@components/input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "app/components/button/button";
-import { Input } from "app/components/input/input";
 import classNames from "classnames";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

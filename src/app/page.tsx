@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
 
-import { ProjectCard } from "app/components/project-card/project-card";
+import { ProjectCard } from "@components/project-card/project-card";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
