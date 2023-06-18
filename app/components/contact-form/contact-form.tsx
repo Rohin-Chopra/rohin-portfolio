@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "app/components/button/button";
 import { Input } from "app/components/input/input";
+import classNames from "classnames";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
@@ -86,12 +87,17 @@ export const ContactForm = () => {
         <label className="block mb-2" htmlFor="message">
           Message
         </label>
-        <Input
+        <textarea
+          className={classNames({
+            "bg-darkGray w-full focus:outline-none focus:border focus:border-primary py-2 px-2 transition-colors resize-none":
+              true,
+            "border border:danger": !!errors.message,
+          })}
           id="message"
-          name="message"
-          register={register}
-          isError={!!errors.message?.message}
-        />
+          cols={20}
+          rows={5}
+          {...register("message")}
+        ></textarea>
         <span className="text-danger mt-1">{errors.message?.message}</span>
       </div>
       <Button
