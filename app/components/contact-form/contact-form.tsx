@@ -60,7 +60,7 @@ export const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmitSuccess)}>
       <div className="mb-4">
-        <label className="block mb-2" htmlFor="name">
+        <label className="mb-2 block" htmlFor="name">
           Name
         </label>
         <Input
@@ -69,10 +69,10 @@ export const ContactForm = () => {
           register={register}
           isError={!!errors.name?.message}
         />
-        <span className="text-danger mt-1">{errors.name?.message}</span>
+        <span className="mt-1 text-danger">{errors.name?.message}</span>
       </div>
       <div className="mb-4">
-        <label className="block mb-2" htmlFor="email">
+        <label className="mb-2 block" htmlFor="email">
           Email
         </label>
         <Input
@@ -81,10 +81,10 @@ export const ContactForm = () => {
           register={register}
           isError={!!errors.email?.message}
         />
-        <span className="text-danger mt-1">{errors.email?.message}</span>
+        <span className="mt-1 text-danger">{errors.email?.message}</span>
       </div>
       <div>
-        <label className="block mb-2" htmlFor="message">
+        <label className="mb-2 block" htmlFor="message">
           Message
         </label>
         <textarea
@@ -98,16 +98,16 @@ export const ContactForm = () => {
           rows={5}
           {...register("message")}
         ></textarea>
-        <span className="text-danger mt-1">{errors.message?.message}</span>
+        <span className="mt-1 text-danger">{errors.message?.message}</span>
       </div>
       <Button
         type="submit"
         variant={Button.Variants.PRIMARY}
         disabled={isLoading}
-        className="mt-4 w-full py-2 md:py-4 font-semibold md:text-lg disabled:opacity-60"
+        className="mt-4 w-full py-2 font-semibold disabled:opacity-60 md:py-4 md:text-lg"
       >
         {isLoading ? (
-          <FaSpinner className="animate-spin text-white inline" />
+          <FaSpinner className="inline animate-spin text-white" />
         ) : (
           <span>Let&apos;s Talk</span>
         )}

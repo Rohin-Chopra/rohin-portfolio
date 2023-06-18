@@ -9,7 +9,7 @@ type Props = {
 export const ProjectGalleryCard = ({ imgAlt, imgUrl, link }: Props) => {
   return (
     <a
-      className="hover:opacity-50 transition-opacity duration-300"
+      className="transition-opacity duration-300 hover:opacity-50"
       href={link}
       rel="noopener noreferrer"
       target="_blank"

@@ -24,7 +24,7 @@ const Button = ({
 }: Props) => (
   <button
     {...rest}
-    className={`px-4 py-2 cursor-pointer rounded border-solid shadow ${Variants[variant]} ${className}`}
+    className={`cursor-pointer rounded border-solid px-4 py-2 shadow ${Variants[variant]} ${className}`}
   >
     {children}
   </button>

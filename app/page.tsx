@@ -41,10 +41,10 @@ const HomePage: NextPage = () => {
   return (
     <Fragment>
       <section id="hero" className="md:h-screen-90">
-        <div className="flex flex-col-reverse justify-end pt-8 md:pt-0 md:grid md:grid-cols-3 bg-black h-full">
-          <div className="bg-black relative">
+        <div className="flex h-full flex-col-reverse justify-end bg-black pt-8 md:grid md:grid-cols-3 md:pt-0">
+          <div className="relative bg-black">
             <div className="flex justify-center md:justify-end">
-              <div className="md:absolute -right-6 z-10 mt-12">
+              <div className="-right-6 z-10 mt-12 md:absolute">
                 <Fade delay={50}>
                   <Image
                     className="rounded-full bg-primary"
@@ -57,8 +57,8 @@ const HomePage: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 md:bg-darkGray md:border-l-2 md:border-primary px-8 rounded-bl-3xl ">
-            <div className="md:mt-24 text-4xl lg:text-6xl font-bold text-white">
+          <div className="col-span-2 rounded-bl-3xl px-8 md:border-l-2 md:border-primary md:bg-darkGray ">
+            <div className="text-4xl font-bold text-white md:mt-24 lg:text-6xl">
               <h1 className="mb-4">I&apos;m Rohin Chopra.</h1>
               <h1 className="mb-4">
                 <Typewriter
@@ -74,15 +74,15 @@ const HomePage: NextPage = () => {
                   }}
                 />
               </h1>
-              <h1 className="text-gray mb-8">based in Australia</h1>
-              <p className="font-normal text-white max-w-2xl text-lg">
+              <h1 className="mb-8 text-gray">based in Australia</h1>
+              <p className="max-w-2xl text-lg font-normal text-white">
                 I&apos;m incredibly passionate about solving problems, and tech
                 is my weapon of choice. I excel in architecting, designing and
                 developing robust and scalable solutions.
               </p>
               <ReactScrollLink
                 to="contact"
-                className="text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 inline-block w-full md:w-auto text-center"
+                className="mt-4 inline-block w-full cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base shadow md:w-auto"
                 spy={true}
                 smooth={true}
                 offset={50}
@@ -95,9 +95,9 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section id="projects" className="bg-black text-white py-8 px-6">
+      <section id="projects" className="bg-black px-6 py-8 text-white">
         <div className="container mx-auto">
-          <h2 className="font-bold text-2xl md:text-4xl md:mb-10 mt-4">
+          <h2 className="mt-4 text-2xl font-bold md:mb-10 md:text-4xl">
             Projects I&apos;ve built
           </h2>
           <div className="mt-2 md:mt-4">
@@ -199,54 +199,54 @@ const HomePage: NextPage = () => {
             />
             <Link
               href="projects"
-              className="block mx-auto text-base bg-primary px-8 py-4 cursor-pointer rounded border-solid shadow mt-4 text-center w-fit"
+              className="mx-auto mt-4 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base shadow"
             >
               View More Projects
             </Link>
           </div>
         </div>
       </section>
-      <section id="skills" className="bg-black text-white py-8 px-6">
+      <section id="skills" className="bg-black px-6 py-8 text-white">
         <div className="container mx-auto">
-          <h2 className="font-bold text-2xl md:text-4xl mb-2 mt-4">Skills</h2>
+          <h2 className="mb-2 mt-4 text-2xl font-bold md:text-4xl">Skills</h2>
           <div className="mb-12">
-            <h3 className="opacity-80 font-semibold text-xl mb-4">
+            <h3 className="mb-4 text-xl font-semibold opacity-80">
               Languages And Frameworks
             </h3>
-            <div className="grid grid-cols-2 gap-y-4 justify-items-center text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
+            <div className="grid grid-cols-2 justify-items-center gap-y-4 text-5xl md:grid-cols-8 md:gap-y-0 md:text-6xl">
               <SiTypescript
                 title="TypeScript"
-                className="hover:text-typescript transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-typescript"
               />
               <SiJavascript
                 title="Javascript"
-                className="hover:text-javascript transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-javascript"
               />
               <SiNodedotjs
                 title="Node.js"
-                className="hover:text-nodejs transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-nodejs"
               />
               <FaReact
                 title="React"
-                className="hover:text-react transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-react"
               />
               <SiNextdotjs title="Next.js" />
               <SiGatsby
                 title="Gatsby"
-                className="hover:text-gatsby transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-gatsby"
               />
               <SiTailwindcss title="Tailwindcss" />
               <SiBootstrap
                 title="Bootstrap"
-                className="hover:text-bootstrap transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-bootstrap"
               />
             </div>
           </div>
           <div className="mb-12">
-            <h3 className="opacity-80 font-semibold text-xl mb-4">
+            <h3 className="mb-4 text-xl font-semibold opacity-80">
               Technologies
             </h3>
-            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-5xl md:text-6xl">
+            <div className="grid grid-cols-2 justify-items-center gap-y-4 text-5xl md:grid-cols-8 md:text-6xl">
               <SiPostgresql title="PostgreSQL" />
               <SiMysql title="MySQL" />
               <SiMongodb title="MongoDB" />
@@ -255,8 +255,8 @@ const HomePage: NextPage = () => {
             </div>
           </div>
           <div className="mb-12">
-            <h3 className="opacity-80 font-semibold text-xl mb-4">Services</h3>
-            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-6xl">
+            <h3 className="mb-4 text-xl font-semibold opacity-80">Services</h3>
+            <div className="grid grid-cols-2 justify-items-center gap-y-4 text-6xl md:grid-cols-8">
               <FaAws title="AWS" />
               <FaGithub title="Github" />
               <FaBitbucket title="BitBucket" />
@@ -266,10 +266,10 @@ const HomePage: NextPage = () => {
             </div>
           </div>
           <div>
-            <h3 className="opacity-80 font-semibold text-xl mb-4">
+            <h3 className="mb-4 text-xl font-semibold opacity-80">
               Certifications
             </h3>
-            <div className="grid grid-cols-2 gap-y-4 justify-items-center md:grid-cols-8 text-6xl">
+            <div className="grid grid-cols-2 justify-items-center gap-y-4 text-6xl md:grid-cols-8">
               <Image
                 src="/aws-certified-cloud-practitioner.png"
                 height={125}
@@ -316,12 +316,12 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section id="contact" className="bg-black text-white pt-12 pb-8 px-6">
+      <section id="contact" className="bg-black px-6 pb-8 pt-12 text-white">
         <div className="container mx-auto">
           {" "}
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">
-              <h2 className="font-bold text-2xl md:text-4xl md:mb-2">
+              <h2 className="text-2xl font-bold md:mb-2 md:text-4xl">
                 Let&apos;s talk
               </h2>
               <p className="opacity-80">

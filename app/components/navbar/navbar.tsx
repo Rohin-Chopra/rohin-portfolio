@@ -17,9 +17,9 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="flex justify-between items-center w-full md:items-stretch md:grid md:grid-cols-3 bg-black py-2 px-8 md:p-0">
+      <div className="flex w-full items-center justify-between bg-black px-8 py-2 md:grid md:grid-cols-3 md:items-stretch md:p-0">
         <Link href="/" passHref>
-          <div className="bg-black text-white text-xl font-bold md:pl-8 py-8">
+          <div className="bg-black py-8 text-xl font-bold text-white md:pl-8">
             <span className="font-display">ROHIN CHOPRA</span>
           </div>
         </Link>
@@ -68,11 +68,11 @@ const Navbar = () => {
                 Skillset
               </ReactScrollLink>
             </div>
-            <div className="bg-primary flex items-center font-semibold nav-item py-2 md:py-0 px-4 rounded md:rounded-none md:h-full">
+            <div className="nav-item flex items-center rounded bg-primary px-4 py-2 font-semibold md:h-full md:rounded-none md:py-0">
               <ReactScrollLink
                 onClick={toggleActive}
                 to="contact"
-                className="cursor-pointer hover:opacity-70 transition-opacity"
+                className="cursor-pointer transition-opacity hover:opacity-70"
                 spy={true}
                 smooth={true}
                 offset={200}
