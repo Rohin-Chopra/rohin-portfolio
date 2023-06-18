@@ -11,7 +11,8 @@ import {
   useForm,
 } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
@@ -57,16 +58,12 @@ export const ContactForm = () => {
       if (res.status !== 200) {
         throw new Error("Received an error from the API");
       }
-      toast.success("Success");
+      toast.success("Thanks for contacting me");
     } catch (error) {
-      toast.error("Error while contacting user");
+      toast.error("Oops, something went wrong");
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const onSubmitError: SubmitErrorHandler<FieldValues> = (err) => {
-    toast("Error in validating form", { type: "error" });
   };
 
   return (
@@ -119,6 +116,7 @@ export const ContactForm = () => {
           <span>Let&apos;s Talk</span>
         )}
       </Button>
+      <ToastContainer />
     </form>
   );
 };
