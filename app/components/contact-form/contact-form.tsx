@@ -106,7 +106,7 @@ export const ContactForm = () => {
         type="submit"
         variant={Button.Variants.PRIMARY}
         disabled={isLoading}
-        className="mt-4 w-full py-2 font-semibold disabled:opacity-60 md:py-4 md:text-lg"
+        className="mt-4 w-full py-2 font-semibold disabled:opacity-60 md:text-lg"
       >
         {isLoading ? (
           <FaSpinner className="inline animate-spin text-white" />
