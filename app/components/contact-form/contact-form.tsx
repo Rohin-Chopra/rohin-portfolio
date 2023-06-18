@@ -68,6 +68,7 @@ export const ContactForm = () => {
           name="name"
           register={register}
           isError={!!errors.name?.message}
+          autoComplete="name"
         />
         <span className="mt-1 text-danger">{errors.name?.message}</span>
       </div>
@@ -80,6 +81,7 @@ export const ContactForm = () => {
           name="email"
           register={register}
           isError={!!errors.email?.message}
+          autoComplete="email"
         />
         <span className="mt-1 text-danger">{errors.email?.message}</span>
       </div>
