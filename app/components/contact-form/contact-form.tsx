@@ -4,12 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "app/components/button/button";
 import { Input } from "app/components/input/input";
 import { useState } from "react";
-import {
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,12 +14,12 @@ export const API_URI = process.env.NEXT_PUBLIC_API_URI;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const schema = z.object({
-  name: z.string({ required_error: "Name is required" }),
-  email: z
-    .string({ required_error: "Email is required" })
-    .email("Please enter a valid email"),
-  message: z.string({ required_error: "Message is required" }),
+  name: z.string().min(1, "Please enter a name"),
+  email: z.string().email("Please enter a valid email"),
+  message: z.string().min(1, "Please enter a message"),
 });
+
+type FormInputs = z.infer<typeof schema>;
 
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,13 +27,8 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormInputs>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
   });
 
   const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
@@ -67,7 +57,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitSuccess, onSubmitError)}>
+    <form onSubmit={handleSubmit(onSubmitSuccess)}>
       <div className="mb-4">
         <label className="block mb-2" htmlFor="name">
           Name
