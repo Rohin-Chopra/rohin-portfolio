@@ -1,7 +1,5 @@
 "use client";
 
-import { Button } from "@components/button/button";
-import { Input } from "@components/input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames";
 import { useState } from "react";
@@ -9,6 +7,8 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "src/components/button/button";
+import { Input } from "src/components/input/input";
 import { z } from "zod";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
