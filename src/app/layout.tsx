@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Script from "next/script";
-import { Footer } from "src/components/footer/footer";
-import { Navbar } from "src/components/navbar/navbar";
+import { Footer } from "src/app/components/footer/footer";
+import { Navbar } from "src/app/components/navbar/navbar";
 import "../styles/globals.css";
 import RootStyleRegistry from "./root-style-registry";
 

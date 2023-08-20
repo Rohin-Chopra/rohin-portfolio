@@ -27,9 +27,9 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { Link as ReactScrollLink } from "react-scroll";
-import { ProjectCard } from "src/components/project-card/project-card";
+import { ProjectCard } from "src/app/components/project-card/project-card";
 import Typewriter from "typewriter-effect";
-import { ContactForm } from "../components/contact-form/contact-form";
+import { ContactForm } from "./components/contact-form/contact-form";
 
 const HomePage: NextPage = () => {
   return (
@@ -68,7 +68,7 @@ const HomePage: NextPage = () => {
                   }}
                 />
               </h1>
-              <h1 className="mb-8 text-gray">based in Australia</h1>
+              <h1 className="mb-8 text-gray-400">based in Australia</h1>
               <p className="max-w-2xl text-lg font-normal text-white">
                 I&apos;m incredibly passionate about solving problems, and tech
                 is my weapon of choice. I excel in architecting, designing and

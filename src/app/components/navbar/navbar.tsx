@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
-import { Link as ReactScrollLink } from "react-scroll";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -39,48 +38,8 @@ const Navbar = () => {
               "top-20 -left-full": !isActive,
             })}
           >
-            <div className="nav-item">
-              <ReactScrollLink
-                onClick={toggleActive}
-                to="projects"
-                className="nav-link"
-                activeClass="opacity-100"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-                href="#projects"
-              >
-                Projects
-              </ReactScrollLink>
-            </div>
-            <div className="nav-item">
-              <ReactScrollLink
-                onClick={toggleActive}
-                to="skills"
-                className="nav-link"
-                spy={true}
-                smooth={true}
-                offset={50}
-                duration={500}
-                href="#skills"
-              >
-                Skills
-              </ReactScrollLink>
-            </div>
             <div className="nav-item flex items-center rounded bg-primary px-4 py-2 font-semibold md:h-full md:rounded-none md:py-0">
-              <ReactScrollLink
-                onClick={toggleActive}
-                to="contact"
-                className="cursor-pointer transition-opacity hover:opacity-70"
-                spy={true}
-                smooth={true}
-                offset={200}
-                duration={500}
-                href="#contact"
-              >
-                Contact
-              </ReactScrollLink>
+              <Link href="/blogs">Blogs</Link>
             </div>
           </div>
           <MdMenu
