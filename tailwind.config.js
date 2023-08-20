@@ -16,7 +16,8 @@ module.exports = {
 
     fontFamily: {
       display: ["Josefin Sans", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
