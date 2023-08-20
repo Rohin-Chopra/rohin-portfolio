@@ -8,8 +8,8 @@ import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
-import { Button } from "../button";
-import { Input } from "../input";
+import { Button } from "../Button";
+import { Input } from "../Input";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;

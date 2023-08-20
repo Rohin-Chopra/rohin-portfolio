@@ -31,11 +31,13 @@ export const Pre = ({
         className="absolute right-0 pl-2 pr-4 text-xl transition-all duration-300"
         onClick={handleClick}
       >
-        {isActive ? (
-          <FaCheck className="cursor-pointer text-green-400" />
-        ) : (
-          <FaCopy className="cursor-pointer hover:text-slate-400" />
-        )}
+        <div className="bg-black">
+          {isActive ? (
+            <FaCheck className="cursor-pointer text-green-400" />
+          ) : (
+            <FaCopy className="cursor-pointer hover:text-slate-400" />
+          )}
+        </div>
       </div>
       {children}
     </pre>

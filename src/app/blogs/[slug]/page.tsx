@@ -36,6 +36,7 @@ const BlogPage = async ({ params }: Props) => {
           <h1 className="mb-4 text-3xl font-bold md:text-4xl">{post.title}</h1>
           <p className="mb-8 text-slate-400">{post.description}</p>
           <div className="prose text-white prose-headings:text-white prose-h2:mb-4 prose-p:mb-2 prose-p:text-lg lg:max-w-none">
+            {/* @ts-expect-error Server Component */}
             <MDXRemote
               source={post.body}
               options={{
