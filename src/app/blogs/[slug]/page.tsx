@@ -8,86 +8,13 @@ import { getPost } from "../lib/getPost";
 import { getPosts } from "../lib/getPosts";
 import { MDXImage } from "./components/mdx/MDXImage";
 import { MDXPre } from "./components/mdx/MDXPre";
+import { terraformSyntaxHighlighter } from "./lib/terraformSyntaxHighlighter";
 import styles from "./style.module.css";
 import { BlogPostParams } from "./types";
 
-const terraformFm = (hljs: import("highlight.js").HLJSApi) => {
-  const NUMBERS = {
-    className: "number",
-    begin: "\\b\\d+(\\.\\d+)?",
-    relevance: 0,
-  };
-  const STRINGS = {
-    className: "string",
-    begin: '"',
-    end: '"',
-    contains: [
-      {
-        className: "variable",
-        begin: "\\${",
-        end: "\\}",
-        relevance: 9,
-        contains: [
-          {
-            className: "string",
-            begin: '"',
-            end: '"',
-          },
-          {
-            className: "meta",
-            begin: "[A-Za-z_0-9]*" + "\\(",
-            end: "\\)",
-            contains: [
-              NUMBERS,
-              {
-                className: "string",
-                begin: '"',
-                end: '"',
-                contains: [
-                  {
-                    className: "variable",
-                    begin: "\\${",
-                    end: "\\}",
-                    contains: [
-                      {
-                        className: "string",
-                        begin: '"',
-                        end: '"',
-                        contains: [
-                          {
-                            className: "variable",
-                            begin: "\\${",
-                            end: "\\}",
-                          },
-                        ],
-                      },
-                      {
-                        className: "meta",
-                        begin: "[A-Za-z_0-9]*" + "\\(",
-                        end: "\\)",
-                      },
-                    ],
-                  },
-                ],
-              },
-              "self",
-            ],
-          },
-        ],
-      },
-    ],
-  };
-
-  return {
-    aliases: ["tf", "hcl"],
-    keywords:
-      "resource variable provider output locals module data terraform|10",
-    literal: "false true null",
-    contains: [hljs.COMMENT("\\#", "$"), NUMBERS, STRINGS],
-  };
-};
-
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  BlogPostParams["params"][]
+> {
   const posts = await getPosts();
 
   return posts.map((post) => {
@@ -100,6 +27,7 @@ export async function generateStaticParams() {
 const BlogPage = async ({ params }: BlogPostParams) => {
   const post = await getPost(params.slug);
 
+  // todo: add 404 page
   if (!post) return notFound();
 
   return (
@@ -132,7 +60,7 @@ const BlogPage = async ({ params }: BlogPostParams) => {
                         rehypeHighlight,
                         {
                           languages: {
-                            hcl: terraformFm,
+                            hcl: terraformSyntaxHighlighter,
                           },
                         },
                       ],
