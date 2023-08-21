@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Post } from "../types";
+import type { Blog } from "../types";
 
 type Props = {
-  post: Post;
+  post: Blog;
 };
 
 export const BlogItem = ({ post }: Props) => {

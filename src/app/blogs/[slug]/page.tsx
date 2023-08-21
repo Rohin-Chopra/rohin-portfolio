@@ -3,11 +3,11 @@ import { notFound } from "next/navigation";
 import rehypeHighlight from "rehype-highlight";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
-import { getPost } from "../lib/getPost";
+import { getPost } from "../lib/getBlog";
 import { mdxComponents } from "./components/mdx";
 import { terraformSyntaxHighlighter } from "./lib/terraformSyntaxHighlighter";
 import styles from "./style.module.css";
-import { BlogPostParams } from "./types";
+import type { BlogPostParams } from "./types";
 
 const BlogPage = async ({ params }: BlogPostParams) => {
   const post = await getPost(params.slug);

@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import { FC, InputHTMLAttributes } from "react";
-import { UseFormRegister } from "react-hook-form";
+import type { FC, InputHTMLAttributes } from "react";
+import type { UseFormRegister } from "react-hook-form";
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   isError?: boolean;

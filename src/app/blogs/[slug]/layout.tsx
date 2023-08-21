@@ -1,15 +1,15 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PropsWithChildren } from "react";
-import { getPost } from "../lib/getPost";
-import { getPosts } from "../lib/getPosts";
+import type { PropsWithChildren } from "react";
+import { getPost } from "../lib/getBlog";
+import { getBlogs } from "../lib/getBlogs";
 import "./highlight.css";
-import { BlogPostParams } from "./types";
+import type { BlogPostParams } from "./types";
 
 export async function generateStaticParams(): Promise<
   BlogPostParams["params"][]
 > {
-  const posts = await getPosts();
+  const posts = await getBlogs();
 
   return posts.map((post) => {
     return {

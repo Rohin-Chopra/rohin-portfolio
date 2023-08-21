@@ -2,7 +2,7 @@
 "use client";
 
 import { ProjectCard } from "@components/ProjectCard/ProjectCard";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";

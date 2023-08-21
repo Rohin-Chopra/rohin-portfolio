@@ -1,8 +1,8 @@
 import { BlogItem } from "./components/BlogItem";
-import { getPosts } from "./lib/getPosts";
+import { getBlogs } from "./lib/getBlogs";
 
 const BlogsPage = async () => {
-  const posts = await getPosts();
+  const posts = await getBlogs();
 
   return (
     <div className="min-h-screen bg-black text-white">

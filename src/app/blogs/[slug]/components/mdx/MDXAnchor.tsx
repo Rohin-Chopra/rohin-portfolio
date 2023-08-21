@@ -1,5 +1,6 @@
-import Link, { type LinkProps } from "next/link";
-import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
+import type { type LinkProps } from "next/link";
+import Link from "next/link";
+import type { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
 export const MDXAnchor = ({
   children,

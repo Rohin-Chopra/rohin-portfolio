@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  ReactElement,
-  useState,
-} from "react";
+import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
+import { useState } from "react";
 import { FaCheck, FaCopy } from "react-icons/fa";
 
 export const MDXPre = ({

@@ -2,9 +2,9 @@ import { readdir, readFile } from "fs/promises";
 import matter from "gray-matter";
 import { extname } from "path";
 import { cache } from "react";
-import { Post } from "../types";
+import type { Blog } from "../types";
 
-export const getPosts = cache(async (): Promise<Post[]> => {
+export const getBlogs = cache(async (): Promise<Blog[]> => {
   const posts = (await readdir("./posts/")).filter((file) =>
     [".md", ".mdx"].includes(extname(file))
   );
@@ -15,14 +15,14 @@ export const getPosts = cache(async (): Promise<Post[]> => {
       const postContent = await readFile(filePath, "utf-8");
       const { data, content } = matter(postContent);
 
-      return { ...data, body: content } as Post;
+      return { ...data, body: content } as Blog;
     })
   );
 
   return postsPromises
     .filter((res) => res.status === "fulfilled")
     .map((res) => {
-      const fulfilledResult = res as PromiseFulfilledResult<Post>;
+      const fulfilledResult = res as PromiseFulfilledResult<Blog>;
       return fulfilledResult.value;
     });
 });

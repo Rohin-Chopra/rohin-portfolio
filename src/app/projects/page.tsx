@@ -1,5 +1,5 @@
 import { ProjectGalleryCard } from "@components/ProjectGalleryCard/ProjectGalleryCard";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import projects from "./projects.json";
 
 const ProjectsPage: NextPage = () => {

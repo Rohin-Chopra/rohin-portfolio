@@ -2,7 +2,11 @@
   "extends": [
     "next/core-web-vitals",
     "next",
+    "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:tailwindcss/recommended"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error"
+  }
 }

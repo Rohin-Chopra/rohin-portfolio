@@ -1,6 +1,6 @@
-export const terraformSyntaxHighlighter = (
-  hljs: import("highlight.js").HLJSApi
-) => {
+import type { HLJSApi } from "highlight.js";
+
+export const terraformSyntaxHighlighter = (hljs: HLJSApi) => {
   const NUMBERS = {
     className: "number",
     begin: "\\b\\d+(\\.\\d+)?",

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 type Props = {

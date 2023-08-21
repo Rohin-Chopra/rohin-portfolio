@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<any> & {
   href: string;
