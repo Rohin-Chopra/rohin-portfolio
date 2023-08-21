@@ -1,13 +1,11 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Link, { LinkProps } from "next/link";
 import { notFound } from "next/navigation";
 import rehypeHighlight from "rehype-highlight";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import { getPost } from "../lib/getPost";
 import { getPosts } from "../lib/getPosts";
-import { MDXImage } from "./components/mdx/MDXImage";
-import { MDXPre } from "./components/mdx/MDXPre";
+import { mdxComponents } from "./components/mdx";
 import { terraformSyntaxHighlighter } from "./lib/terraformSyntaxHighlighter";
 import styles from "./style.module.css";
 import { BlogPostParams } from "./types";
@@ -67,23 +65,7 @@ const BlogPage = async ({ params }: BlogPostParams) => {
                     ],
                   },
                 }}
-                components={{
-                  a: ({ children, ...props }) => (
-                    <Link
-                      {...(props as LinkProps)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={props.href || ""}
-                      className="text-blue-400 transition-colors hover:text-blue-300"
-                    >
-                      {children}
-                    </Link>
-                  ),
-                  pre: MDXPre,
-                  img: ({ children, ...props }) => {
-                    return <MDXImage {...props} />;
-                  },
-                }}
+                components={mdxComponents}
               />
             </div>
           </div>
