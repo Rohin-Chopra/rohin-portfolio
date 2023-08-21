@@ -299,7 +299,7 @@ Let's create a new file called `tsconfig.json` with the following code:
 
 One thing I would like to mention is `noEmit`, according to esbuild's documentation:
 
-esbuild does not do any type checking so you will still need to run tsc -noEmit in parallel with esbuild to check types. This is not something esbuild does itself
+> esbuild does not do any type checking so you will still need to run tsc -noEmit in parallel with esbuild to check types. This is not something esbuild does itself
 
 This means that if we use only esbuild for type checking and compilation and a type error were to occur during build time, it would still pass and move on. This is why noEmit it needs to be true, as esbuild will handle the compilation, and we are telling tsc only to perform type checking and not emit any output.
 
