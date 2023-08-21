@@ -106,12 +106,14 @@ const BlogPage = async ({ params }: BlogPostParams) => {
     <div className="min-h-screen bg-black font-roboto text-white">
       <header className={`${styles.gradientBackgroundHeader} pt-20`}>
         <div className="container px-4 md:mx-auto md:flex md:justify-center">
-          <div className="lg:max-w-2xl">
-            <p className="mb-4 text-slate-400">{post.createdAt}</p>
-            <h1 className="mb-4 text-3xl font-bold md:text-4xl">
-              {post.title}
-            </h1>
-            <p className="mb-8 text-slate-400">{post.description}</p>
+          <div>
+            <div className="lg:max-w-2xl">
+              <p className="mb-4 text-slate-400">{post.createdAt}</p>
+              <h1 className="mb-4 text-3xl font-bold md:text-4xl">
+                {post.title}
+              </h1>
+              <p className="mb-8 text-slate-400">{post.description}</p>
+            </div>
           </div>
         </div>
       </header>
