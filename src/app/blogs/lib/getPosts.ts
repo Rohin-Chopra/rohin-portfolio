@@ -9,7 +9,7 @@ export const getPosts = cache(async (): Promise<Post[]> => {
     [".md", ".mdx"].includes(extname(file))
   );
 
-  return await Promise.all(
+  const postsPromises = await Promise.allSettled(
     posts.map(async (file) => {
       const filePath = `./posts/${file}`;
       const postContent = await readFile(filePath, "utf-8");
@@ -18,4 +18,11 @@ export const getPosts = cache(async (): Promise<Post[]> => {
       return { ...data, body: content } as Post;
     })
   );
+
+  return postsPromises
+    .filter((res) => res.status === "fulfilled")
+    .map((res) => {
+      const fulfilledResult = res as PromiseFulfilledResult<Post>;
+      return fulfilledResult.value;
+    });
 });
