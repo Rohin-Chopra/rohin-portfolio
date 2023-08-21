@@ -53,7 +53,7 @@ const Navbar = () => {
                 About
               </Link>
             </div>
-            <div className="nav-item flex items-center rounded px-4 py-2 font-semibold md:h-full md:rounded-none md:bg-primary md:py-0">
+            <div className="nav-item flex items-center rounded px-4 py-2 md:h-full md:rounded-none md:bg-primary md:py-0 md:font-semibold">
               <Link onClick={closeNavbar} href="/blogs">
                 Blogs
               </Link>
