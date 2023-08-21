@@ -29,7 +29,7 @@ const BlogPage = async ({ params }: BlogPostParams) => {
   if (!post) return notFound();
 
   return (
-    <div className="min-h-screen bg-black font-roboto text-white">
+    <article className="min-h-screen bg-black font-roboto text-white">
       <header className={`${styles.gradientBackgroundHeader} pt-20`}>
         <div className="container px-4 md:mx-auto md:flex md:justify-center">
           <div>
@@ -71,7 +71,7 @@ const BlogPage = async ({ params }: BlogPostParams) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
