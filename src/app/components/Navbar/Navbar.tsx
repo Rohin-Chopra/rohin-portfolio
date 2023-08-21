@@ -38,6 +38,9 @@ const Navbar = () => {
               "top-20 -left-full": !isActive,
             })}
           >
+            <div className="nav-item">
+              <Link href="/">About</Link>
+            </div>
             <div className="nav-item flex items-center rounded bg-primary px-4 py-2 font-semibold md:h-full md:rounded-none md:py-0">
               <Link href="/blogs">Blogs</Link>
             </div>

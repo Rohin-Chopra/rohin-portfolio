@@ -11,12 +11,14 @@ module.exports = {
         primary: "#5221E6",
         danger: "#dc3545",
         transparent: "transparent",
+        draculaTheme: "#282a36",
       },
     },
 
     fontFamily: {
       display: ["Josefin Sans", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
