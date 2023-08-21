@@ -5,13 +5,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
+import { useMediaQuery } from "src/app/hooks/useMediaQuery";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const toggleActive = (): void => {
+    console.log("hey");
     setIsActive((val) => !val);
+  };
+
+  const closeNavbar = () => {
+    if (isMobile) {
+      console.log("hey");
+      setIsActive(false);
+    }
   };
 
   return (
@@ -39,10 +49,14 @@ const Navbar = () => {
             })}
           >
             <div className="nav-item">
-              <Link href="/">About</Link>
+              <Link onClick={closeNavbar} href="/">
+                About
+              </Link>
             </div>
-            <div className="nav-item flex items-center rounded bg-primary px-4 py-2 font-semibold md:h-full md:rounded-none md:py-0">
-              <Link href="/blogs">Blogs</Link>
+            <div className="nav-item flex items-center rounded px-4 py-2 font-semibold md:h-full md:rounded-none md:bg-primary md:py-0">
+              <Link onClick={closeNavbar} href="/blogs">
+                Blogs
+              </Link>
             </div>
           </div>
           <MdMenu
