@@ -11,10 +11,8 @@
  */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
   padding: 0.5em;
-  background: #282a36;
+  @apply bg-draculaTheme block overflow-x-auto;
 }
 
 .hljs-built_in,
@@ -56,7 +54,7 @@
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion {
-  color: #6272a4;
+  color: #abb2bf;
 }
 
 .hljs-keyword,
@@ -68,7 +66,7 @@
 .hljs-type,
 .hljs-name,
 .hljs-strong {
-  font-weight: bold;
+  @apply font-bold;
 }
 
 .hljs-literal,
@@ -78,4 +76,5 @@
 
 .hljs-emphasis {
   font-style: italic;
+  @apply italic;
 }

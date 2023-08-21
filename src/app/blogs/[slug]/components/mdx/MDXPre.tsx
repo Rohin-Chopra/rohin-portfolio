@@ -8,7 +8,7 @@ import {
 } from "react";
 import { FaCheck, FaCopy } from "react-icons/fa";
 
-export const Pre = ({
+export const MDXPre = ({
   children,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {
@@ -26,7 +26,7 @@ export const Pre = ({
   };
 
   return (
-    <pre className="relative" {...props}>
+    <pre className="relative bg-draculaTheme" {...props}>
       <div
         className="absolute right-0 pl-2 pr-4 text-xl transition-all duration-300"
         onClick={handleClick}

@@ -11,6 +11,7 @@ module.exports = {
         primary: "#5221E6",
         danger: "#dc3545",
         transparent: "transparent",
+        draculaTheme: "#282a36",
       },
     },
 

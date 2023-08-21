@@ -6,13 +6,20 @@ import "../styles/globals.css";
 import RootStyleRegistry from "./root-style-registry";
 
 export const metadata: Metadata = {
-  title: "Rohin Chopra",
+  title: {
+    default: "Rohin Chopra",
+    template: "%s | Rohin Chopra",
+  },
   description:
     "Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions",
   openGraph: {
     title: "Rohin Chopra",
     description:
       "Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions",
+    url: "https://rohinchopra.com",
+    siteName: "Rohin Chopra's personal site",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     title: "Rohin Chopra",

@@ -7,22 +7,25 @@ createdAt: August 5th, 2023
 
 ## Introduction
 
-In today&apos;s landscape, gaining insights about a customer&apos;s sentiment has become increasingly crucial for making data-driven decisions. In this blog, we will build a sentimental analysis application on AWS.Sentimental analysis is about analysing a text and determining whether it&apos;s in a positive, neutral or negative tone. It can remove personal bias from product reviews, assisting organisations to make informed, objective decisions based on factual data rather than reading too much into the emotional aspect of it.
+In today&apos;s landscape, gaining insights about a customer&apos;s sentiment has become increasingly crucial for making data-driven decisions. In this blog, we will build a sentimental analysis application on AWS. [Sentimental analysis](https://aws.amazon.com/what-is/sentiment-analysis/) is about analysing a text and determining whether it&apos;s in a positive, neutral or negative tone. It can remove personal bias from product reviews, assisting organisations to make informed, objective decisions based on factual data rather than reading too much into the emotional aspect of it.
 
 ## Overview of the architecture
 
-### Lambda
+![architecture](/blogs/sentimental-analysis/architecture.png)
+
+### AWS Lambda
 
 AWS Lambda is a compute service that lets you run code without provisioning or managing servers. In the scope of this application, we will have two lambdas:
 
-1. Producer lambda
-   Its responsibility will be to write data to the Kinesis stream. In this case, we have hard-coded the data to some reviews about a shoe. In real-world scenarios, the origin of this data could be from various sources such as a web or mobile app.
+#### Producer Lambda
 
-2. Consumer lambda
+Its responsibility will be to write data to the Kinesis stream. In this case, we have hard-coded the data to some reviews about a shoe. In real-world scenarios, the origin of this data could be from various sources such as a web or mobile app.
+
+#### Consumer Lambda
 
 This lambda will be attached to the Kinesis stream as an event source and triggered whenever a new record is added. Upon invocation, it will perform a sentimental analysis using AWS Comprehend on the given input and then save the result to a DynamoDB table.
 
-### Kinesis data stream
+### AWS Kinesis data stream
 
 The Kinesis data stream will act as a real-time data ingestion pipeline, intaking data from the producer lambda, which the consumer lambda will read.
 
@@ -30,7 +33,7 @@ The Kinesis data stream will act as a real-time data ingestion pipeline, intakin
 
 AWS Comprehend will be used to perform Natural Language Processing (NLP) analysis to detect the sentiment of the data received from the stream.
 
-### DynamoDB
+### AWS DynamoDB
 
 To save the results from the analysis, we will use DynamoDB, which can then be consumed for further analysis and processing.
 
@@ -40,15 +43,15 @@ Before building this application, you will need to meet the following criteria:
 
 ### AWS account
 
-To deploy this application, we will be using AWS. If you don’t have an account, you can get a free tier account at https://aws.amazon.com/free/.
+To deploy this application, we will be using AWS. If you don’t have an account, you can get a free tier account from [AWS' sign up page](https://aws.amazon.com/free).
 
 ### Node.js
 
-Ensure you have nodejs installed on your machine with version 18. If not, you can download it from https://nodejs.org.
+Ensure you have nodejs installed on your machine with version 18. If not, you can download it from [the Node.js website](https://nodejs.org).
 
 ### Terraform CLI
 
-We will be using Terraform CLI to deploy the AWS resources, and you can download it from https://developer.hashicorp.com/terraform/downloads.
+We will be using Terraform CLI to deploy the AWS resources, and you can download it from [Terraform's download page](https://developer.hashicorp.com/terraform/downloads).
 
 ## Building the application
 
@@ -66,7 +69,7 @@ terraform init
 
 In the main.tf file, first, we will declare a provider block for AWS.
 
-```
+```tf
 provider "aws" {
   region = "ap-southeast-2"
 }
@@ -78,7 +81,7 @@ You can replace “ap-southeast-2” with your desired AWS region.
 
 Next, let's create the Kinesis stream
 
-```
+```tf
 resource "aws_kinesis_stream" "kinesis_stream" {
   name = "sentimental-analysis-stream"
 
@@ -90,15 +93,15 @@ resource "aws_kinesis_stream" "kinesis_stream" {
 
 AWS offers two capacity modes for kinesis streams:
 
-On-Demand: With this, streams can automatically scale to handle gigabytes of data per second without planning for capacity. Also, to provide the required throughput, it automatically manages the shards.
-Provisioned: In contrast to the on-demand mode, it is required to specify the number of shards, and with that number, it calculates the throughput of the stream/
-For our application, we will choose the On-Demand mode due to its simplicity and automatic scaling, reducing the operational overhead of managing shards and optimising costs by being billed only when it is used.
+1. **On-Demand**: With this, streams can automatically scale to handle gigabytes of data per second without planning for capacity. Also, to provide the required throughput, it automatically manages the shards.
+2. **Provisioned**: In contrast to the on-demand mode, it is required to specify the number of shards, and with that number, it calculates the throughput of the stream/
+   For our application, we will choose the On-Demand mode due to its simplicity and automatic scaling, reducing the operational overhead of managing shards and optimising costs by being billed only when it is used.
 
 ### DynamoDB Table
 
 To save the analysis result, we must create a DynamoDB table. Add the following blocks to your main.tf file:
 
-```
+```tf
 resource "aws_dynamodb_table" "reviews_table" {
   name         = "reviews-sentimental-table"
   hash_key     = "id"
@@ -111,7 +114,7 @@ resource "aws_dynamodb_table" "reviews_table" {
 }
 ```
 
-We will use the attribute id as our hash key in this table. This idwill be a uuid generated by the consumer lambda.
+We will use the attribute id as our hash key in this table. This id will be a uuid generated by the consumer lambda.
 
 ### Lambda functions
 
@@ -121,7 +124,7 @@ Sadly, it uses CloudFormation under the hood, and there isn’t a drop-in replac
 
 #### Producer Lambda
 
-```
+```tf
 module "producer_lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "5.3.0"
@@ -155,7 +158,7 @@ Nonetheless, this block will create the lambda with a runtime of nodejs18.x . We
 
 #### Consumer Lambda
 
-```
+```tf
 module "consumer_lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "5.3.0"
@@ -211,7 +214,7 @@ AWS states, “Lambda needs the following permissions to manage resources relate
 
 Finally, we must “connect” our consumer lambda with the kinesis stream. We will do so by setting an event source mapping between the kinesis stream and the lambda, triggering the lambda whenever data is inserted into the stream.
 
-```
+```tf
 resource "aws_lambda_event_source_mapping" "consumer_lambda_source_mapping" {
   event_source_arn  = aws_kinesis_stream.stream.arn
   function_name     = module.consumer_lambda_function.lambda_function_name
@@ -221,7 +224,7 @@ resource "aws_lambda_event_source_mapping" "consumer_lambda_source_mapping" {
 
 ### Implementing the producer lambda
 
-AWS provides a Kinesis client for nodejs through @aws-sdk/client-kinesis . We will use it’s PutRecordsCommand API to send the records to the kinesis data stream.
+AWS provides a Kinesis client for nodejs through @aws-sdk/client-kinesis . We will use it’s `PutRecordsCommand` API to send the records to the kinesis data stream.
 
 ```ts
 import { KinesisClient, PutRecordsCommand } from "@aws-sdk/client-kinesis";
@@ -251,9 +254,9 @@ export async function handler() {
 
 ### Implementing the consumer lambda
 
-The consumer lambda will be invoked once new records are created in the stream. To analyse the incoming records, it calls the BatchDetectSentimentCommand API on AWS Comprehend returns a sentiment (POSITIVE, NEGATIVE, NEUTRAL) and a score out of 1, indicating its confidence in its prediction.
+The consumer lambda will be invoked once new records are created in the stream. To analyse the incoming records, it calls the `BatchDetectSentimentCommand` API on AWS Comprehend returns a sentiment (POSITIVE, NEGATIVE, NEUTRAL) and a score out of 1, indicating its confidence in its prediction.
 
-Note that rather than calling the DetectSentimentCommand API for each record, we have used the batch command to save the number of API calls.
+Note that rather than calling the `DetectSentimentCommand` API for each record, we have used the batch command to save the number of API calls.
 
 Once records have been analysed, it will save them to DynamoDB with a structure of:
 
@@ -362,7 +365,9 @@ terraform apply
 
 When Terraform has finished deploying your resources, you can start testing this application by invoking the producer lambda, which will insert the records in the Kinesis stream. Because the consumer lambda is set up as an event source to the stream, it should have got triggered and written the records to the DynamoDB. Finally, you can check the DynamoDB for the results, and I have attached a screenshot below; your output should like similar to this:
 
-You can find the complete source code for this application at: https://github.com/Rohin-Chopra/sentimental-analysis-blog.
+![architecture](/blogs/sentimental-analysis/result.png?width=700&height=270)
+
+You can find the complete source code for this application on [Github](https://github.com/Rohin-Chopra/sentimental-analysis-blog).
 
 ## Conclusion
 
