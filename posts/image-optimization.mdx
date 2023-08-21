@@ -57,10 +57,10 @@ If you don't have Terraform CLI installed, download it from [Terraform's downloa
 
 This application will be structured as follows:
 
-- infrastructure: Contains all the Terraform code for this project
-- packages: A collection of packages such as the Lambda itself and the Lambda layer.
-- packages/image-optimiser: Code for the Lambda that will perform image optimisation
-- packages/lambda-layers: Contains a collection of lambda layers. However, there will be just one lambda layer for our use case.
+- **infrastructure**: Contains all the Terraform code for this project
+- **packages**: A collection of packages such as the Lambda itself and the Lambda layer.
+- **packages/image-optimiser**: Code for the Lambda that will perform image optimisation
+- **packages/lambda-layers**: Contains a collection of lambda layers. However, there will be just one lambda layer for our use case.
 
 Enough talk; let's move on to building!
 
@@ -120,7 +120,7 @@ resource "aws_s3_bucket" "output_bucket" {
 
 Now that we have created both the S3 buckets, we can declare the resources for the Lambda.
 
-Before the Lambda, let's create the lambda layer it will use. Serverless.tf is an excellent package for this scenario; it makes it easy to provision layers and lambdas via Terraform, similar to the [serverless framework](https://www.serverless.com/).
+Before the Lambda, let's create the lambda layer it will use. [Serverless.tf](https://serverless.tf/) is an excellent package for this scenario; it makes it easy to provision layers and lambdas via Terraform, similar to the [serverless framework](https://www.serverless.com/).
 
 ```tf
 module "sharp_lambda_layer" {
@@ -144,11 +144,11 @@ module "sharp_lambda_layer" {
 }
 ```
 
-In the above code, we have created a module via the `terraform-aws-modules/lambda/aws` module. To create the layer, you need to specify create_layer = true to be true. Although it is optional for clarity, we have mentioned the runtimes that the lambda layer is compatible with.
+In the above code, we have created a module via the `terraform-aws-modules/lambda/aws` module. To create the layer, you need to specify `create_layer` to be true. Although it is optional but for clarity, we have mentioned the runtimes that the lambda layer is compatible with.
 
-It also needs a source_path to create the layer from, this can be just the path for the already zipped code, but to automate the packaging of the Lambda, we will define the commands that it needs to run on deployment.
+It also needs a `source_path` to create the layer from, this can be just the path for the already zipped code, but to automate the packaging of the Lambda, we will define the commands that it needs to run on deployment.
 
-To define the source path, we need to set the path where it will execute the commands via the path property. Then, we have defined an array of commands in the commands property. The first is the command to install Sharp in the nodejs directory and then move one level directory up to zip the contents of that very nodejs folder via a special command `:zip` provided by the Serverless.tf module.
+To define the source path, we need to set the path where it will execute the commands via the `path` property. Then, we have defined an array of commands in the `commands` property. The first is the command to install Sharp in the nodejs directory and then move one level directory up to zip the contents of that very nodejs folder via a special command `:zip` provided by the Serverless.tf module.
 
 Moving on to the Lambda.
 
@@ -198,9 +198,9 @@ module "image_optimizer_lambda" {
 
 Key takeaways from the above code apart from the standard configuration are:
 
-- Memory size has been increased to 2000 MB from the default 128 MB. Although Sharp is a highly-performing library, Lambda's computational power can still significantly affect its performance. Hence, to improve their performance, we have increased the memory; also, increasing memory for a lambda proportionally increases the amount of CPU, increasing the overall computational power available.
+- Memory size has been increased to 2000 MB from the default 128 MB. Although Sharp is a highly-performing library, Lambda's computational power can still significantly affect its performance. To address this, we have increased Lambda's memory, if you're curious about how memory affects Lambda's performance, I would suggest reading AWS docs on [Lambda's Memory and computation power](https://docs.aws.amazon.com/lambda/latest/operatorguide/computing-power.html).
 - Timeout has been changed from the default of 3 seconds to 30 seconds, giving Lambda more time to process the image.
-- We have specified the build process steps to avoid any reliance on external commands such as Make when packaging the Lambda. They are first installing the dependencies, build the Lambda for a production build and then again use the special command :zip to package the contents of the built Lambda.
+- We have specified the build process steps to avoid any reliance on external commands such as Make when packaging the Lambda. They are first installing the dependencies, build the Lambda for a production build and then again use the special command `:zip` to package the contents of the built Lambda.
 - 2 IAM policies have been attached, the first being the permission for Lambda to retrieve the image from the input bucket and the second permission to upload the optimised image back to the output bucket. Also, note how we are not over-authorising our Lambda and adhering to the principles of only providing the [least amount of privileges needed](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege).
 
 Now that both S3 buckets and Lambda have been created, we must set up an event notification on the input S3 bucket. Before we do that, lambda permission needs to be created, allowing that Lambda to be invoked by the input S3 bucket.
@@ -230,15 +230,15 @@ resource "aws_s3_bucket_notification" "input_bucket_notification" {
 }
 ```
 
-Note the depends_on the argument, the Lambda permission needs to be created first before the notification can be set up.
+Note the `depends_on` the argument, the Lambda permission needs to be created first before the notification can be set up.
 
 With all the infrastructure required for this application being complete, let's write the code for Lambda!
 
 ## Developing the Lambda
 
-Create a new directory called packages containing the folders for Lambda and the layers.
+Create a new directory called `packages` containing the folders for Lambda and the layers.
 
-Next, create another directory called image-optimizer.
+Next, create another directory called `image-optimizer`.
 
 Run the following command to initialise the project:
 
@@ -252,23 +252,22 @@ Next, let's install the required dependencies for this project
 npm i @aws-sdk/client-s3 sharp
 ```
 
-This installed two dependencies for our application, sharp and aws-sdk-client-s3. I have already mentioned the role of sharp in this application, but let's touch on aws-sdk-client-s3
+This installed two dependencies for our application, `sharp` and `@aws-sdk/client-s3`. I have already mentioned the role of sharp in this application, but let's touch on `@aws-sdk/client-s3`.
 
-We will use it for retrieving and uploading images to S3. Also, why not use the classic aws-sdk library? Well, using @aws-sdk/client-s3 over aws-sdk can reduce your package by 75%! which can improve performance significantly. Also, the newer package offers first-class Typescript support compared to its older version. If you still need to be convinced, check out AWS's blog on [why you should use the v3 SDK on nodejs18 runtime](https://aws.amazon.com/blogs/developer/why-and-how-you-should-use-aws-sdk-for-javascript-v3-on-node-js-18/).
+We will use it for retrieving and uploading images to S3. Also, why not use the classic aws-sdk library? Well, using `@aws-sdk/client-s3` over aws-sdk can reduce your package by 75%! which can improve performance significantly. Also, the newer package offers first-class Typescript support compared to its older version. If you still need to be convinced, check out AWS's blog on [why you should use the v3 SDK on nodejs18 runtime](https://aws.amazon.com/blogs/developer/why-and-how-you-should-use-aws-sdk-for-javascript-v3-on-node-js-18/).
 
 Next, let's install the dev dependencies for our Lambda:
 
 ```tf
-npm i -D @types/aws-lambda @types/node esbuild ts-node typescript
+npm i -D @types/aws-lambda @types/node esbuild typescript
 ```
 
 Breaking down the dev dependencies:
 
-- @types/aws-lambda: This provides the types for the s3 event the Lambda will receive.
-- @types/node: Contains the type definitions for Node.js
-- esbuild: Esbuild is an extremely fast bundler that will bundle the code for this Lambda to reduce the package size.
-- ts-node: Enables you to run Typescript code without compiling it; we will use it to execute the build script, which we will write later.
-- typescript: For type safety, we will use Typescript for this application.
+- **@types/aws-lambda**: This provides the types for the s3 event the Lambda will receive.
+- **@types/node**: Contains the type definitions for Node.js
+- **esbuild**: esbuild is an extremely fast bundler that will bundle the code for this Lambda to reduce the package size.
+- **typescript**: For type safety, we will use Typescript for this application.
 
 Next, we must set up a tsconfig file to use Typescript in this project. When starting with a Typescript project, I usually use the tsconfigs provided by [this repository](https://github.com/tsconfig/bases) as a base. We will choose the [node18 tsconfig](https://github.com/tsconfig/bases/blob/main/bases/node18.json) as a base for our project and make a few changes accordingly.
 
@@ -307,7 +306,7 @@ This means that if we use only esbuild for type checking and compilation and a t
 
 With all the dependencies and configuration done, let's write the code for Lambda.
 
-Create a new src directory in the lambda directory and a new imageOptimizer.ts file with the following contents:
+Create a new src directory in the lambda directory and a new `imageOptimizer.ts` file with the following contents:
 
 ```ts
 import {
@@ -431,25 +430,25 @@ export class ImageOptimizer {
 That's a lot of code; let's break it down:
 We first set up a constructor for this class by creating an S3 client and a map of image dimensions for different screen sizes, such as sm, md, lg, xl and 2xl. Below is a list of the dimensions for each image size:
 
-- sm = 640px width
-- md = 720px width
-- lg = 1024px width
-- xl = 1280px width
-- 2xl = 1530px width
+- **sm**: 640px width
+- **md**: 720px width
+- **lg**: 1024px width
+- **xl**: 1280px width
+- **2xl**: 1530px width
 
-Next, we write a utility getObjectFromS3 function, which, as the name suggests, retrieves an object from an S3 bucket with the given object key and bucket name. It then converts that result into a buffer, which the sharp library can consume.
+Next, we write a utility `getObjectFromS3` function, which, as the name suggests, retrieves an object from an S3 bucket with the given object key and bucket name. It then converts that result into a buffer, which the sharp library can consume.
 
-Then we have the resizeImage function, why didn't we write this in the handler method itself? Because it is a good practice to separate business logic from the handler method, making the code more modular, testable, and portable. Circling back to the method, it takes a sharp image instance and the dimensions it needs to resize. It then maintains the original aspect ratio while adjusting the image based on its format. Also, depending on the format, it optimises it; for instance, JPEG/JPG it uses the mozjpeg library to do so, for png it reduces the quality to 90 on a scale of 1 to 100.
+Then we have the `resizeImage` function, why didn't we write this in the handler method itself? Because it is a good practice to separate business logic from the handler method, making the code more modular, testable, and portable. Circling back to the method, it takes a sharp image instance and the dimensions it needs to resize. It then maintains the original aspect ratio while adjusting the image based on its format. Also, depending on the format, it optimises it; for instance, JPEG/JPG it uses the [mozjpeg](https://github.com/mozilla/mozjpeg) library to do so, for png it reduces the quality to 90 on a scale of 1 to 100.
 
 To orchestrate all of this, we have the handler method when an S3 event trigger happens:
 
 - Extracts the bucket name and object key from the event.
-- Uses getObjectFromS3 to fetch the original image
+- Uses `getObjectFromS3` to fetch the original image
 - Prepare the image for resizing via Sharp library
 - Loops through the predefined image dimensions and resizes the image for each size variant using resizeImage .
 - Uploads each resized image to the output S3 bucket.
 
-Next, create a new file called handler.ts , with the following code:
+Next, create a new file called `handler.ts`, with the following code:
 
 ```ts
 import type { S3Event } from "aws-lambda";
@@ -460,15 +459,15 @@ const imageOptimizer = new ImageOptimizer();
 export const handler = (event: S3Event) => imageOptimizer.handler(event);
 ```
 
-This file will be the entry point for our application. By initialising the ImageOptimizer class outside the handler function, we leverage Lambda's execution context feature, which maintains it after an invocation for some time. This ensures that the class instance persists across invocations, preventing the need to recreate the S3 client with each call. To explore more about this, I suggest reading about the [Lambda execution environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html).
+This file will be the entry point for our application. By initialising the `ImageOptimizer` class outside the handler function, we leverage Lambda's execution context feature, which maintains it after an invocation for some time. This ensures that the class instance persists across invocations, preventing the need to recreate the S3 client with each call. To explore more about this, I suggest reading about the [Lambda execution environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html).
 
 With the code now complete for the Lambda, let's write the build script that Terraform will run to bundle and transpile our Lambda during deployment.
 
 ### Configuring Esbuild
 
-When using esbuild for bundling, there are two options, you can either provide configuration, such as to which entry points it should bundle from, via CLI args such as esbuild --entryPoints foo.ts or you can write a script and call the build method provided by esbuild and write the configuration in a typesafe manner with type inference as well! For this application, we will choose the latter option.
+When using esbuild for bundling, there are two options, you can either provide configuration, such as to which entry points it should bundle from, via CLI args such as `esbuild --entryPoints foo.ts` or you can write a script and call the build method provided by esbuild and write the configuration in a typesafe manner with type inference as well! For this application, we will choose the latter option.
 
-Create a new file called esbuild.config.ts inside the image-optimizer folder and copy the following code.
+Create a new file called `esbuild.config.ts` inside the image-optimizer folder and copy the following code.
 
 ```ts
 import { build } from "esbuild";
@@ -488,27 +487,27 @@ build({
 
 Breaking down the configuration:
 
-- Entry points: Specifies the file that will be evaluated first, which will load subsequent files and packages.
-- bundle: Enables bundling meaning all the dependencies will be inlined. It is a recursive process meaning dependencies of the dependencies will also be inlined
-- Target: Sets the targeted environment to node18, which is the runtime our lambda will be running on.
-- Outfile: This is the folder from which our Lambda's code will be packaged and deployed.
-- External: As we will use lambda layers for the sharp library, we will exclude it from our build. Rather than bundling it, the import for it will still be preserved, assuming it is already present rather than inline it.
+- **entryPoints**: Specifies the file that will be evaluated first, which will load subsequent files and packages.
+- **bundle**: Enables bundling meaning all the dependencies will be inlined. It is a recursive process meaning dependencies of the dependencies will also be inlined
+- **target**: Sets the targeted environment to node18, which is the runtime our lambda will be running on.
+- **bundle**: This is the folder from which our Lambda's code will be packaged and deployed.
+- **external**: As we will use lambda layers for the sharp library, we will exclude it from our build. Rather than bundling it, the import for it will still be preserved, assuming it is already present rather than inline it.
 
 Next, we must add a build script in package.json that Terraform can run to build the Lambda during deployment.
 
 ```
-"build" : "tsc && ts-node --esm esbuild.config.ts"
+"build": "tsc && node esbuild.config.js"
 ```
 
-To explore what the actual code we will be packaging to Lambda, you can run the following command and find it in the esbuild/index.js
+To explore what the actual code we will be packaging to Lambda, you can run the following command and find it in the `esbuild/index.js` file.
 
-```
+```bash
 npm run build
 ```
 
 ### Lambda Layer
 
-Create a new directory with the path packages/lambda-layers/sharp/nodejs from the root of your project.
+Create a new directory with the path `packages/lambda-layers/sharp/nodejs` from the root of your project.
 
 Why do we create a nodejs folder rather than just using the sharp folder as the base for creating our layer? This allows lambda layers to support multiple languages, such as Python, Ruby etc., and each language would expect its dependencies in a specific folder. I have also included an excerpt from the [AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/packaging-layers.html) on how Lambda determines the path which it needs to get the dependencies from:
 
