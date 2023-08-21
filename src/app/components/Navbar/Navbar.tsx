@@ -13,13 +13,11 @@ const Navbar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const toggleActive = (): void => {
-    console.log("hey");
     setIsActive((val) => !val);
   };
 
   const closeNavbar = () => {
     if (isMobile) {
-      console.log("hey");
       setIsActive(false);
     }
   };
