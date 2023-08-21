@@ -1,20 +1,21 @@
 import classNames from "classnames";
-import type { FC, InputHTMLAttributes } from "react";
-import type { UseFormRegister } from "react-hook-form";
+import type { InputHTMLAttributes } from "react";
+import type { FieldPath, FieldValues, UseFormRegister } from "react-hook-form";
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  isError?: boolean;
-  register: UseFormRegister<any>;
-  name: string;
-};
+type Props<TFieldValues extends FieldValues> =
+  InputHTMLAttributes<HTMLInputElement> & {
+    isError?: boolean;
+    register: UseFormRegister<TFieldValues>;
+    name: FieldPath<TFieldValues>;
+  };
 
-const Input: FC<Props> = ({
+const Input = <TFieldValues extends FieldValues>({
   className = "",
   register,
   name,
   isError,
   ...rest
-}: Props) => {
+}: Props<TFieldValues>) => {
   return (
     <input
       className={classNames({
