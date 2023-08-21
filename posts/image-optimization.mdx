@@ -148,7 +148,7 @@ In the above code, we have created a module via the `terraform-aws-modules/lambd
 
 It also needs a `source_path` to create the layer from, this can be just the path for the already zipped code, but to automate the packaging of the Lambda, we will define the commands that it needs to run on deployment.
 
-To define the source path, we need to set the path where it will execute the commands via the `path` property. Then, we have defined an array of commands in the `commands` property. The first is the command to install Sharp in the nodejs directory and then move one level directory up to zip the contents of that very nodejs folder via a special command `:zip` provided by the Serverless.tf module.
+To define the source path, we need to set the path where it will execute the commands via the `path` property. Then, we have defined an array of commands in the `commands` property. The first is the command to install sharp in the nodejs directory and then move one level directory up to zip the contents of that very nodejs folder via a special command `:zip` provided by the Serverless.tf module.
 
 Moving on to the Lambda.
 
@@ -198,7 +198,7 @@ module "image_optimizer_lambda" {
 
 Key takeaways from the above code apart from the standard configuration are:
 
-- Memory size has been increased to 2000 MB from the default 128 MB. Although Sharp is a highly-performing library, Lambda's computational power can still significantly affect its performance. To address this, we have increased Lambda's memory, if you're curious about how memory affects Lambda's performance, I would suggest reading AWS docs on [Lambda's Memory and computation power](https://docs.aws.amazon.com/lambda/latest/operatorguide/computing-power.html).
+- Memory size has been increased to 2000 MB from the default 128 MB. Although sharp is a highly-performing library, Lambda's computational power can still significantly affect its performance. To address this, we have increased Lambda's memory, if you're curious about how memory affects Lambda's performance, I would suggest reading AWS docs on [Lambda's Memory and computation power](https://docs.aws.amazon.com/lambda/latest/operatorguide/computing-power.html).
 - Timeout has been changed from the default of 3 seconds to 30 seconds, giving Lambda more time to process the image.
 - We have specified the build process steps to avoid any reliance on external commands such as Make when packaging the Lambda. They are first installing the dependencies, build the Lambda for a production build and then again use the special command `:zip` to package the contents of the built Lambda.
 - 2 IAM policies have been attached, the first being the permission for Lambda to retrieve the image from the input bucket and the second permission to upload the optimised image back to the output bucket. Also, note how we are not over-authorising our Lambda and adhering to the principles of only providing the [least amount of privileges needed](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege).
@@ -444,7 +444,7 @@ To orchestrate all of this, we have the handler method when an S3 event trigger 
 
 - Extracts the bucket name and object key from the event.
 - Uses `getObjectFromS3` to fetch the original image
-- Prepare the image for resizing via Sharp library
+- Prepare the image for resizing via the sharp library
 - Loops through the predefined image dimensions and resizes the image for each size variant using resizeImage .
 - Uploads each resized image to the output S3 bucket.
 
