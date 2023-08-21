@@ -11,8 +11,7 @@
  */
 
 .hljs {
-  padding: 0.5em;
-  @apply bg-draculaTheme block overflow-x-auto;
+  @apply bg-draculaTheme block overflow-x-auto p-2;
 }
 
 .hljs-built_in,
@@ -75,6 +74,5 @@
 }
 
 .hljs-emphasis {
-  font-style: italic;
   @apply italic;
 }
