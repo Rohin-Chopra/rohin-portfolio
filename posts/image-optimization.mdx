@@ -551,7 +551,7 @@ Next, let's check the output bucket to see if that image was optimised correctly
 
 ![List of resized images in S3 console](/blogs/image-optimization/output.png)
 
-Hurray! Thanks to the sharp library, we generated different images for various sizes with each of their size as the suffix. Most importantly, notice the image sizes for each image; the 2xl image size was converted from 2MB to 554.3KB, which is over 70% savings in bandwidth. Let's look at the md and sm images that will likely be used on mobile devices; their sizes were 168.8KB and 122.7KB, respectively, which is over 90% savings on each image! Your user's data plan will thank you for such optimisation!
+Hurray! Thanks to the sharp library, we generated different images for various sizes with each of their size as the suffix. Most importantly, notice the image sizes for each image; the 2xl image size was converted from 2MB to 554.3KB, which is over **70%** savings in bandwidth. Let's look at the md and sm images that will likely be used on mobile devices; their sizes were 168.8KB and 122.7KB, respectively, which is over **90%** savings on each image! Your user's data plan will thank you for such optimisation!
 
 In addition, please note that the image used may or may not have been not optimised before, and please verify it by testing different kinds and sizes of images.
 
