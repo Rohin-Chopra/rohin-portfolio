@@ -15,7 +15,7 @@ export const MDXAnchor = ({
       target="_blank"
       rel="noopener noreferrer"
       href={props.href || ""}
-      className="text-blue-400 transition-colors hover:text-blue-300"
+      className="text-blue-600 transition-colors hover:text-blue-300 dark:text-blue-400"
     >
       {children}
     </Link>
