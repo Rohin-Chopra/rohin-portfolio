@@ -1,8 +1,8 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => (
-  <footer className="w-full border-t border-t-primary bg-black py-5 text-center text-white md:py-10">
-    <div className="mb-2 bg-black text-xl font-bold text-white">
+  <footer className="w-full border-t border-t-primary py-5 text-center dark:bg-black dark:text-white md:py-10">
+    <div className="mb-2 text-xl font-bold">
       <span className="font-display">ROHIN CHOPRA</span>
     </div>
     <div className="flex justify-center text-4xl">
@@ -13,7 +13,7 @@ const Footer = () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FaLinkedin className="transition-colors duration-300 hover:text-[#0077b5]" />
+        <FaLinkedin className="text-[#0077b5] transition-colors duration-300 hover:text-black dark:text-white  dark:hover:text-[#0077b5]" />
       </a>
       <a
         className="mr-4 cursor-pointer"
@@ -22,7 +22,7 @@ const Footer = () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FaGithub className="transition-colors duration-300 hover:text-[#171515]" />
+        <FaGithub className="text-[#171515] transition-colors duration-300 hover:text-black dark:text-white dark:hover:text-[#171515]" />
       </a>
     </div>
   </footer>

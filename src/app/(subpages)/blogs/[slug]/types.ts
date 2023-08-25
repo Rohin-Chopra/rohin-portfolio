@@ -1,4 +1,4 @@
-export type BlogPostParams = {
+export type BlogParams = {
   params: {
     slug: string;
   };

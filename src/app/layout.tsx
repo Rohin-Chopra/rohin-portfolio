@@ -2,8 +2,8 @@ import { Footer } from "@components/Footer";
 import { Navbar } from "@components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+
 import "../styles/globals.css";
-import RootStyleRegistry from "./root-style-registry";
 
 export const metadata: Metadata = {
   title: {
@@ -39,9 +39,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body>
+      <body className="dark">
         <Navbar />
-        <RootStyleRegistry>{children}</RootStyleRegistry>
+        {children}
         <Footer />
         <Analytics />
       </body>

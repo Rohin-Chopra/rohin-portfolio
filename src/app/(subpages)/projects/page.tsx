@@ -1,5 +1,5 @@
-import { ProjectGalleryCard } from "@components/ProjectGalleryCard/ProjectGalleryCard";
 import type { NextPage } from "next";
+import Image from "next/image";
 import projects from "./projects.json";
 
 const ProjectsPage: NextPage = () => {
@@ -13,12 +13,20 @@ const ProjectsPage: NextPage = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3">
         {projects.map((project) => (
-          <ProjectGalleryCard
+          <a
             key={project.title}
-            link={project.link}
-            imgUrl={project.imgUrl}
-            imgAlt={project.title}
-          />
+            className="transition-opacity duration-300 hover:opacity-50"
+            href={project.link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Image
+              src={project.imgUrl}
+              alt={project.title}
+              width={500}
+              height={300}
+            />
+          </a>
         ))}
       </div>
     </div>

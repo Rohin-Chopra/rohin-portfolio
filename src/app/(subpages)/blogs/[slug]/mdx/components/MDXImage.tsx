@@ -13,6 +13,7 @@ export const MDXImage = ({ src, alt = "" }: Props) => {
 
   let widthFromSrc = 550,
     heightFromSrc = 450;
+
   const url = new URL(src, "http://localhost.com");
   const widthParam = url.searchParams.get("w") || url.searchParams.get("width");
   const heightParam =

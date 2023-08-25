@@ -1,12 +1,7 @@
-/** @jsxImportSource @emotion/react */
-"use client";
-
-import { ProjectCard } from "@components/ProjectCard/ProjectCard";
+import { ProjectCard } from "@components/ProjectCard";
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
-import { Fade } from "react-awesome-reveal";
 import { FaAws, FaGithub, FaNodeJs, FaReact } from "react-icons/fa";
 import {
   SiBootstrap,
@@ -27,35 +22,31 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { Link as ReactScrollLink } from "react-scroll";
-import Typewriter from "typewriter-effect";
 import { ContactForm } from "./components/ContactForm/ContactForm";
 
 const HomePage: NextPage = () => {
   return (
-    <Fragment>
+    <>
       <section id="hero" className="md:h-screen-90">
-        <div className="flex h-full flex-col-reverse justify-end bg-black pt-8 md:grid md:grid-cols-3 md:pt-0">
-          <div className="relative bg-black">
+        <div className="flex h-full flex-col-reverse justify-end bg-primary pb-4 pt-8 dark:bg-black md:grid md:grid-cols-3 md:bg-white md:py-0">
+          <div className="relative">
             <div className="flex justify-center md:justify-end">
               <div className="-right-6 z-10 mt-12 md:absolute">
-                <Fade delay={50}>
-                  <Image
-                    className="rounded-full bg-primary"
-                    alt="Rohin Chopra"
-                    src="/hero.png"
-                    width={300}
-                    height={300}
-                  />
-                </Fade>
+                <Image
+                  className="rounded-full bg-lime-200 dark:bg-primary"
+                  alt="Rohin Chopra"
+                  src="/hero.png"
+                  width={300}
+                  height={300}
+                />
               </div>
             </div>
           </div>
-          <div className="col-span-2 rounded-bl-3xl px-8 md:border-l-2 md:border-primary md:bg-darkGray ">
-            <div className="text-4xl font-bold text-white md:mt-24 lg:text-6xl">
+          <div className="col-span-2 rounded-bl-3xl bg-primary px-8 dark:bg-transparent md:border-l-2 md:border-white md:dark:border-primary md:dark:bg-darkGray ">
+            <div className="text-4xl font-bold text-white dark:text-white md:mt-24 lg:text-6xl">
               <h1 className="mb-4">I&apos;m Rohin Chopra.</h1>
               <h1 className="mb-4">
-                <Typewriter
+                {/* <Typewriter
                   onInit={(t) => {
                     t.typeString("A Software Engineer")
                       .pauseFor(150)
@@ -66,30 +57,31 @@ const HomePage: NextPage = () => {
                       .typeString("Solutions Architect")
                       .start();
                   }}
-                />
+                /> */}
               </h1>
-              <h1 className="mb-8 text-gray-400">based in Australia</h1>
-              <p className="max-w-2xl text-lg font-normal text-white">
+              <h1 className="mb-8 text-gray-200 dark:text-gray-400">
+                based in Australia
+              </h1>
+              <p className="max-w-2xl text-lg font-normal dark:text-white">
                 I&apos;m incredibly passionate about solving problems, and tech
                 is my weapon of choice. I excel in architecting, designing and
                 developing robust and scalable solutions.
               </p>
-              <ReactScrollLink
-                to="contact"
-                className="mt-4 inline-block w-full cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base shadow md:w-auto"
-                spy={true}
-                smooth={true}
-                offset={50}
-                duration={500}
+              {/*TODO: add smoother scroll*/}
+              <Link
                 href="#contact"
+                className="mt-4 inline-block w-full cursor-pointer rounded border-solid bg-white px-8 py-4 text-center text-base text-black shadow dark:bg-primary dark:text-white md:w-auto md:dark:bg-primary"
               >
                 Say Hello
-              </ReactScrollLink>
+              </Link>
             </div>
           </div>
         </div>
       </section>
-      <section id="projects" className="bg-black px-6 py-8 text-white">
+      <section
+        id="projects"
+        className="px-6 py-8 dark:bg-black dark:text-white"
+      >
         <div className="container mx-auto">
           <h2 className="mt-4 text-2xl font-bold md:mb-10 md:text-4xl">
             Projects I&apos;ve built
@@ -158,7 +150,7 @@ const HomePage: NextPage = () => {
             <ProjectCard
               className="mt-8 md:mt-28"
               name="Margembie Labradors"
-              url="https://www.margembielabradors.com.au/contact"
+              url="https://www.margembielabradors.com.au"
               description="A MERN full stack website for a client who is a dog breeder. This website involved CRUD operations in the admin panel and also displaying those resources in the frontend."
               imgUrl="/margembie-labradors.png"
               tech={[
@@ -193,14 +185,14 @@ const HomePage: NextPage = () => {
             />
             <Link
               href="projects"
-              className="mx-auto mt-4 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base shadow"
+              className="mx-auto mt-4 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base text-white shadow"
             >
               View More Projects
             </Link>
           </div>
         </div>
       </section>
-      <section id="skills" className="bg-black px-6 py-8 text-white">
+      <section id="skills" className="px-6 py-8 dark:bg-black dark:text-white">
         <div className="container mx-auto">
           <h2 className="mb-2 mt-4 text-2xl font-bold md:text-4xl">Skills</h2>
           <div className="mb-12">
@@ -320,9 +312,11 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section id="contact" className="bg-black px-6 pb-8 pt-12 text-white">
+      <section
+        id="contact"
+        className="px-6 pb-8 pt-12 dark:bg-black dark:text-white"
+      >
         <div className="container mx-auto">
-          {" "}
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">
               <h2 className="text-2xl font-bold md:mb-2 md:text-4xl">
@@ -338,7 +332,7 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   );
 };
 

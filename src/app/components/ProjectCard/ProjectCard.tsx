@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { FiExternalLink } from "react-icons/fi";
+import { ViewLiveLink } from "./ViewLiveLink";
 
 type Props = {
   name: string;
@@ -13,21 +13,6 @@ type Props = {
   className?: string;
 };
 
-type ViewLiveProps = {
-  href: string;
-};
-
-const ViewLive = ({ href }: ViewLiveProps) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noreferrer noopener"
-    className="mt-4 cursor-pointer rounded border-solid bg-primary px-4 py-2 text-white shadow"
-  >
-    View Live <FiExternalLink className="inline align-text-top" />
-  </a>
-);
-
 const ProjectCard = ({
   name,
   description,
@@ -38,7 +23,9 @@ const ProjectCard = ({
   className = "",
 }: Props) => {
   return (
-    <div className={`relative grid-cols-2 text-white md:grid ${className}`}>
+    <div
+      className={`relative grid-cols-2 dark:text-white md:grid ${className}`}
+    >
       <div
         className={classNames({
           "hidden md:block h-96 w-full relative": true,
@@ -47,7 +34,7 @@ const ProjectCard = ({
       >
         <Image src={imgUrl} alt={name} fill style={{ objectFit: "contain" }} />
       </div>
-      <div className="rounded bg-darkGray px-6 py-4 shadow-lg shadow-primary transition-shadow md:rounded-none md:bg-transparent md:p-0 md:py-8 md:shadow-none">
+      <div className="rounded px-6 py-4 shadow-lg shadow-primary transition-shadow md:rounded-none md:bg-transparent md:p-0 md:py-8 md:shadow-none">
         <div
           className={classNames({
             "md:text-right": !isReverse,
@@ -60,7 +47,7 @@ const ProjectCard = ({
         </div>
         <div
           className={classNames({
-            "md:relative md:shadow-lg md:shadow-primary md:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
+            "md:relative md:shadow-lg md:shadow-primary md:bg-slate-100 md:dark:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
               true,
             "md:-ml-16": !isReverse,
             "md:-mr-16": isReverse,
@@ -68,7 +55,7 @@ const ProjectCard = ({
         >
           <p className="text-base opacity-80">{description}</p>
           <div className="hidden justify-end md:flex ">
-            <ViewLive href={url} />
+            <ViewLiveLink href={url} />
           </div>
         </div>
         <div
@@ -88,7 +75,7 @@ const ProjectCard = ({
           </div>
         </div>
         <div className="flex justify-end md:hidden">
-          <ViewLive href={url} />
+          <ViewLiveLink href={url} />
         </div>
       </div>
     </div>

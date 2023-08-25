@@ -19,7 +19,7 @@ const Input = <TFieldValues extends FieldValues>({
   return (
     <input
       className={classNames({
-        "bg-darkGray focus:outline-none focus:border focus:border-primary py-2 px-2 w-full transition-colors":
+        "bg-zinc-100 dark:bg-darkGray focus:outline-none focus:border focus:border-primary py-2 px-2 w-full transition-colors":
           true,
         [className]: true,
         "border border-danger": isError,

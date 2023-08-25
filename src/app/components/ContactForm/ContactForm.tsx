@@ -6,11 +6,11 @@ import { useState } from "react";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
-import { Button } from "../Button";
-import { Input } from "../Input";
+import { Button } from "../Elements/Button";
+import { Input } from "../Elements/Input";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -92,7 +92,7 @@ export const ContactForm = () => {
         </label>
         <textarea
           className={classNames({
-            "bg-darkGray w-full focus:outline-none focus:border focus:border-primary py-2 px-2 transition-colors resize-none":
+            "bg-zinc-100 dark:bg-darkGray w-full focus:outline-none focus:border focus:border-primary py-2 px-2 transition-colors resize-none":
               true,
             "border border-danger": !!errors.message?.message,
           })}
