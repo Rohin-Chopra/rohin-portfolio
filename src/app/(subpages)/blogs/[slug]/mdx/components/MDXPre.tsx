@@ -19,9 +19,7 @@ export const MDXPre = ({
       return;
     }
 
-    if (!ref.current) return;
-
-    const codeElement = ref.current.querySelector("code");
+    const codeElement = ref.current?.querySelector("code");
 
     if (!codeElement) return;
 
