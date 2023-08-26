@@ -42,7 +42,6 @@ export const MDXPre = ({
               <FaCopy className="cursor-pointer text-slate-600 hover:text-slate-400 dark:text-white" />
             )}
           </div>
-          \
         </div>
         {children}
       </div>
