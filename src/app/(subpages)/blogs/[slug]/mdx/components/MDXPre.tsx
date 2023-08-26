@@ -1,23 +1,32 @@
 "use client";
 
-import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from "react";
-import { useState } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import { useRef, useState } from "react";
 import { FaCheck, FaCopy } from "react-icons/fa";
 
 export const MDXPre = ({
   children,
   ...props
-}: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {
+}: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement> & {
+  raw?: string;
+}) => {
+  const ref = useRef<HTMLPreElement>(null);
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = async () => {
-    const child2 = children as ReactElement;
     if (!navigator.clipboard) {
       console.warn("Clipboard not supported");
-      return false;
+      return;
     }
 
-    await navigator.clipboard.writeText(child2.props.children);
+    if (!ref.current) return;
+
+    const codeElement = ref.current.querySelector("code");
+
+    if (!codeElement) return;
+
+    await navigator.clipboard.writeText(codeElement.innerText);
+
     setIsActive(true);
 
     setTimeout(() => {
@@ -26,7 +35,7 @@ export const MDXPre = ({
   };
 
   return (
-    <pre className="relative bg-dracula" {...props}>
+    <pre className="relative bg-dracula" {...props} ref={ref}>
       <div className="relative">
         <div
           className="absolute right-0 pl-2 pr-4 text-xl transition-all duration-300"
