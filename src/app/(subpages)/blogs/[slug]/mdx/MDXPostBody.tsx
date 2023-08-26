@@ -6,6 +6,8 @@ import type { Blog } from "../../types";
 import { mdxComponents } from "./components";
 import { terraformSyntaxHighlighter } from "./terraformSyntaxHighlighter";
 
+import "./draculaTheme.css";
+
 type Props = {
   blog: Blog;
 };

@@ -7,7 +7,6 @@ import { getBlogs } from "../lib/getBlogs";
 import { MDXBlogBody } from "./mdx/MDXPostBody";
 import type { BlogParams } from "./types";
 
-import "./styles/dracula-theme.css";
 import "./styles/style.css";
 
 export async function generateStaticParams(): Promise<BlogParams["params"][]> {
