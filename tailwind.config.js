@@ -14,8 +14,7 @@ module.exports = {
         primary: "#5221E6",
         danger: "#dc3545",
         transparent: "transparent",
-        atomLight: "#fafafa",
-        atomDark: "#282c34",
+        dracula: "#282a36",
       },
     },
 

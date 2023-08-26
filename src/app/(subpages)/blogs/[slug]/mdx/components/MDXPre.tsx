@@ -26,10 +26,7 @@ export const MDXPre = ({
   };
 
   return (
-    <pre
-      className="relative border border-atomDark bg-atomLight dark:border-atomLight dark:bg-atomDark"
-      {...props}
-    >
+    <pre className="relative bg-dracula" {...props}>
       <div className="relative">
         <div
           className="absolute right-0 pl-2 pr-4 text-xl transition-all duration-300"

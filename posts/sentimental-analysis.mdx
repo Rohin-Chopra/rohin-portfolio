@@ -235,7 +235,7 @@ const kinesisClient = new KinesisClient({ region: "ap-southeast-2" });
 const reviews = [
   "these are some awesome shoes, a life save for me",
   "My feet are swollen just after a couple of hours of use, would not recommend to anyone",
-]; // Very creative reviews
+];
 
 export async function handler() {
   await kinesisClient.send(

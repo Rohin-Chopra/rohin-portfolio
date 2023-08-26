@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MdArrowBack } from "react-icons/md";
 import { getPost } from "../lib/getBlog";
 import { getBlogs } from "../lib/getBlogs";
 import { MDXBlogBody } from "./mdx/MDXPostBody";
 import type { BlogParams } from "./types";
 
-import Link from "next/link";
-import { MdArrowBack } from "react-icons/md";
-import "./styles/atom-one-dark.css";
-import "./styles/atom-one-light.css";
+import "./styles/dracula-theme.css";
 import "./styles/style.css";
 
 export async function generateStaticParams(): Promise<BlogParams["params"][]> {
@@ -47,7 +46,7 @@ const BlogPage = async ({ params }: BlogParams) => {
 
   return (
     <article className="min-h-screen font-roboto dark:bg-black dark:text-white">
-      <header id="gradientBackgroundHeader" className={``}>
+      <header id="gradientBackgroundHeader">
         <div className="container px-4 pt-6 md:mx-auto md:flex md:flex-col md:items-center">
           <div>
             <div className="lg:w-[42rem]">
@@ -74,9 +73,7 @@ const BlogPage = async ({ params }: BlogParams) => {
       <div className="container px-4 pb-8 pt-2 md:mx-auto md:flex md:justify-center">
         <div>
           <div className="lg:w-[42rem]">
-            <div className="prose dark:prose-invert prose-h2:mb-4 prose-h4:mb-3 prose-p:mb-2 prose-p:text-lg prose-blockquote:border-l-primary prose-code:rounded prose-code:bg-atomLight prose-code:p-1 prose-li:text-lg dark:text-zinc-200 prose-headings:dark:text-white prose-strong:dark:text-white prose-code:dark:bg-atomDark prose-code:dark:text-white lg:max-w-none">
-              <MDXBlogBody blog={blog} />
-            </div>
+            <MDXBlogBody blog={blog} />
           </div>
         </div>
       </div>
