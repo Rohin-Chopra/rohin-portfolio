@@ -7,7 +7,7 @@ import { getBlogs } from "../lib/getBlogs";
 import { MDXBlogBody } from "./mdx/MDXPostBody";
 import type { BlogParams } from "./types";
 
-import "./styles/style.css";
+import "./style.css";
 
 export async function generateStaticParams(): Promise<BlogParams["params"][]> {
   const posts = await getBlogs();
@@ -44,7 +44,7 @@ const BlogPage = async ({ params }: BlogParams) => {
   if (!blog) return notFound();
 
   return (
-    <article className="min-h-screen font-roboto dark:bg-black dark:text-white">
+    <main className="min-h-screen font-roboto dark:bg-black dark:text-white">
       <header id="gradientBackgroundHeader">
         <div className="container px-4 pt-6 md:mx-auto md:flex md:flex-col md:items-center">
           <div>
@@ -76,7 +76,7 @@ const BlogPage = async ({ params }: BlogParams) => {
           </div>
         </div>
       </div>
-    </article>
+    </main>
   );
 };
 
