@@ -39,7 +39,7 @@ export const ContactForm = () => {
       const res = await fetch(`${API_URI}/contact`, {
         method: "POST",
         headers: {
-          "x-api-key": API_KEY!,
+          "x-api-key": API_KEY as string,
         },
         body: JSON.stringify({
           name: data.name,
