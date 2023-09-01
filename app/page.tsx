@@ -27,7 +27,7 @@ import { ContactForm } from "./components/ContactForm/ContactForm";
 const HomePage: NextPage = () => {
   return (
     <>
-      <section id="hero" className="md:h-screen-90">
+      <section id="hero" className="md:h-[90vh]">
         <div className="flex h-full flex-col-reverse justify-end bg-primary pb-4 pt-8 dark:bg-black md:grid md:grid-cols-3 md:bg-white md:py-0">
           <div className="relative">
             <div className="flex justify-center md:justify-end">

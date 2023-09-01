@@ -5,9 +5,6 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      height: {
-        "screen-90": "90vh",
-      },
       colors: {
         light: "#397db9",
         dark: "#121212",
