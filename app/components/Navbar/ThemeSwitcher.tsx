@@ -8,8 +8,8 @@ import {
   MdLightMode,
   MdOutlineDarkMode,
 } from "react-icons/md";
-import { useOnClickOutside } from "src/app/hooks/useOnClickOutside";
 import { twMerge } from "tailwind-merge";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useTheme } from "../../hooks/useTheme";
 
 const ThemeSwitcherSubMenuItem = ({

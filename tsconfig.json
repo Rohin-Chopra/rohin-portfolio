@@ -16,10 +16,10 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@lib/*": ["src/pages/*"],
-      "@components/*": ["src/app/components/*"],
-      "@shared/*": ["src/shared/*"],
-      "@styles/*": ["src/styles/*"]
+      "@lib/*": ["app/pages/*"],
+      "@components/*": ["app/components/*"],
+      "@shared/*": ["app/shared/*"],
+      "@styles/*": ["app/styles/*"]
     },
     "plugins": [
       {
