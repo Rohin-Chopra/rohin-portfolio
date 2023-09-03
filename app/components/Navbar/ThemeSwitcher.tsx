@@ -11,6 +11,12 @@ import {
 import { twMerge } from "tailwind-merge";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useTheme } from "../../hooks/useTheme";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const ThemeSwitcherSubMenuItem = ({
   className = "",
@@ -65,57 +71,41 @@ export const ThemeSwitcher = () => {
 
   return (
     <div className="relative" ref={ref}>
-      {theme === "dark" && (
-        <MdDarkMode onClick={toggle} className="cursor-pointer text-3xl" />
-      )}
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          {theme === "dark" && (
+            <MdDarkMode className="cursor-pointer text-2xl" />
+          )}
 
-      {theme === "light" && (
-        <MdLightMode onClick={toggle} className="cursor-pointer text-3xl" />
-      )}
+          {theme === "light" && (
+            <MdLightMode className="cursor-pointer text-2xl" />
+          )}
 
-      {theme === "system" && (
-        <MdOutlineDarkMode
-          onClick={toggle}
-          className="cursor-pointer text-3xl"
-        />
-      )}
-
-      {isActive && (
-        <ul
-          className={classNames({
-            "text-black bg-white dark:bg-darkGray dark:text-white rounded-xl cursor-pointer shadow-lg":
-              true,
-            "absolute top-10 -left-36": isActive,
-            "md:dark:bg-black": pathName === "/",
-          })}
-        >
-          <ThemeSwitcherSubMenuItem
-            isActive={theme === "dark"}
+          {theme === "system" && (
+            <MdOutlineDarkMode className="cursor-pointer text-2xl" />
+          )}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem
+            className="flex cursor-pointer justify-between px-3"
             onClick={setThemeToDark}
-            className="rounded-t-xl"
           >
-            <span>Dark</span>
-            <MdDarkMode className="text-2xl" />
-          </ThemeSwitcherSubMenuItem>
-
-          <ThemeSwitcherSubMenuItem
-            isActive={theme === "light"}
+            Dark <MdDarkMode className="text-lg" />
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex cursor-pointer justify-between px-3"
             onClick={setThemeToLight}
           >
-            <span>Light</span>
-            <MdLightMode className="text-2xl" />
-          </ThemeSwitcherSubMenuItem>
-
-          <ThemeSwitcherSubMenuItem
-            isActive={theme === "system"}
+            Light <MdLightMode className="text-lg" />
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex cursor-pointer justify-between px-3"
             onClick={setThemeToSystem}
-            className="rounded-b-xl"
           >
-            <span>System</span>
-            <MdComputer className="text-2xl" />
-          </ThemeSwitcherSubMenuItem>
-        </ul>
-      )}
+            System <MdComputer className="text-lg" />
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import "./styles/globals.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
