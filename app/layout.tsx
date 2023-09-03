@@ -1,5 +1,5 @@
-import { Footer } from "@components/Footer";
-import { Navbar } from "@components/Navbar";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import "./styles/globals.css";
@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     template: "%s | Rohin Chopra",
   },
   description:
-    "Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions",
+    "Rohin Chopra is a Software Engineer who excels in architecting, designing and developing robust and scalable solutions",
   openGraph: {
     title: "Rohin Chopra",
     description:
-      "Rohin Chopra is a Software Engineer who excels in architecting ,designing and developing robust and scalable solutions",
+      "Rohin Chopra is a Software Engineer who excels in architecting, designing and developing robust and scalable solutions",
     url: "https://rohinchopra.com",
     siteName: "Rohin Chopra's personal site",
     locale: "en_US",

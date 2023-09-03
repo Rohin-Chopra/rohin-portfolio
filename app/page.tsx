@@ -1,4 +1,3 @@
-import { ProjectCard } from "@components/ProjectCard";
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +21,9 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { ContactForm } from "./components/ContactForm/ContactForm";
+
+import { ContactForm } from "@/components/ContactForm";
+import { ProjectCard } from "@/components/ProjectCard";
 
 const HomePage: NextPage = () => {
   return (
