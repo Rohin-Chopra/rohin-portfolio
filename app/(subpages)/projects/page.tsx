@@ -4,7 +4,7 @@ import projects from "./projects.json";
 
 const ProjectsPage: NextPage = () => {
   return (
-    <div className="h-screen bg-black text-white">
+    <div className="h-screen bg-dark text-white">
       <div className="container mx-auto px-4 pt-4 lg:px-8">
         <h1 className="text-4xl font-bold">Projects</h1>
         <p className="mb-4 mt-2">

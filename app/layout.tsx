@@ -39,7 +39,7 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body className="dark ">
-        <div className="dark:bg-black">
+        <div className="dark:bg-dark">
           <Navbar />
           {children}
           <Footer />

@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
   return (
     <>
       <section id="hero" className="md:h-[90vh]">
-        <div className="flex h-full flex-col-reverse justify-end bg-primary dark:bg-black md:grid md:grid-cols-3 md:bg-white md:py-0">
+        <div className="flex h-full flex-col-reverse justify-end bg-primary dark:bg-dark md:grid md:grid-cols-3 md:bg-white md:py-0">
           <div className="relative">
             <div className="flex justify-center md:justify-end">
               <div className="-right-6 z-10 mt-12 md:absolute">
