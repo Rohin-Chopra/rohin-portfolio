@@ -1,16 +1,15 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import classNames from "classnames";
+import clsx from "clsx";
 import { useState } from "react";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
 import { Button } from "../Elements/Button";
 import { Input } from "../Elements/Input";
+import { useToast } from "../ui/use-toast";
 
 export const API_URI = process.env.NEXT_PUBLIC_API_URI;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -32,6 +31,7 @@ export const ContactForm = () => {
   } = useForm<FormInputs>({
     resolver: zodResolver(schema),
   });
+  const { toast } = useToast();
 
   const onSubmitSuccess: SubmitHandler<FieldValues> = async (data) => {
     try {
@@ -50,9 +50,16 @@ export const ContactForm = () => {
       if (res.status !== 200) {
         throw new Error("Received an error from the API");
       }
-      toast.success("Thanks for contacting me");
+      toast({
+        title: "Message sent",
+        description: "Thanks for contacting me",
+      });
     } catch (error) {
-      toast.error("Oops, something went wrong");
+      toast({
+        title: "Oops, something went wrong",
+        description: "There was a problem with your request",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -91,7 +98,7 @@ export const ContactForm = () => {
           Message
         </label>
         <textarea
-          className={classNames({
+          className={clsx({
             "bg-zinc-100 dark:bg-darkGray w-full focus:outline-none focus:border focus:border-primary py-2 px-2 transition-colors resize-none":
               true,
             "border border-danger": !!errors.message?.message,
@@ -115,7 +122,6 @@ export const ContactForm = () => {
           <span>Let&apos;s Talk</span>
         )}
       </Button>
-      <ToastContainer theme="dark" />
     </form>
   );
 };

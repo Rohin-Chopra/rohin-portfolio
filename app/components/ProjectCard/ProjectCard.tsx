@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { ViewLiveLink } from "./ViewLiveLink";
@@ -27,7 +27,7 @@ const ProjectCard = ({
       className={`relative grid-cols-2 dark:text-white md:grid ${className}`}
     >
       <div
-        className={classNames({
+        className={clsx({
           "hidden md:block h-96 w-full relative": true,
           "order-2": isReverse,
         })}
@@ -36,7 +36,7 @@ const ProjectCard = ({
       </div>
       <div className="rounded px-6 py-4 shadow-lg shadow-primary transition-shadow md:rounded-none md:bg-transparent md:p-0 md:py-8 md:shadow-none">
         <div
-          className={classNames({
+          className={clsx({
             "md:text-right": !isReverse,
           })}
         >
@@ -46,7 +46,7 @@ const ProjectCard = ({
           <h3 className="mb-2 text-xl font-bold md:mb-4 md:text-2xl">{name}</h3>
         </div>
         <div
-          className={classNames({
+          className={clsx({
             "md:relative md:shadow-lg md:shadow-primary md:bg-slate-100 md:dark:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
               true,
             "md:-ml-16": !isReverse,
@@ -59,7 +59,7 @@ const ProjectCard = ({
           </div>
         </div>
         <div
-          className={classNames({
+          className={clsx({
             "mt-4": true,
             "md:ml-4": !isReverse,
             "md:ml-2": isReverse,

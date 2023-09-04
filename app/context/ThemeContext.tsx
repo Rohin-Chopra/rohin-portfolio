@@ -1,8 +1,8 @@
 "use client";
 
+import { useTheme } from "@/hooks/useTheme";
 import type { PropsWithChildren } from "react";
 import { createContext } from "react";
-import { useTheme } from "../hooks/useTheme";
 
 const ThemeContext = createContext(1);
 

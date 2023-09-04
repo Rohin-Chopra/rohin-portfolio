@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import type { InputHTMLAttributes } from "react";
 import type { FieldPath, FieldValues, UseFormRegister } from "react-hook-form";
 
@@ -18,7 +18,7 @@ const Input = <TFieldValues extends FieldValues>({
 }: Props<TFieldValues>) => {
   return (
     <input
-      className={classNames({
+      className={clsx({
         "bg-zinc-100 dark:bg-darkGray focus:outline-none focus:border focus:border-primary py-2 px-2 w-full transition-colors":
           true,
         [className]: true,
