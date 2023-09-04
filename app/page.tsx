@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
   return (
     <>
       <section id="hero" className="md:h-[90vh]">
-        <div className="flex h-full flex-col-reverse justify-end bg-primary pb-4 pt-8 dark:bg-black md:grid md:grid-cols-3 md:bg-white md:py-0">
+        <div className="flex h-full flex-col-reverse justify-end bg-primary dark:bg-black md:grid md:grid-cols-3 md:bg-white md:py-0">
           <div className="relative">
             <div className="flex justify-center md:justify-end">
               <div className="-right-6 z-10 mt-12 md:absolute">
@@ -79,10 +79,7 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section
-        id="projects"
-        className="py-8 dark:bg-black dark:text-white md:px-6"
-      >
+      <section id="projects" className="py-8 dark:text-white md:px-6">
         <div className="container mx-auto">
           <h2 className="mt-4 text-2xl font-bold md:mb-10 md:text-4xl">
             Projects I&apos;ve built
@@ -193,10 +190,7 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section
-        id="skills"
-        className="py-8 dark:bg-black dark:text-white md:px-6"
-      >
+      <section id="skills" className="py-8 dark:text-white md:px-6">
         <div className="container mx-auto">
           <h2 className="mb-2 mt-4 text-2xl font-bold md:text-4xl">Skills</h2>
           <div className="mb-12">
@@ -316,10 +310,7 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section
-        id="contact"
-        className="pb-8 pt-12 dark:bg-black dark:text-white md:px-6"
-      >
+      <section id="contact" className="pb-8 pt-12 dark:text-white md:px-6">
         <div className="container mx-auto">
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">

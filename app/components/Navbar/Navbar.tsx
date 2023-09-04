@@ -27,9 +27,8 @@ const Navbar = () => {
         <Link href="/" passHref>
           <div
             className={classNames({
-              "py-8 text-xl font-bold text-white dark:bg-black dark:text-white md:pl-8":
-                true,
-              "md:bg-white md:text-black": pathname === "/",
+              "py-8 text-xl font-bold text-white dark:text-white md:pl-8": true,
+              "md:bg-white dark:bg-black md:text-black": pathname === "/",
             })}
           >
             <span className="font-josefin">ROHIN CHOPRA</span>
@@ -37,7 +36,7 @@ const Navbar = () => {
         </Link>
         <div
           className={classNames({
-            "dark:bg-black text-white md:col-span-2 md:pr-16 flex md:justify-end items-center bg-primary":
+            "text-white md:col-span-2 md:pr-16 flex md:justify-end items-center bg-primary dark:bg-black":
               true,
             "md:border-l-2 md:border-l-white md:dark:border-l-primary md:dark:bg-darkGray":
               pathname === "/",
@@ -62,7 +61,7 @@ const Navbar = () => {
               <MdMenu className="z-50 cursor-pointer text-3xl md:hidden" />
             </SheetTrigger>
             <SheetContent className="flex flex-col items-center dark:text-white">
-              <div className="mb-1 mt-10">
+              <div className="mb-1 mt-24">
                 <Link onClick={close} href="/">
                   About
                 </Link>

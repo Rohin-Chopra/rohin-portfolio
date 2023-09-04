@@ -1,9 +1,9 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => (
-  <footer className="w-full border-t border-t-primary py-5 text-center dark:bg-black dark:text-white md:py-10">
+  <footer className="w-full border-t border-t-primary py-5 text-center dark:text-white md:py-10">
     <div className="mb-2 text-xl font-bold">
-      <span className="font-display">ROHIN CHOPRA</span>
+      <span className="font-josefin">ROHIN CHOPRA</span>
     </div>
     <div className="flex justify-center text-4xl">
       <a

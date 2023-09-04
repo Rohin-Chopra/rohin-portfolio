@@ -44,7 +44,7 @@ const BlogPage = async ({ params }: BlogParams) => {
   if (!blog) return notFound();
 
   return (
-    <main className="min-h-screen font-roboto dark:bg-black dark:text-white">
+    <main className="min-h-screen font-roboto dark:text-white">
       <header id="gradientBackgroundHeader">
         <div className="container px-4 pt-6 md:mx-auto md:flex md:flex-col md:items-center">
           <div>

@@ -38,10 +38,12 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className="dark">
-        <Navbar />
-        {children}
-        <Footer />
+      <body className="dark ">
+        <div className="dark:bg-black">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
         <Analytics />
       </body>
     </html>
