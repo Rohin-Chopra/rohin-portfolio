@@ -7,9 +7,19 @@ import { MdMenu } from "react-icons/md";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const open = () => {
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+  };
 
   return (
     <header>
@@ -47,16 +57,20 @@ const Navbar = () => {
               <Link href="/blogs">Blogs</Link>
             </div>
           </div>
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger>
               <MdMenu className="z-50 cursor-pointer text-3xl md:hidden" />
             </SheetTrigger>
             <SheetContent className="flex flex-col items-center dark:text-white">
               <div className="mb-1 mt-10">
-                <Link href="/">About</Link>
+                <Link onClick={close} href="/">
+                  About
+                </Link>
               </div>
               <div className="my-1">
-                <Link href="/blogs">Blogs</Link>
+                <Link onClick={close} href="/blogs">
+                  Blogs
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
