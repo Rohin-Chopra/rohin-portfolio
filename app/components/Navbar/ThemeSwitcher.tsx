@@ -1,12 +1,11 @@
-import classNames from "classnames";
-import type { DetailedHTMLProps, LiHTMLAttributes } from "react";
+import { Item } from "@radix-ui/react-dropdown-menu";
+import { forwardRef } from "react";
 import {
   MdComputer,
   MdDarkMode,
   MdLightMode,
   MdOutlineDarkMode,
 } from "react-icons/md";
-import { twMerge } from "tailwind-merge";
 import { useTheme } from "../../hooks/useTheme";
 import {
   DropdownMenu,
@@ -15,29 +14,19 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const ThemeSwitcherSubMenuItem = ({
-  className = "",
-  children,
-  isActive,
-  ...props
-}: DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> & {
-  isActive: boolean;
-}) => {
-  return (
-    <li
-      {...props}
-      className={twMerge(
-        classNames({
-          "w-40 py-3 hover:bg-slate-200 dark:hover:bg-slate-800": true,
-          [className]: true,
-          "font-semibold text-primary": isActive,
-        })
-      )}
-    >
-      <div className="flex justify-between px-4">{children}</div>
-    </li>
-  );
-};
+const ThemeSwitcherMenuItem = forwardRef<
+  React.ElementRef<typeof Item>,
+  React.ComponentPropsWithoutRef<typeof Item> & {
+    inset?: boolean;
+  }
+>(({ ...props }, ref) => (
+  <DropdownMenuItem
+    ref={ref}
+    className="flex cursor-pointer justify-between px-3"
+    {...props}
+  />
+));
+ThemeSwitcherMenuItem.displayName = Item.displayName;
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
@@ -64,24 +53,15 @@ export const ThemeSwitcher = () => {
         {theme === "system" && <MdOutlineDarkMode />}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem
-          className="flex cursor-pointer justify-between px-3 "
-          onClick={setThemeToDark}
-        >
+        <ThemeSwitcherMenuItem onClick={setThemeToDark}>
           Dark <MdDarkMode className="text-lg" />
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="flex cursor-pointer justify-between px-3"
-          onClick={setThemeToLight}
-        >
+        </ThemeSwitcherMenuItem>
+        <ThemeSwitcherMenuItem onClick={setThemeToLight}>
           Light <MdLightMode className="text-lg" />
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="flex cursor-pointer justify-between px-3"
-          onClick={setThemeToSystem}
-        >
+        </ThemeSwitcherMenuItem>
+        <ThemeSwitcherMenuItem onClick={setThemeToSystem}>
           System <MdComputer className="text-lg" />
-        </DropdownMenuItem>
+        </ThemeSwitcherMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
