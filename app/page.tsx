@@ -81,7 +81,7 @@ const HomePage: NextPage = () => {
       </section>
       <section
         id="projects"
-        className="px-6 py-8 dark:bg-black dark:text-white"
+        className="py-8 dark:bg-black dark:text-white md:px-6"
       >
         <div className="container mx-auto">
           <h2 className="mt-4 text-2xl font-bold md:mb-10 md:text-4xl">
@@ -186,7 +186,7 @@ const HomePage: NextPage = () => {
             />
             <Link
               href="projects"
-              className="mx-auto mt-4 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base text-white shadow"
+              className="mx-auto mt-8 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base text-white shadow md:mt-4"
             >
               View More Projects
             </Link>
