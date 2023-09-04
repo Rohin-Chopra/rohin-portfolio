@@ -41,7 +41,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      display: ["Josefin Sans", "sans-serif"],
+      josefin: ["Josefin Sans", "sans-serif"],
       roboto: ["Roboto", "sans-serif"],
     },
   },

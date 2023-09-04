@@ -3,25 +3,13 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { MdMenu, MdOutlineClose } from "react-icons/md";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { MdMenu } from "react-icons/md";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
 const Navbar = () => {
-  const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
-  const openNavbar = () => {
-    setIsActive(true);
-  };
-
-  const closeNavbar = () => {
-    if (isMobile) {
-      setIsActive(false);
-    }
-  };
 
   return (
     <header>
@@ -34,7 +22,7 @@ const Navbar = () => {
               "md:bg-white md:text-black": pathname === "/",
             })}
           >
-            <span className="font-display">ROHIN CHOPRA</span>
+            <span className="font-josefin">ROHIN CHOPRA</span>
           </div>
         </Link>
         <div
@@ -48,38 +36,30 @@ const Navbar = () => {
           <div className="mr-4 md:hidden">
             <ThemeSwitcher />
           </div>
-          <div
-            className={classNames({
-              "fixed flex flex-col z-50 transition-all items-center md:flex-row md:justify-end md:h-full md:static md:pt-0 text-xl md:text-base":
-                true,
-              "bg-white text-black dark:text-white dark:bg-darkGray -top-4 left-0 h-screen pt-52 w-screen px-32 md:px-0":
-                isActive,
-              "top-20 -left-full": !isActive,
-            })}
-          >
-            <div className="nav-item hidden md:block">
+          <div className="hidden md:static md:flex md:h-full md:flex-row md:items-center md:justify-end md:pt-0 md:text-base">
+            <div className="md:mx-4">
               <ThemeSwitcher />
             </div>
-            <div className="nav-item">
-              <Link onClick={closeNavbar} href="/">
-                About
-              </Link>
+            <div className="md:mx-4">
+              <Link href="/">About</Link>
             </div>
-            <div className="nav-item flex items-center rounded px-4 py-2 md:h-full md:rounded-none md:bg-primary md:py-0">
-              <Link onClick={closeNavbar} href="/blogs">
-                Blogs
-              </Link>
+            <div className="md:mx-4 md:dark:flex md:dark:h-full md:dark:items-center md:dark:rounded dark:md:bg-primary md:dark:px-4 md:dark:py-2">
+              <Link href="/blogs">Blogs</Link>
             </div>
           </div>
-          {!isActive && (
-            <MdMenu className="nav-hamburger-icon-base" onClick={openNavbar} />
-          )}
-          {isActive && (
-            <MdOutlineClose
-              className="nav-hamburger-icon-base text-black dark:text-white"
-              onClick={closeNavbar}
-            />
-          )}
+          <Sheet>
+            <SheetTrigger>
+              <MdMenu className="z-50 cursor-pointer text-3xl md:hidden" />
+            </SheetTrigger>
+            <SheetContent className="flex flex-col items-center dark:text-white">
+              <div className="mb-1 mt-10">
+                <Link href="/">About</Link>
+              </div>
+              <div className="my-1">
+                <Link href="/blogs">Blogs</Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
