@@ -72,17 +72,13 @@ export const ThemeSwitcher = () => {
   return (
     <div className="relative" ref={ref}>
       <DropdownMenu>
-        <DropdownMenuTrigger>
-          {theme === "dark" && (
-            <MdDarkMode className="cursor-pointer text-2xl" />
-          )}
+        <DropdownMenuTrigger className="align-middle text-3xl md:text-2xl">
+          {theme === "dark" && <MdDarkMode className="cursor-pointer" />}
 
-          {theme === "light" && (
-            <MdLightMode className="cursor-pointer text-2xl" />
-          )}
+          {theme === "light" && <MdLightMode className="cursor-pointer" />}
 
           {theme === "system" && (
-            <MdOutlineDarkMode className="cursor-pointer text-2xl" />
+            <MdOutlineDarkMode className="cursor-pointer" />
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>
