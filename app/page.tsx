@@ -152,10 +152,10 @@ const HomePage: NextPage = () => {
               className="mt-8 md:mt-28"
               name="Margembie Labradors"
               url="https://www.margembielabradors.com.au"
-              description="A MERN full stack website for a client who is a dog breeder. This website involved CRUD operations in the admin panel and also displaying those resources in the frontend."
+              description="Built a modern and responsive website for a Labrador Retriever kennel that helps potential customers learn about the kennel and its dogs, and register their interest in upcoming litters."
               imgUrl="/margembie-labradors.png"
               tech={[
-                <SiJavascript
+                <SiTypescript
                   className="text-4xl"
                   title="TypeScript"
                   key="TypeScript"
