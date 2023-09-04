@@ -193,7 +193,10 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section id="skills" className="px-6 py-8 dark:bg-black dark:text-white">
+      <section
+        id="skills"
+        className="py-8 dark:bg-black dark:text-white md:px-6"
+      >
         <div className="container mx-auto">
           <h2 className="mb-2 mt-4 text-2xl font-bold md:text-4xl">Skills</h2>
           <div className="mb-12">
@@ -315,7 +318,7 @@ const HomePage: NextPage = () => {
       </section>
       <section
         id="contact"
-        className="px-6 pb-8 pt-12 dark:bg-black dark:text-white"
+        className="pb-8 pt-12 dark:bg-black dark:text-white md:px-6"
       >
         <div className="container mx-auto">
           <div className="md:grid md:grid-cols-2">
