@@ -46,7 +46,10 @@ export const ThemeSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="align-middle text-3xl md:text-2xl">
+      <DropdownMenuTrigger
+        className="align-middle text-3xl md:text-2xl"
+        aria-label="Change Theme"
+      >
         {theme === "dark" && <MdDarkMode />}
 
         {theme === "light" && <MdLightMode />}

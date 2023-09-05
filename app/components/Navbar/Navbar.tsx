@@ -59,7 +59,7 @@ const Navbar = () => {
             </div>
           </div>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger>
+            <SheetTrigger aria-label="Menu">
               <MdMenu className="z-50 cursor-pointer text-3xl md:hidden" />
             </SheetTrigger>
             <SheetContent className="flex flex-col items-center dark:text-white">
