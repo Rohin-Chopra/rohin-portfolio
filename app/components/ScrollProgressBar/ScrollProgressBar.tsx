@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const ProgressBar = () => {
+export const ScrollProgressBar = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
