@@ -1,7 +1,7 @@
-import type { Blog } from "../types";
-import { getBlogs } from "./getBlogs";
+import { getBlogs } from "@/(subpages)/blogs/lib/getBlogs";
+import type { Blog } from "@/(subpages)/blogs/types";
 
-export const getPost = async (slug: string): Promise<Blog | undefined> => {
+export const getBlog = async (slug: string): Promise<Blog | undefined> => {
   const posts = await getBlogs();
 
   return posts.find((post) => post.slug === slug);

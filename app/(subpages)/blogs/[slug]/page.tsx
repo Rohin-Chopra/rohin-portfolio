@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MdArrowBack } from "react-icons/md";
-import { getPost } from "../lib/getBlog";
-import { getBlogs } from "../lib/getBlogs";
-import { MDXBlogBody } from "./mdx/MDXPostBody";
-import type { BlogParams } from "./types";
 
+import { MDXBlogBody } from "@/(subpages)/blogs/[slug]/mdx/MDXBlogBody";
+import type { BlogParams } from "@/(subpages)/blogs/[slug]/types";
+import { getBlog } from "@/(subpages)/blogs/lib/getBlog";
+import { getBlogs } from "@/(subpages)/blogs/lib/getBlogs";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar/ScrollProgressBar";
+
 import "./style.css";
 
 export async function generateStaticParams(): Promise<BlogParams["params"][]> {
@@ -23,7 +24,7 @@ export async function generateStaticParams(): Promise<BlogParams["params"][]> {
 export const generateMetadata = async ({
   params,
 }: BlogParams): Promise<Metadata> => {
-  const post = await getPost(params.slug);
+  const post = await getBlog(params.slug);
 
   if (!post) {
     return notFound();
@@ -39,7 +40,7 @@ export const generateMetadata = async ({
 };
 
 const BlogPage = async ({ params }: BlogParams) => {
-  const blog = await getPost(params.slug);
+  const blog = await getBlog(params.slug);
 
   // TODO: add 404 page
   if (!blog) return notFound();

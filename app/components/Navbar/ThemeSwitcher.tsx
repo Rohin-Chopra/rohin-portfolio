@@ -7,13 +7,13 @@ import {
   MdOutlineDarkMode,
 } from "react-icons/md";
 
-import { useTheme } from "@/hooks/useTheme";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { useTheme } from "@/hooks/useTheme";
 
 const ThemeSwitcherMenuItem = forwardRef<
   React.ElementRef<typeof Item>,

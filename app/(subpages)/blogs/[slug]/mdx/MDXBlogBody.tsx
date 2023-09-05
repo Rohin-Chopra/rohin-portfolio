@@ -2,9 +2,10 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight/lib";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
-import type { Blog } from "../../types";
-import { mdxComponents } from "./components";
-import { terraformSyntaxHighlighter } from "./terraformSyntaxHighlighter";
+
+import { mdxComponents } from "@/(subpages)/blogs/[slug]/mdx/components";
+import { terraformSyntaxHighlighter } from "@/(subpages)/blogs/[slug]/mdx/terraformSyntaxHighlighter";
+import type { Blog } from "@/(subpages)/blogs/types";
 
 import "./draculaTheme.css";
 

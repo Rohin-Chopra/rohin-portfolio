@@ -3,11 +3,11 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MdMenu } from "react-icons/md";
-import { ThemeSwitcher } from "./ThemeSwitcher";
-
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
+import { MdMenu } from "react-icons/md";
+
+import { ThemeSwitcher } from "@/components/Navbar/ThemeSwitcher";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

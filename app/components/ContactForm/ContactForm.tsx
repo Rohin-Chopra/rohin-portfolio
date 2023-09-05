@@ -7,12 +7,13 @@ import type { FieldValues, SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { z } from "zod";
-import { Button } from "../Elements/Button";
-import { Input } from "../Elements/Input";
-import { useToast } from "../ui/use-toast";
 
-export const API_URI = process.env.NEXT_PUBLIC_API_URI;
-export const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+import { Button } from "@/components/Elements/Button";
+import { Input } from "@/components/Elements/Input";
+import { useToast } from "@/components/ui/use-toast";
+
+const API_URI = process.env.NEXT_PUBLIC_API_URI;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const schema = z.object({
   name: z.string().min(1, "Please enter a name"),
