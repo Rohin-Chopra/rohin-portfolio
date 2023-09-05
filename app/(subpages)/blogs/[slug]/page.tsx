@@ -7,7 +7,7 @@ import { getBlogs } from "../lib/getBlogs";
 import { MDXBlogBody } from "./mdx/MDXPostBody";
 import type { BlogParams } from "./types";
 
-import { ScrollProgressBar } from "@/components/ProgressBar/ProgressBar";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar/ScrollProgressBar";
 import "./style.css";
 
 export async function generateStaticParams(): Promise<BlogParams["params"][]> {
@@ -47,7 +47,7 @@ const BlogPage = async ({ params }: BlogParams) => {
   return (
     <>
       <ScrollProgressBar />
-      <main className="min-h-screen font-roboto dark:text-white pt-24">
+      <main className="min-h-screen pt-24 font-roboto dark:text-white">
         <header id="gradientBackgroundHeader">
           <div className="container px-4 pt-6 md:mx-auto md:flex md:flex-col md:items-center">
             <div>
