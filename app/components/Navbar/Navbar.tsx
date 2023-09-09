@@ -54,7 +54,7 @@ const Navbar = () => {
             <div className="md:mx-4">
               <Link href="/">About</Link>
             </div>
-            <div className="md:mx-4 md:dark:flex md:dark:h-full md:dark:items-center md:dark:rounded dark:md:bg-primary md:dark:px-4 md:dark:py-2">
+            <div className="md:mx-4 md:dark:flex md:dark:h-full md:dark:items-center dark:md:bg-primary md:dark:px-4 md:dark:py-2">
               <Link href="/blogs">Blogs</Link>
             </div>
           </div>
