@@ -26,15 +26,16 @@ const Navbar = () => {
           "fixed  left-0 top-0 z-50": pathname.includes("/blogs/"),
         })}
       >
-        <Link href="/" passHref>
-          <div
-            className={clsx({
-              "py-8 text-xl font-bold text-white dark:text-white md:pl-8": true,
-              "md:bg-white dark:bg-dark md:text-black": pathname === "/",
-            })}
-          >
-            <span className="font-josefin">ROHIN CHOPRA</span>
-          </div>
+        <Link
+          className={clsx({
+            "py-8 text-xl font-bold text-white dark:text-white md:pl-8 font-josefin":
+              true,
+            "md:bg-white dark:bg-dark md:text-black": pathname === "/",
+          })}
+          href="/"
+          passHref
+        >
+          ROHIN CHOPRA
         </Link>
         <div
           className={clsx({

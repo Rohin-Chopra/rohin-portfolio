@@ -34,7 +34,7 @@ const ProjectCard = ({
       >
         <Image src={imgUrl} alt={name} fill style={{ objectFit: "contain" }} />
       </div>
-      <div className="rounded px-6 py-4 shadow-lg shadow-primary transition-shadow md:rounded-none md:bg-transparent md:p-0 md:py-8 md:shadow-none">
+      <div className="rounded px-6 py-4 shadow-lg shadow-primary transition-shadow dark:bg-darkGray md:rounded-none md:bg-transparent md:p-0 md:py-8 md:shadow-none md:dark:bg-transparent">
         <div
           className={clsx({
             "md:text-right": !isReverse,
@@ -47,7 +47,7 @@ const ProjectCard = ({
         </div>
         <div
           className={clsx({
-            "md:relative md:shadow-lg md:shadow-primary md:bg-slate-100 md:dark:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
+            "md:relative md:shadow-lg md:shadow-primary md:bg-slate-100 dark:bg-darkGray md:rounded md:py-4 md:px-6 md:transition-opacity":
               true,
             "md:-ml-16": !isReverse,
             "md:-mr-16": isReverse,
