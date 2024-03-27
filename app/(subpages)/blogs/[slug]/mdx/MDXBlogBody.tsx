@@ -23,7 +23,7 @@ export const MDXBlogBody = ({ blog }: Props) => {
             remarkPlugins: [remarkGfm, remarkFrontmatter],
             rehypePlugins: [
               [
-                rehypeHighlight,
+                rehypeHighlight as any,
                 {
                   languages: {
                     hcl: terraformSyntaxHighlighter,
