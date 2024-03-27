@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "turbo run lint",
+    "build": "turbo run build",
     "dev": "turbo run dev",
     "prepare": "husky install"
   },
