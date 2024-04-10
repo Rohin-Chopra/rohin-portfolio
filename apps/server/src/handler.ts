@@ -1,9 +1,9 @@
 import type { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
-import { SESV2 } from "aws-sdk";
+import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { z } from "zod";
 import { config } from "./config";
 
-const sesClient = new SESV2({ region: "ap-southeast-2" });
+const sesClient = new SESv2Client({ region: "ap-southeast-2" });
 
 const schema = z
   .object({
@@ -18,8 +18,8 @@ const sendTemplatedEmail = async (
   templateName: string,
   templateData: Record<string, unknown>
 ): Promise<void> => {
-  await sesClient
-    .sendEmail({
+  await sesClient.send(
+    new SendEmailCommand({
       FromEmailAddress: config.noReplyEmail,
       Destination: {
         ToAddresses: [toAddress],
@@ -31,7 +31,7 @@ const sendTemplatedEmail = async (
         },
       },
     })
-    .promise();
+  );
 };
 
 export const contactHandler = async (
@@ -76,7 +76,7 @@ export const contactHandler = async (
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: error.message,
+        message: "Internal Server Error",
       }),
     };
   }
