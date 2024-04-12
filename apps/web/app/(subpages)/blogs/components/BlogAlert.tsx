@@ -1,5 +1,13 @@
-import { Alert } from "@/components/ui/alert";
-import type { ComponentProps } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import type { ComponentProps, PropsWithChildren } from "react";
+
+export function BlogAlertDescription({ children }: PropsWithChildren) {
+  return (
+    <AlertDescription>
+      <p style={{ fontSize: "0.875rem" }}>{children}</p>
+    </AlertDescription>
+  );
+}
 
 export function BlogAlert({
   children,

@@ -1,0 +1,442 @@
+---
+
+title: Autoscaling ECS workloads with event-driven SQS metrics
+description: A detailed guide on autoscaling ECS workloads using SQS metrics, ensuring consistent performance during peak loads
+slug: ecs-sqs-autoscaling
+createdAt: April 6th, 2024
+---
+
+<BlogAlert>
+  <AlertTitle>Acknowledgment</AlertTitle>
+  <BlogAlertDescription>This blog post is inspired by an [insightful article by AWS](https://aws.amazon.com/blogs/containers/amazon-elastic-container-service-ecs-auto-scaling-using-custom-metrics/) that introduces the use of custom metrics of SQS for ECS autoscaling. Our goal is to extend this foundational piece with a detailed implementation guide, providing you a practical blueprint for your autoscaling needs.</BlogAlertDescription>
+</BlogAlert>
+
+## Introduction
+
+In the ever-changing landscape of cloud computing, it is pivotal that our applications aren't just surviving but thriving under varying loads. One of the most effective strategies to achieve this is through AWS ECS autoscaling, allowing you to scale horizontally based on demand. Traditionally we've leaned on the plain-old metrics like CPU and memory usage to guide this scaling. Although these metrics have served a variety of applications well, there are some limitations when it comes to event-driven applications.
+
+## Problem Statement
+
+Imagine, you are running an order processing application, which is gearing up for the upcoming Boxing Day sale. A critical event, where any performance bottlenecks like a backlog of unprocessed messages could result in significant revenue loss and unhappy customers.
+
+Here is the catch: while your app is polling messages from a SQS queue, this queue starts to overflow with a flurry of orders. Meanwhile, CPU and memory metrics might suggest that everything is under control, tempting you to relax and watch the IND V/S AUS boxing day match instead, but the growing queue might suggest a different story. In such cases, traditional scaling metrics can be misleading, potentially leaving your service overwhelmed and unable to keep up with the pace of incoming messages.
+
+![A meme about autoscaling](/blogs/ecs-sqs-autoscaling/autoscaling-meme.webp)
+
+## Solution
+
+![Sequence diagram of the autoscaling flow](/blogs/ecs-sqs-autoscaling/sequence-diagram-2.png)
+
+Below is a 30000 feet overview of how the various components within our solution interact:
+
+### Lambda
+
+At regular intervals, this function will compute the `BacklogPerTask` metric (which we discuss in depth below) through assessing the number of messages in the queue and current active tasks in a given ECS service.
+
+### Cloudwatch
+
+Next, the calculated `BacklogPerTask` metric is then published to Cloudwatch metrics, which later will be used to create a Cloudwatch alarm for detecting when the metric has gone above/below the predefined threshold.
+
+### ECS Autoscaling
+
+Based on the `BacklogPerTask` Cloudwatch alarms, AWS Autoscaling will ensure that ECS service's tasks are dynamically adjusted to handle the current workload.
+
+### What is backlog per task?
+
+The core of our solution relies on calculating the`BacklogPerTask` metric, where we divide the current number of messages in a queue by the count of active tasks running in the ECS service.
+
+To put it into reality, let's circle back to our earlier example of the order processing application. For the sake of it, let's imagine that after rigorous and thorough load testing you have found the magic number to be **20**, which is the number of messages a single ECS task can process at a time with ease. Now, let's see what would happen in case of a traffic spike:
+
+1. Our Lambda will run every minute, so it will capture both the current number of messages in the queue and also the current number of active tasks in the ECS service. With this info it will divide the count of messages in the queue with the number of active tasks, e.g. with 60 messages and 2 tasks, the result would be 60/2 = 30, leaving us with **30** as our current `BacklogPerMetric` value.
+2. Lambda will then publish this `BacklogPerMetric` to AWS Cloudwatch metrics as a custom metric.
+3. Next, AWS Cloudwatch alarm will have two alarms configured, one for when the `BacklogPerMetric` is higher than the predefined threshold and the other for the lower than. With this in mind, if we take the previous number of 30 as our current `BacklogPerMetric` and 20 as the ideal threshold we defined for our tasks, AWS Cloudwatch would trigger that alarm in an alarm state.
+4. Finally, AWS Autoscaling will have these alarms configured and based on this it would scale up the number of desired tasks in the ECS service, bringing back stability to the application amongst an unexpected spike.
+
+You might also wonder, why not simply track the native `ApproximateNumberOfMessages` metric that is available by default? The reason is quite straightforward and you might already see it in the above explanation. Queue length alone doesn't account for an individual ECS task's processing capability, thus lacking enough context needed to make an informed decision when autoscaling.
+
+### Defining Task Capacity
+
+Before we can effectively utilize the `BacklogPerTask` metric, it is crucial to first understand the processing capability of a single ECS task. This involves determining the maximum number of messages a single task can handle under varying loads without any compromise on performance.
+
+Below is a suggested approach on how you might achieve this:
+
+1. **Benchmarking**: Perform load tests on your existing ECS tasks to understand how many messages each task can process within an acceptable time frame before there any signs of performance dips.
+2. **Define Thresholds**: Post the benchmark results, set a **conservative** threshold for the number of messages a task should handle, providing it a cushion to handle any unexpected spikes, bringing more stability to your application.
+
+For example, if the testing shows that a single task can handle 100 messages per minute with ease before experiencing any speed decreases, setting the metric threshold at 80 messages offers enough buffer to accommodate any unusual demands.
+
+Or you can skip all this work and do load testing during the peak event:
+
+![Load testing meme](/blogs/ecs-sqs-autoscaling/black-friday-performance-testing.jpg)
+
+## Prerequisites
+
+Before we deep dive into the implementation, ensure that you have:
+
+### AWS account
+
+AWS will be our choice of the cloud for this blog post; if you are not already registered, you can sign up for its free tier at [AWS' sign up page](https://aws.amazon.com/free).
+
+### Node
+
+If you don't have Node.js installed, download the v20 version from [the Node.js website](https://nodejs.org).
+
+### Terraform CLI
+
+If you don't have Terraform CLI installed, download it from [Terraform's download page](https://developer.hashicorp.com/terraform/downloads). For my Mac machine, I have used [homebrew](https://brew.sh/) to install it.
+
+## Implementation
+
+To kick it off, we will first configure Terraform with minimum version constraints for the AWS provider and also set the correct AWS region as well.
+
+```tf
+terraform {
+  required_version = "~> 1.7.0"
+
+  required_providers {
+    aws = "~> 5.40.0"
+  }
+}
+
+provider "aws" {
+  region = "ap-southeast-2"
+}
+```
+
+I am based in Australia, so I will use the `ap-southeast-2` (Sydney) region.
+
+### Queue
+
+Next, we'll create a Simple Queue Service (pun intended) with the name of orders-queue:
+
+```tf
+resource "aws_sqs_queue" "queue" {
+  name = "orders-queue"
+}
+```
+
+This block sets us up with a basic queue that can handle storage of order messages.
+
+### Lambda
+
+#### Code
+
+The core of our solution relies on this Lambda function which will calculate and publish the `BacklogPerTask` metric to CloudWatch. The following TypeScript code snippet illustrates this process:
+
+```ts
+import {
+  CloudWatchClient,
+  PutMetricDataCommand,
+} from "@aws-sdk/client-cloudwatch";
+import { ECSClient, ListTasksCommand } from "@aws-sdk/client-ecs";
+import { GetQueueAttributesCommand, SQSClient } from "@aws-sdk/client-sqs";
+
+const cloudwatchClient = new CloudWatchClient();
+const ecsClient = new ECSClient();
+const sqsClient = new SQSClient();
+
+async function getApproximateNumberOfMessagesInQueue(queueUrl: string) {
+  const { Attributes } = await sqsClient.send(
+    new GetQueueAttributesCommand({
+      QueueUrl: queueUrl,
+      AttributeNames: ["ApproximateNumberOfMessages"],
+    })
+  );
+
+  console.log(
+    `there are ${Attributes?.ApproximateNumberOfMessages} of messages in the queue`
+  );
+
+  return +(Attributes?.ApproximateNumberOfMessages || 0);
+}
+
+async function getNumberOfActiveTaskInService(
+  clusterName: string,
+  serviceName: string
+) {
+  const result = await ecsClient.send(
+    new ListTasksCommand({
+      cluster: clusterName,
+      serviceName: serviceName,
+      desiredStatus: "RUNNING",
+    })
+  );
+
+  console.log(
+    `there are ${result.taskArns?.length} tasks running in ${clusterName}/${serviceName}`
+  );
+
+  return result.taskArns?.length || 0;
+}
+
+async function putMetricData(
+  value: number,
+  clusterName: string,
+  serviceName: string
+) {
+  console.log(
+    `Publishing metric value of ${value} for cluster: ${clusterName} and service: ${serviceName}`
+  );
+
+  await cloudwatchClient.send(
+    new PutMetricDataCommand({
+      Namespace: "ECS/CustomMetrics",
+      MetricData: [
+        {
+          MetricName: "BacklogPerTask",
+          Dimensions: [
+            {
+              Name: "ClusterName",
+              Value: clusterName,
+            },
+            {
+              Name: "ServiceName",
+              Value: serviceName,
+            },
+          ],
+          Unit: "Count",
+          Value: value,
+        },
+      ],
+    })
+  );
+}
+
+export async function handler() {
+  const queueUrl = process.env.QUEUE_URL;
+  const ecsClusterName = process.env.ECS_CLUSTER_NAME;
+  const ecsServiceName = process.env.ECS_SERVICE_NAME;
+
+  if (!queueUrl || !ecsClusterName || !ecsServiceName) {
+    throw new Error("Missing environment variables");
+  }
+
+  const approximateNumberOfMessages =
+    await getApproximateNumberOfMessagesInQueue(queueUrl);
+
+  const numberOfActiveTaskInService = await getNumberOfActiveTaskInService(
+    ecsClusterName,
+    ecsServiceName
+  );
+
+  const backlogPerTask =
+    approximateNumberOfMessages / numberOfActiveTaskInService || 0;
+
+  await putMetricData(backlogPerTask, ecsClusterName, ecsServiceName);
+}
+```
+
+Let's break this Lambda code down a bit:
+
+##### Fetching Queue Messages
+
+We start off by calling the `getApproximateNumberOfMessagesInQueue` function that makes a call to SQS to retrieve the approximate number of messages waiting in the queue. This helps us to understand the load that our service is currently under.
+
+##### Counting Active ECS Tasks
+
+To get a snapshot of the current ECS service's processing capability, we call the `getNumberOfActiveTaskInService` function that as the name suggests, lists the number of active tasks in a given ECS service.
+
+##### Publishing "BacklogPerTask" metric to Cloudwatch
+
+With both the backlog and number of tasks at hand, the `putMetricData` function calculates the `BacklogPerTask` and publishes it as a custom metric to Cloudwatch. Also, please note how we are publishing it in a customised dimensions such as ClusterName & ServiceName,
+
+#### Infrastructure
+
+Next, we will define the Terraform resources needed for the Lambda function, including IAM roles and policies, the function itself and the cloudwatch event rule.
+
+##### IAM Role and Policy
+
+Let's setup the IAM role that our Lambda will assume when calculating the `BacklogPerTask` metric:
+
+```tf
+data "aws_iam_policy_document" "backlog_per_task_metric_lambda_assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "backlog_per_task_metric_lambda_role" {
+  name               = "iam_for_lambda"
+  assume_role_policy = data.aws_iam_policy_document.backlog_per_task_metric_lambda_assume_role.json
+}
+```
+
+We now need to attach IAM permissions to this role so that our Lambda can do the following actions:
+
+1. List tasks in a given ECS service
+2. Get queue attributes from the SQS queue which contains the number of messages in queue metric.
+
+```tf
+data "aws_iam_policy_document" "backlog_per_task_metric_lambda_role" {
+  statement {
+    effect    = "Allow"
+    actions   = ["ecs:ListTasks"]
+    resources = ["*"]
+  }
+
+  statement {
+    effect    = "Allow"
+    actions   = ["sqs:GetQueueAttributes"]
+    resources = [aws_sqs_queue.queue.arn]
+  }
+
+
+  statement {
+    actions   = ["cloudwatch:PutMetricData"]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_role_policy" "backlog_per_task_metric_lambda_policy" {
+  role   = aws_iam_role.backlog_per_task_metric_lambda_role.id
+  policy = data.aws_iam_policy_document.backlog_per_task_metric_lambda_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "backlog_per_task_metric_lambda_basic_policy" {
+  role       = aws_iam_role.backlog_per_task_metric_lambda_role.id
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+```
+
+##### Lambda Function
+
+Next, let's provision the Lambda function:
+
+###### Packaging Lambda
+
+Before we define terraform config for the Lambda function, we need prepare the Lambda's application code by packaging into a zip file.
+
+```tf
+data "archive_file" "backlog_per_task_metric_lambda" {
+  type        = "zip"
+  source_file = "${path.module}/../apps/backlog-per-task-lambda/dist/index.js"
+  output_path = "data/backlog_per_task_metric_lambda.zip"
+}
+```
+
+With the source code being bundled into a zip file, we can now define the Lambda function:
+
+```tf
+resource "aws_lambda_function" "backlog_per_task_metric_lambda" {
+  filename      = "data/backlog_per_task_metric_lambda.zip"
+  function_name = "backlog-per-task-metric-lambda"
+  role          = aws_iam_role.backlog_per_task_metric_lambda_role.arn
+  handler       = "index.handler"
+
+  source_code_hash = data.archive_file.backlog_per_task_metric_lambda.output_base64sha256
+
+  runtime = "nodejs20.x"
+
+  environment {
+    variables = {
+      QUEUE_URL        = aws_sqs_queue.queue.url
+      ECS_CLUSTER_NAME = aws_ecs_cluster.cluster.name
+      ECS_SERVICE_NAME = aws_ecs_service.service.name
+    }
+  }
+}
+```
+
+In the above code, we have supplied it with essential environment variables such as Queue URL and ECS service name from other terraform resources dynamically rather than hardcoding it, providing reusability for future use cases.
+
+A side note that I've used the default `aws_lambda_function` resource here rather than my favorite [Lambda terraform module](https://registry.terraform.io/modules/terraform-aws-modules/lambda/aws/latest) for simplicity's sake and also limit the scope of this blog.
+
+##### Cloudwatch Event Rule
+
+Next, we will set up the cloudwatch event rule that will be responsible for invoking this Lambda every minute.
+
+```tf
+resource "aws_cloudwatch_event_rule" "backlog_per_task_metric_lambda" {
+  name                = "backlog-per-task-metric-lambda"
+  schedule_expression = "rate(1 minute)"
+}
+
+resource "aws_cloudwatch_event_target" "backlog_per_task_metric_lambda" {
+  arn   = aws_lambda_function.backlog_per_task_metric_lambda.arn
+  rule  = aws_cloudwatch_event_rule.backlog_per_task_metric_lambda.id
+}
+```
+
+Finally, we need to attach a resource level permission to our Lambda function, which will allow the cloudwatch events to invoke it:
+
+```tf
+resource "aws_lambda_permission" "backlog_per_task_metric_lambda" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.backlog_per_task_metric_lambda.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.backlog_per_task_metric_lambda.arn
+}
+```
+
+### ECS autoscaling
+
+<BlogAlert>
+  <AlertTitle>End-to-End Setup Available</AlertTitle>
+  <BlogAlertDescription>While this guide focuses on the autoscaling aspect of ECS, it's worth mentioning that a full end-to-end implementation of setting up the ECR repository, ECS cluster and service etc. is available for those who are interested. To keep this discussion focused, we will not be deep-diving into the whole setup here. However, you can still find the entire application and infrastructure code. which covers the entire end-to-end setup at <a href="https://github.com/Rohin-Chopra/ecs-sqs-autoscaling-blog">this blog's Github repository.</a></BlogAlertDescription>
+</BlogAlert>
+
+#### Scaling Target
+
+First, we will define our ECS service as an autoscaling target which AWS Application AutoScaling can autoscale
+
+```tf
+resource "aws_appautoscaling_target" "ecs_target" {
+  max_capacity       = 5
+  min_capacity       = 2
+  resource_id        = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.service.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+```
+
+In the above code, we've defined the minimum and maximum tasks our ECS service should maintain, I've setup 5 as the maximum and 2 as the lowest capacity, feel free to customize it to your needs. Also, take a note of how `resource_id` is composed, we've constructed in a way that it uniquely identifies our ECS service.
+
+#### Scaling Policy
+
+Next, we will setup the scaling policy, it will control the way our ECS service will scale, making use of our `BacklogPerTask` metric.
+
+```tf
+resource "aws_appautoscaling_policy" "ecs_policy" {
+  name               = "scale-backlog-per-task"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.ecs_target.resource_id
+  scalable_dimension = aws_appautoscaling_target.ecs_target.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.ecs_target.service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    target_value = 20
+
+    customized_metric_specification {
+      metric_name = "BacklogPerTask"
+      namespace   = "ECS/CustomMetrics"
+      statistic   = "Average"
+      unit        = "Count"
+
+      dimensions {
+        name  = "ClusterName"
+        value = aws_ecs_cluster.cluster.name
+      }
+
+      dimensions {
+        name  = "ServiceName"
+        value = aws_ecs_service.service.name
+      }
+    }
+  }
+}
+```
+
+This policy uses the `TargetTrackingScaling` policy to scale the ECS tasks, which as the name suggests aims to target that on average each ECS task is handling 20 messages at a time. With this approach, we ensure that our ECS service's workload is kept at a manageable level, allow it to scales effectively and maintains a optimal performance.
+
+## Conclusion
+
+In this blog post, we've built an autoscaling solution for event-driven applications, making use of custom SQS based Cloudwatch Metrics with AWS Lambda and Terraform. By adopting these event-driven metrics, we've ensured that our application can cope with varying demands.
+
+Thanks for reading this blog, I hope that this tutorial helps you in optimizing your use case. Please feel free to reach out if you have any questions.

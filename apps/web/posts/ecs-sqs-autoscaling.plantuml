@@ -1,0 +1,30 @@
+@startuml
+participant "CloudWatch Events" as CloudWatchEvents
+participant "Lambda Function" as Lambda
+participant "SQS Queue" as SQS
+participant "ECS" as ECS
+participant "CloudWatch Metrics" as CloudWatchMetrics
+participant "AWS Autoscaling" as Autoscaling
+
+CloudWatchEvents -> Lambda : Triggers periodically
+activate Lambda
+
+Lambda -> SQS : Reads message count
+SQS --> Lambda : Returns message count
+
+Lambda -> ECS : Gets active task count
+ECS --> Lambda : Returns task count
+
+Lambda -> CloudWatchMetrics : Publishes "BacklogPerTask" metric
+deactivate Lambda
+activate CloudWatchMetrics
+
+CloudWatchMetrics -> CloudWatchMetrics : Evaluates alarm condition
+alt Alarm State - Scale Up/Down
+    CloudWatchMetrics -> Autoscaling : Triggers scaling action
+    activate Autoscaling
+    Autoscaling -> ECS : Adjusts number of tasks
+    deactivate Autoscaling
+end
+ 
+@enduml
