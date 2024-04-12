@@ -1,0 +1,74 @@
+@startuml Autoscaling ECS and SQS
+
+' Define AWS PlantUML icons
+!$AWS_DARK = true
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v14.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ManagementGovernance/all.puml
+!include AWSPuml/ApplicationIntegration/all.puml
+!include AWSPuml/Compute/LambdaLambdaFunction.puml
+!include AWSPuml/Containers/ElasticContainerService.puml
+!include AWSPuml/ManagementGovernance/ApplicationAutoScaling2.puml
+
+hide footbox
+skinparam style strictuml
+
+' Participant styling
+skinparam participant {
+    BackgroundColor AWS_BG_COLOR
+    BorderColor AWS_BORDER_COLOR
+    RoundCorner 0
+}
+' Sequence diagram specific styling
+skinparam sequence { 
+    ArrowThickness 2
+    LifeLineBorderColor AWS_COLOR
+    LifeLineBackgroundColor AWS_BORDER_COLOR
+    BoxBorderColor AWS_COLOR
+    MessageAlignment left
+}
+' Note styling
+skinparam NoteTextAlignment left
+skinparam NoteBorderColor AWS_COLOR
+skinparam NoteBackgroundColor #BUSINESS
+
+skinparam shadowing false
+skinparam MaxMessageSize 600
+skinparam BoxPadding 2
+skinparam ParticipantPadding 10
+
+' AWS Icon procedure for participants
+!procedure $AWSIcon($service, $line1, $line2="")
+participant "$AWSImg($service)\n<b>$line1</b>\n$line2"
+!endprocedure 
+
+' Participants
+$AWSIcon(CloudWatchEventTimeBased, " ", "Cloudwatch Events") as cloudwatch_events
+$AWSIcon(LambdaLambdaFunction, " ", "Lambda") as lambda
+$AWSIcon(SimpleQueueService," ", "SQS") as sqs
+$AWSIcon(ElasticContainerService," ", "ECS") as ecs
+$AWSIcon(CloudWatchMetricsInsights, " ", "Cloudwatch Metrics") as cloudwatch_metrics
+$AWSIcon(CloudWatchAlarm, " ", "Cloudwatch Alarm") as cloudwatch_alarm
+$AWSIcon(ApplicationAutoScaling2, " ", "Autoscaling") as autoscaling
+
+' Sequence of interactions
+cloudwatch_events --> lambda: Triggers periodically
+activate lambda
+    lambda --> sqs: Reads message count
+    sqs --> lambda: Returns message count
+    lambda --> ecs: Gets active task count
+    ecs --> lambda: Returns active task count
+    lambda --> cloudwatch_metrics: Publishes "BacklogPerTask" metric
+deactivate lambda
+
+cloudwatch_alarm --> cloudwatch_metrics : Evaluates metric against threshold
+activate cloudwatch_alarm
+cloudwatch_alarm --> autoscaling : Triggers scaling if threshold breached
+deactivate cloudwatch_alarm
+
+activate autoscaling
+autoscaling -> ecs : Adjusts number of tasks
+deactivate autoscaling
+
+@enduml

@@ -51,7 +51,7 @@ const BlogPage = async ({ params }: BlogParams) => {
       <main className="min-h-screen pt-24 font-roboto dark:text-white">
         <header id="gradientBackgroundHeader">
           <div className="container px-4 pt-6 md:mx-auto md:flex md:flex-col md:items-center">
-            <div>
+            <div className="self-start md:self-auto">
               <div className="lg:w-[42rem]">
                 <Link
                   href="/blogs"
