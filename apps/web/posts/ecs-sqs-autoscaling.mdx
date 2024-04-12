@@ -31,7 +31,7 @@ Below is a 30000 feet overview of how the various components within our solution
 
 ### Lambda
 
-At regular intervals, this function will compute the  `BacklogPerTask` metric (which we discuss in depth below) through assessing the number of messages in the queue and current active tasks in a given ECS service.
+At regular intervals, this function will compute the  `BacklogPerTask` metric (which we discuss in depth below) by assessing the number of messages in the queue and current active tasks in a given ECS service.
 
 ### Cloudwatch
 
@@ -60,8 +60,8 @@ Before we can effectively utilize the `BacklogPerTask` metric, it is crucial to 
 
 Below is a suggested approach on how you might achieve this:
 
-1. **Benchmarking**: Perform load tests on your existing ECS tasks to understand how many messages each task can process within an acceptable time frame before there any signs of performance dips.
-2. **Define Thresholds**: Post the benchmark results, set a **conservative** threshold for the number of messages a task should handle, providing it a cushion to handle any unexpected spikes, bringing more stability to your application.
+1. **Benchmarking**: Perform load tests on your existing ECS tasks to understand how many messages each task can process within an acceptable time frame before there are any signs of performance dips.
+2. **Define Thresholds**: Post the benchmark results, and set a **conservative** threshold for the number of messages a task should handle, providing it a cushion to handle any unexpected spikes, bringing more stability to your application.
 
 For example, if the testing shows that a single task can handle 100 messages per minute with ease before experiencing any speed decreases, setting the metric threshold at 80 messages offers enough buffer to accommodate any unusual demands.
 
@@ -230,15 +230,15 @@ Let's break this Lambda code down a bit:
 
 ##### Fetching Queue Messages
 
-We start off by calling the `getApproximateNumberOfMessagesInQueue` function that makes a call to SQS to retrieve the approximate number of messages waiting in the queue. This helps us to understand the load that our service is currently under.
+We start by calling the `getApproximateNumberOfMessagesInQueue` function that makes a call to SQS to retrieve the approximate number of messages waiting in the queue. This helps us to understand the load that our service is currently under.
 
 ##### Counting Active ECS Tasks
 
-To get a snapshot of the current ECS service's processing capability, we call the `getNumberOfActiveTaskInService` function that as the name suggests, lists the number of active tasks in a given ECS service.
+To get a snapshot of the current ECS service's processing capability, we call the `getNumberOfActiveTaskInService` function which as the name suggests, lists the number of active tasks in a given ECS service.
 
 ##### Publishing "BacklogPerTask" metric to Cloudwatch
 
-With both the backlog and number of tasks at hand, the `putMetricData` function calculates the `BacklogPerTask` and publishes it as a custom metric to Cloudwatch. Also, please note how we are publishing it in a customised dimensions such as ClusterName & ServiceName,
+With both the backlog and number of tasks at hand, the `putMetricData` function calculates the `BacklogPerTask` and publishes it as a custom metric to Cloudwatch. Also, please note how we are publishing it in customised dimensions such as ClusterName & ServiceName,
 
 #### Infrastructure
 
@@ -346,7 +346,7 @@ resource "aws_lambda_function" "backlog_per_task_metric_lambda" {
 
 In the above code, we have supplied the Lambda with essential environment variables such as Queue URL and ECS service name from other Terraform resources dynamically rather than hardcoding it, providing reusability for future use cases.
 
-A side note that I've used the default `aws_lambda_function` resource here rather than my favorite [Lambda terraform module](https://registry.terraform.io/modules/terraform-aws-modules/lambda/aws/latest) for simplicity's sake and also limit the scope of this blog.
+A side note that I've used the default `aws_lambda_function` resource here rather than my favourite [Lambda terraform module](https://registry.terraform.io/modules/terraform-aws-modules/lambda/aws/latest) for simplicity's sake and also limit the scope of this blog.
 
 ##### Cloudwatch Event Rule
 
@@ -384,7 +384,7 @@ resource "aws_lambda_permission" "backlog_per_task_metric_lambda" {
 
 #### Scaling Target
 
-First, we will define our ECS service as an autoscaling target which AWS Application AutoScaling can autoscale
+First, we will define our ECS service as an autoscaling target which AWS Application AutoScaling can autoscale:
 
 ```tf
 resource "aws_appautoscaling_target" "ecs_target" {
@@ -396,11 +396,11 @@ resource "aws_appautoscaling_target" "ecs_target" {
 }
 ```
 
-In the above code, we've defined the minimum and maximum tasks our ECS service should maintain, I've setup 5 as the maximum and 2 as the lowest capacity, feel free to customize it to your needs. Also, take a note of how `resource_id` is composed, we've constructed in a way that it uniquely identifies our ECS service.
+In the above code, we've defined the minimum and maximum tasks our ECS service should maintain, I've set up 5 as the maximum and 2 as the lowest capacity, feel free to customize it to your needs. Also, take note of how `resource_id` is composed, we've constructed it in a way that uniquely identifies our ECS service.
 
 #### Scaling Policy
 
-Next, we will setup the scaling policy, it will control the way our ECS service will scale, making use of our `BacklogPerTask` metric.
+Next, we will set up the scaling policy, it will control the way our ECS service will scale, making use of our `BacklogPerTask` metric.
 
 ```tf
 resource "aws_appautoscaling_policy" "ecs_policy" {
@@ -433,7 +433,7 @@ resource "aws_appautoscaling_policy" "ecs_policy" {
 }
 ```
 
-This policy uses the `TargetTrackingScaling` policy to scale the ECS tasks, which as the name suggests aims to target that on average each ECS task is handling 20 messages at a time. With this approach, we ensure that our ECS service's workload is kept at a manageable level, allow it to scales effectively and maintains a optimal performance.
+This policy uses the `TargetTrackingScaling` policy to scale the ECS tasks, which as the name suggests aims to target that on average each ECS task is handling 20 messages at a time. With this approach, we ensure that our ECS service's workload is kept at a manageable level, allowing it to scale effectively and maintain an optimal performance.
 
 ## Conclusion
 
