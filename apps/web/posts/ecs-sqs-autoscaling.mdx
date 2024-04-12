@@ -21,6 +21,8 @@ Imagine, you are running an order processing application, which is gearing up fo
 
 Here is the catch: while your app is polling messages from a SQS queue, this queue starts to overflow with a flurry of orders. Meanwhile, CPU and memory metrics might suggest that everything is under control, tempting you to relax and watch the IND V/S AUS boxing day match instead, but the growing queue might suggest a different story. In such cases, traditional scaling metrics can be misleading, potentially leaving your service overwhelmed and unable to keep up with the pace of incoming messages.
 
+![A meme about autoscaling](/blogs/ecs-sqs-autoscaling/autoscaling-meme.webp)
+
 ## Solution
 
 ![Sequence diagram of the autoscaling flow](/blogs/ecs-sqs-autoscaling/sequence-diagram-2.png)
