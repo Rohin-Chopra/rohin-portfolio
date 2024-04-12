@@ -242,7 +242,7 @@ With both the backlog and number of tasks at hand, the `putMetricData` function 
 
 #### Infrastructure
 
-Next, we will define the Terraform resources needed for the Lambda function, including IAM roles and policies, the function itself and the cloudwatch event rule.
+Next, we will define the Terraform resources needed for the Lambda function, including IAM roles and policies, the function itself and the Cloudwatch event rule.
 
 ##### IAM Role and Policy
 
@@ -350,7 +350,7 @@ A side note that I've used the default `aws_lambda_function` resource here rathe
 
 ##### Cloudwatch Event Rule
 
-Next, we will set up the cloudwatch event rule that will be responsible for invoking this Lambda every minute.
+Next, we will set up the Cloudwatch event rule that will be responsible for invoking this Lambda every minute.
 
 ```tf
 resource "aws_cloudwatch_event_rule" "backlog_per_task_metric_lambda" {
@@ -364,7 +364,7 @@ resource "aws_cloudwatch_event_target" "backlog_per_task_metric_lambda" {
 }
 ```
 
-Finally, we need to attach a resource level permission to our Lambda function, which will allow the cloudwatch events to invoke it:
+Finally, we need to attach a resource level permission to our Lambda function, which will allow the Cloudwatch events to invoke it:
 
 ```tf
 resource "aws_lambda_permission" "backlog_per_task_metric_lambda" {
