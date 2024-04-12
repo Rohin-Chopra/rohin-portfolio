@@ -311,7 +311,7 @@ Next, let's provision the Lambda function:
 
 ###### Packaging Lambda
 
-Before we define terraform config for the Lambda function, we need prepare the Lambda's application code by packaging into a zip file.
+Before we define Terraform config for the Lambda function, we need prepare the Lambda's application code by packaging into a zip file.
 
 ```tf
 data "archive_file" "backlog_per_task_metric_lambda" {
@@ -344,7 +344,7 @@ resource "aws_lambda_function" "backlog_per_task_metric_lambda" {
 }
 ```
 
-In the above code, we have supplied it with essential environment variables such as Queue URL and ECS service name from other terraform resources dynamically rather than hardcoding it, providing reusability for future use cases.
+In the above code, we have supplied it with essential environment variables such as Queue URL and ECS service name from other Terraform resources dynamically rather than hardcoding it, providing reusability for future use cases.
 
 A side note that I've used the default `aws_lambda_function` resource here rather than my favorite [Lambda terraform module](https://registry.terraform.io/modules/terraform-aws-modules/lambda/aws/latest) for simplicity's sake and also limit the scope of this blog.
 
