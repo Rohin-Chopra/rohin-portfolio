@@ -2,6 +2,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
+import { all } from "lowlight";
 
 import { mdxComponents } from "@/(subpages)/blogs/[slug]/mdx/components";
 import { terraformSyntaxHighlighter } from "@/(subpages)/blogs/[slug]/mdx/terraformSyntaxHighlighter";
@@ -26,6 +27,7 @@ export const MDXBlogBody = ({ blog }: Props) => {
                 rehypeHighlight as any,
                 {
                   languages: {
+                    ...all,
                     hcl: terraformSyntaxHighlighter,
                   },
                 },
