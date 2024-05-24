@@ -10,13 +10,13 @@
   "author": "Rohin Chopra",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.556.0",
-    "zod": "^3.23.4"
+    "@aws-sdk/client-sesv2": "^3.583.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.137",
-    "@types/node": "^20.12.7",
-    "esbuild": "^0.20.2",
+    "@types/aws-lambda": "^8.10.138",
+    "@types/node": "^20.12.12",
+    "esbuild": "^0.21.3",
     "eslint": "^8.42.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
