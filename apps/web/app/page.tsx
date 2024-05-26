@@ -24,8 +24,13 @@ import {
 
 import { ContactForm } from "@/components/ContactForm";
 import { ProjectCard } from "@/components/ProjectCard";
+import { BlogItem } from "./(subpages)/blogs/components/BlogItem";
+import { getBlogs } from "./(subpages)/blogs/lib/getBlogs";
+import { Button } from "./components/Elements/Button";
 
-const HomePage: NextPage = () => {
+const HomePage: NextPage = async () => {
+  const posts = await getBlogs();
+
   return (
     <>
       <section id="hero" className="md:h-[90vh]">
@@ -199,7 +204,7 @@ const HomePage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section id="projects" className="py-8 dark:text-white md:px-6">
+      {/* <section id="projects" className="py-8 dark:text-white md:px-6">
         <div className="container mx-auto">
           <h2 className="mt-4 text-2xl font-bold md:mb-10 md:text-4xl">
             Projects I&apos;ve built
@@ -306,6 +311,28 @@ const HomePage: NextPage = () => {
               className="mx-auto mt-8 block w-fit cursor-pointer rounded border-solid bg-primary px-8 py-4 text-center text-base text-white shadow md:mt-4"
             >
               View More Projects
+            </Link>
+          </div>
+        </div>
+      </section> */}
+
+      <section id="blogs" className="py-8 dark:text-white md:px-6">
+        <div className="container mx-auto">
+          <h2 className="mt-4 text-2xl font-bold md:mb-2 md:text-4xl">
+            Blogs I&apos;ve written
+          </h2>
+          <div>
+            {/* TODO: Add featured blogs, don't render all of them! */}
+            {posts.map((post, index) => (
+              <div className="my-6 md:my-8" key={post.slug}>
+                <BlogItem blog={post} />
+                {index !== posts.length - 1 && (
+                  <hr className="mt-6 border-t-slate-800 dark:border-t-slate-400 md:mt-8" />
+                )}
+              </div>
+            ))}
+            <Link href="/blogs">
+              <Button className="mx-auto block bg-primary">View More</Button>
             </Link>
           </div>
         </div>
