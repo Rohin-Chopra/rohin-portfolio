@@ -1,5 +1,5 @@
-import { BlogItem } from "./components/BlogItem";
-import { getBlogs } from "./lib/getBlogs";
+import { BlogItem } from "../../components/BlogItem";
+import { getBlogs } from "../../lib/getBlogs";
 
 const BlogsPage = async () => {
   const posts = await getBlogs();

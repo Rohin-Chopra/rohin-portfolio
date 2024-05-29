@@ -5,8 +5,8 @@ import { MdArrowBack } from "react-icons/md";
 
 import { MDXBlogBody } from "@/(subpages)/blogs/[slug]/mdx/MDXBlogBody";
 import type { BlogParams } from "@/(subpages)/blogs/[slug]/types";
-import { getBlog } from "@/(subpages)/blogs/lib/getBlog";
-import { getBlogs } from "@/(subpages)/blogs/lib/getBlogs";
+import { getBlog } from "@/lib/getBlog";
+import { getBlogs } from "@/lib/getBlogs";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar/ScrollProgressBar";
 
 import "./style.css";

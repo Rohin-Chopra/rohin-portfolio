@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { Blog } from "@/(subpages)/blogs/types";
+import type { Blog } from "@/types";
 
 type Props = {
   blog: Blog;

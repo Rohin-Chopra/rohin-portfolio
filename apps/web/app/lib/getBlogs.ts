@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import { extname } from "path";
 import { cache } from "react";
 
-import type { Blog } from "@/(subpages)/blogs/types";
+import type { Blog } from "@/types";
 
 export const getBlogs = cache(async (): Promise<Blog[]> => {
   const posts = (await readdir("./posts/")).filter((file) =>

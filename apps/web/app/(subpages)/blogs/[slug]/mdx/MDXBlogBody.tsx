@@ -6,7 +6,7 @@ import { all } from "lowlight";
 
 import { mdxComponents } from "@/(subpages)/blogs/[slug]/mdx/components";
 import { terraformSyntaxHighlighter } from "@/(subpages)/blogs/[slug]/mdx/terraformSyntaxHighlighter";
-import type { Blog } from "@/(subpages)/blogs/types";
+import type { Blog } from "@/types";
 
 import "./draculaTheme.css";
 

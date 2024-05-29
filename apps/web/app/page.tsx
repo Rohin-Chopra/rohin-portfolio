@@ -1,7 +1,6 @@
-import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaAws, FaGithub, FaNodeJs, FaReact } from "react-icons/fa";
+import { FaAws, FaGithub, FaReact } from "react-icons/fa";
 import {
   SiBootstrap,
   SiDocker,
@@ -20,9 +19,9 @@ import {
 } from "react-icons/si";
 
 import { ContactForm } from "@/components/ContactForm";
-import { BlogItem } from "./(subpages)/blogs/components/BlogItem";
-import { getBlogs } from "./(subpages)/blogs/lib/getBlogs";
-import { Button } from "./components/Elements/Button";
+import { Button } from "@/components/Elements/Button";
+import { BlogItem } from "@/components/BlogItem";
+import { getBlogs } from "@/lib/getBlogs";
 
 const HomePage = async () => {
   const posts = await getBlogs();
@@ -208,7 +207,7 @@ const HomePage = async () => {
           </div>
         </div>
       </section>
-      <section id="contact" className="pb-8 pt-12 dark:text-white md:px-6">
+      <section id="contact" className="py-8 dark:text-white md:px-6">
         <div className="container mx-auto">
           <div className="md:grid md:grid-cols-2">
             <div className="mb-4 md:mb-0">
