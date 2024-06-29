@@ -17,6 +17,7 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
+import { SiMicrosoftazure } from "react-icons/si";
 
 import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/Elements/Button";
@@ -126,6 +127,10 @@ const HomePage = async () => {
             <h3 className="mb-4 text-xl font-semibold opacity-80">Services</h3>
             <div className="grid grid-cols-2 justify-items-center gap-y-4 text-6xl md:grid-cols-8">
               <FaAws title="AWS" />
+              <SiMicrosoftazure
+                title="Azure"
+                className="transition-colors duration-300 hover:text-[#008AD7]"
+              />
               <SiTerraform
                 title="Terraform"
                 className="transition-colors duration-300 hover:text-[#7A42BC]"
