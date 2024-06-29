@@ -176,6 +176,12 @@ const HomePage = async () => {
                 alt="AWS Database Specialty Certificate"
               />
               <Image
+                src="/microsoft-certified-fundamentals-badge.svg"
+                height={125}
+                width={125}
+                alt="Microsoft AZ-900 Certificate"
+              />
+              <Image
                 src="/hashicorp-certified-terraform-associate-003.png"
                 height={125}
                 width={125}
