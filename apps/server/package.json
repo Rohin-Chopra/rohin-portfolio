@@ -10,16 +10,16 @@
   "author": "Rohin Chopra",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.588.0",
+    "@aws-sdk/client-sesv2": "^3.614.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.138",
-    "@types/node": "^20.13.0",
-    "esbuild": "^0.21.4",
+    "@types/aws-lambda": "^8.10.141",
+    "@types/node": "^20.14.10",
+    "esbuild": "^0.23.0",
     "eslint": "^8.42.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   }
 }
