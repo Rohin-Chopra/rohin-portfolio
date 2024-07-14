@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "author": "Rohin Chopra",
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
     "lint": "turbo run lint",
     "build": "turbo run build",
