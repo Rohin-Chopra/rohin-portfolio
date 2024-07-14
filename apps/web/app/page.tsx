@@ -203,8 +203,7 @@ const HomePage = async () => {
             Blogs I&apos;ve written
           </h2>
           <div>
-            {/* TODO: Add featured blogs, don't render all of them! */}
-            {posts.map((post, index) => (
+            {posts.slice(0, 3).map((post, index) => (
               <div className="my-6 md:my-8" key={post.slug}>
                 <BlogItem blog={post} />
                 {index !== posts.length - 1 && (
