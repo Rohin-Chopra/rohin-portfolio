@@ -181,6 +181,12 @@ const HomePage = async () => {
                 alt="AWS Database Specialty Certificate"
               />
               <Image
+                src="/aws-certified-solutions-architect-professional.png"
+                height={125}
+                width={125}
+                alt="AWS Solutions Architect Professional"
+              />
+              <Image
                 src="/microsoft-certified-fundamentals-badge.svg"
                 height={125}
                 width={125}
